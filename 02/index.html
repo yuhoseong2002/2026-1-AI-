@@ -104,7 +104,7 @@
             animation: modalFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         @keyframes modalFadeIn {
-            from { opacity: 0; transform: scale(0.9); }
+            from { opacity: 0; transform: scale(0.95); }
             to { opacity: 1; transform: scale(1); }
         }
     </style>
@@ -158,8 +158,8 @@
                     <a href="#definition" class="px-8 py-5 bg-blue-600 text-white rounded-2xl font-black shadow-[0_20px_40px_rgba(59,130,246,0.3)] hover:-translate-y-2 transition-all flex items-center gap-3">
                         지금 탐험하기 <i data-lucide="arrow-right"></i>
                     </a>
-                    <!-- 슬라이드 다운로드 버튼 (aippt 다운로드로 수정) -->
-                    <a href="aippt" download="aippt" class="px-8 py-5 glass border-white text-slate-900 rounded-2xl font-black shadow-lg hover:-translate-y-2 hover:bg-white/80 transition-all flex items-center gap-3">
+                    <!-- 슬라이드 다운로드 버튼 -->
+                    <a href="aippt.pdf" download="aippt.pdf" class="px-8 py-5 glass border-white text-slate-900 rounded-2xl font-black shadow-lg hover:-translate-y-2 hover:bg-white/80 transition-all flex items-center gap-3">
                         슬라이드 다운로드 <i data-lucide="download"></i>
                     </a>
                     <!-- 동영상 보기 버튼 -->
@@ -248,33 +248,33 @@
         </button>
     </section>
 
-    <!-- 인포그래픽 모달 (aihistory 이미지 팝업) -->
+    <!-- 인포그래픽 모달 (aihistory.png 이미지 팝업) -->
     <div id="imageModal" class="fixed inset-0 z-[200] hidden items-center justify-center p-4 md:p-10">
         <!-- 배경 오버레이 -->
         <div class="absolute inset-0 bg-slate-900/95 backdrop-blur-xl" id="modalOverlay"></div>
         
         <!-- 모달 창 컨텐츠 -->
-        <div class="relative glass max-w-7xl w-full max-h-[95vh] rounded-[3rem] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.5)] flex flex-col border-white/20 scale-100">
+        <div class="relative glass max-w-7xl w-full max-h-[95vh] rounded-[3rem] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.5)] flex flex-col border-white/20">
             <!-- 닫기 버튼 -->
             <button id="closeModal" class="absolute top-6 right-6 z-50 w-14 h-14 bg-white/10 hover:bg-white/30 rounded-full flex items-center justify-center text-white backdrop-blur-2xl transition-all border border-white/20 hover:rotate-90">
                 <i data-lucide="x" class="w-8 h-8"></i>
             </button>
             
             <!-- 인포그래픽 이미지 표시 영역 -->
-            <div class="p-6 md:p-12 overflow-y-auto flex-1 flex flex-col items-center">
-                <div class="flex items-center gap-3 mb-8">
+            <div class="p-4 md:p-8 overflow-y-auto flex-1 flex flex-col items-center">
+                <div class="flex items-center gap-3 mb-6">
                     <i data-lucide="history" class="text-blue-400"></i>
-                    <h4 class="text-white text-3xl font-black tracking-tight">AI 역사 인포그래픽</h4>
+                    <h4 class="text-white text-2xl font-black tracking-tight">AI 역사 인포그래픽</h4>
                 </div>
                 
-                <!-- 요청하신 'aihistory' 이미지 -->
+                <!-- 요청하신 'aihistory.png' 이미지 -->
                 <div class="w-full glass-dark p-2 rounded-[2rem] border border-white/10">
-                    <img src="aihistory" alt="AI 역사 인포그래픽" class="w-full h-auto object-contain rounded-[1.5rem] shadow-2xl" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1620712943543-bcc4628c71d5?auto=format&fit=crop&q=80&w=1600';">
+                    <img src="aihistory.png" alt="AI 역사 인포그래픽" class="w-full h-auto max-h-[70vh] object-contain rounded-[1.5rem] shadow-2xl mx-auto" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1620712943543-bcc4628c71d5?auto=format&fit=crop&q=80&w=1600';">
                 </div>
                 
-                <div class="mt-8 flex gap-4">
-                    <span class="px-4 py-2 bg-blue-500/20 text-blue-400 rounded-full text-xs font-bold tracking-widest uppercase">1950s - Present</span>
-                    <span class="px-4 py-2 bg-purple-500/20 text-purple-400 rounded-full text-xs font-bold tracking-widest uppercase">Infographic View</span>
+                <div class="mt-6 flex gap-4">
+                    <span class="px-4 py-2 bg-blue-500/20 text-blue-400 rounded-full text-[10px] font-bold tracking-widest uppercase">Timeline View</span>
+                    <span class="px-4 py-2 bg-purple-500/20 text-purple-400 rounded-full text-[10px] font-bold tracking-widest uppercase">Full Infographic</span>
                 </div>
             </div>
         </div>
@@ -285,7 +285,7 @@
         <div class="max-w-7xl mx-auto relative z-10">
             <div class="text-center mb-24 reveal">
                 <h2 class="text-blue-400 font-black uppercase mb-4 tracking-widest">03. 방법론</h2>
-                <h3 class="text-4xl md:text-6xl font-black text-white mb-6 italic">HOW AI LEARNS</h3>
+                <h3 class="text-4xl md:text-6xl font-black text-white mb-6 italic text-gradient">HOW AI LEARNS</h3>
                 <p class="text-slate-400">데이터를 지능으로 전환하는 세 가지 핵심 방식입니다.</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
@@ -295,15 +295,15 @@
                     </div>
                     <h4 class="text-2xl font-black text-white mb-4">지도 학습</h4>
                     <p class="text-slate-400 text-sm mb-10 leading-relaxed italic">"정답지를 든 선생님"</p>
-                    <div class="text-blue-400 text-[10px] font-black tracking-widest uppercase font-bold">Classification • Regression</div>
+                    <div class="text-blue-400 text-[10px] font-black tracking-widest uppercase font-bold tracking-tighter">Classification • Regression</div>
                 </div>
-                <div class="reveal glass-dark p-10 rounded-[3rem] group border-blue-500/30 shadow-[0_0_50px_rgba(59,130,246,0.1)]">
+                <div class="reveal glass-dark p-10 rounded-[3rem] group border-blue-500/30">
                     <div class="w-20 h-20 bg-purple-500/20 rounded-3xl flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
                         <i data-lucide="fingerprint" class="text-purple-400 w-10 h-10"></i>
                     </div>
                     <h4 class="text-2xl font-black text-white mb-4">비지도 학습</h4>
                     <p class="text-slate-400 text-sm mb-10 leading-relaxed italic">"스스로 찾는 탐험가"</p>
-                    <div class="text-purple-400 text-[10px] font-black tracking-widest uppercase font-bold">Clustering • Association</div>
+                    <div class="text-purple-400 text-[10px] font-black tracking-widest uppercase font-bold tracking-tighter">Clustering • Association</div>
                 </div>
                 <div class="reveal glass-dark p-10 rounded-[3rem] group">
                     <div class="w-20 h-20 bg-orange-500/20 rounded-3xl flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
@@ -311,7 +311,7 @@
                     </div>
                     <h4 class="text-2xl font-black text-white mb-4">강화 학습</h4>
                     <p class="text-slate-400 text-sm mb-10 leading-relaxed italic">"보상을 향한 도전가"</p>
-                    <div class="text-orange-400 text-[10px] font-black tracking-widest uppercase font-bold">Policy • Optimization</div>
+                    <div class="text-orange-400 text-[10px] font-black tracking-widest uppercase font-bold tracking-tighter">Policy • Optimization</div>
                 </div>
             </div>
         </div>
