@@ -4,416 +4,262 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>유호성 | AI 리터러시 포트폴리오</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
         
-        body {
-            font-family: 'Pretendard', sans-serif;
-            transition: background-color 0.5s, color 0.5s;
-            overflow-x: hidden;
-        }
+        body { font-family: 'Pretendard', sans-serif; transition: background-color 0.5s; overflow-x: hidden; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        #modalOverlay { transition: opacity 0.3s ease; display: none; }
+        #modalContent { transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        #modalOverlay.active { display: flex; opacity: 1; }
+        #modalOverlay.active #modalContent { transform: scale(1); }
 
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @keyframes gradient-x {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        @keyframes spin-slow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .animate-gradient-x {
-            background-size: 200% 200%;
-            animation: gradient-x 5s ease infinite;
-        }
-
-        .animate-spin-slow {
-            animation: spin-slow 12s linear infinite;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #f43f5e;
-            border-radius: 10px;
-        }
-
-        /* Theme Specific Transitions */
-        .dark-mode {
-            background-color: #020617;
-            color: #f1f5f9;
-        }
-        .light-mode {
-            background-color: #fff1f2;
-            color: #0f172a;
+        .dark-mode { background-color: #020617; color: #f1f5f9; }
+        .light-mode { background-color: #fff1f2; color: #0f172a; }
+        
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
         }
     </style>
 </head>
 <body class="dark-mode transition-colors duration-700">
 
-    <!-- 장식용 배경 요소 -->
     <div class="fixed inset-0 overflow-hidden -z-10 pointer-events-none">
-        <div id="blob1" class="absolute top-[10%] left-[5%] w-64 h-64 rounded-full blur-[100px] opacity-30 animate-pulse bg-purple-600 transition-colors duration-1000"></div>
-        <div id="blob2" class="absolute bottom-[10%] right-[5%] w-80 h-80 rounded-full blur-[100px] opacity-30 animate-pulse bg-cyan-600 transition-colors duration-1000" style="animation-delay: 2s;"></div>
-        <div id="blob3" class="absolute top-[40%] right-[15%] w-40 h-40 rounded-full blur-[80px] opacity-20 animate-bounce bg-rose-600 transition-colors duration-1000" style="animation-duration: 8s;"></div>
+        <div id="blob1" class="absolute top-[10%] left-[5%] w-64 h-64 rounded-full blur-[100px] opacity-30 animate-pulse bg-purple-600"></div>
+        <div id="blob2" class="absolute bottom-[10%] right-[5%] w-80 h-80 rounded-full blur-[100px] opacity-30 animate-pulse bg-cyan-600"></div>
     </div>
 
-    <!-- 테마 전환 버튼 -->
     <div class="fixed top-6 right-6 z-50">
-        <button id="themeToggle" class="group relative p-4 rounded-3xl transition-all duration-500 hover:scale-110 active:scale-95 border-2 flex items-center justify-center bg-slate-900/80 border-slate-700 text-yellow-400 shadow-[0_0_15px_rgba(250,204,21,0.3)]">
-            <i data-lucide="sun" id="sunIcon" class="w-6 h-6"></i>
-            <i data-lucide="moon" id="moonIcon" class="w-6 h-6 hidden"></i>
+        <button id="themeToggle" class="p-4 rounded-3xl border-2 bg-slate-900/80 border-slate-700 text-yellow-400 hover:scale-110 transition-transform">
+            <i data-lucide="sun" id="sunIcon"></i>
+            <i data-lucide="moon" id="moonIcon" class="hidden"></i>
         </button>
     </div>
 
-    <!-- 히어로 섹션 -->
-    <header class="relative min-h-screen flex flex-col items-center justify-center px-6">
-        <div id="hero" class="reveal text-center z-10">
-            <div id="badge" class="inline-flex items-center gap-2 px-5 py-2 mb-8 rounded-full border-2 border-rose-500/30 bg-rose-500/10 text-rose-400 font-bold text-sm tracking-widest">
-                <i data-lucide="star" class="w-4 h-4 fill-current"></i> 2026 포트폴리오 <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+    <header class="min-h-screen flex flex-col items-center justify-center text-center px-6">
+        <div class="reveal">
+            <div class="inline-block px-4 py-1.5 mb-6 rounded-full border border-pink-500/30 bg-pink-500/10 text-pink-400 text-sm font-bold tracking-widest">
+                PORTFOLIO 2026
             </div>
-            <h1 class="text-5xl md:text-8xl font-black mb-8 tracking-tighter leading-tight">
-                AI 리터러시: <br />
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 animate-gradient-x">
-                    데이터와 꿈의 연결
-                </span>
+            <h1 class="text-6xl md:text-8xl font-black mb-8 tracking-tighter leading-tight">
+                AI 리터러시:<br />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-cyan-500">데이터와 꿈의 연결</span>
             </h1>
-            <p id="heroDesc" class="max-w-2xl mx-auto text-lg md:text-2xl leading-relaxed mb-12 font-medium text-slate-400">
-                생성형 AI와 함께 데이터 속에 숨겨진 <span class="text-rose-500 font-bold">마법 같은 이야기</span>를 찾아냅니다. 
-                더 나은 세상을 향한 즐거운 분석 여행에 초대합니다!
-            </p>
-            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <button onclick="document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' })" class="group relative px-10 py-5 bg-gradient-to-r from-rose-500 to-purple-600 text-white font-black rounded-3xl transition-all hover:scale-105 active:scale-95 shadow-[0_10px_30px_rgba(244,63,94,0.4)] overflow-hidden">
-                    <span class="relative z-10 flex items-center gap-2">과제 구경하기 <i data-lucide="arrow-right"></i></span>
-                    <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                </button>
-                <button id="aboutBtn" onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' })" class="px-10 py-5 font-black rounded-3xl transition-all border-2 hover:scale-105 bg-slate-800/50 hover:bg-slate-700 text-white border-slate-700">
-                    내 이야기 듣기
-                </button>
+            <div class="flex flex-col items-center gap-4 mb-12">
+                <p class="text-lg md:text-2xl text-slate-400">부산대학교 공공정책학부 유호성</p>
+                <div class="flex gap-4">
+                    <span class="px-3 py-1 bg-white/5 rounded-lg text-xs text-slate-500 border border-white/10">#생성형AI</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-lg text-xs text-slate-500 border border-white/10">#데이터분석</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-lg text-xs text-slate-500 border border-white/10">#정책스토리텔링</span>
+                </div>
             </div>
+            <button onclick="document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' })" class="px-10 py-5 bg-rose-500 text-white font-black rounded-3xl shadow-lg shadow-rose-500/30 hover:scale-105 transition-transform active:scale-95">과제 아카이브 탐색</button>
         </div>
     </header>
 
-    <!-- 자기소개 섹션 -->
-    <section id="about" class="py-32 px-6 max-w-6xl mx-auto">
-        <div class="reveal">
-            <div class="flex items-center gap-4 mb-16 justify-center md:justify-start">
-                <div class="p-3 bg-rose-500 rounded-2xl text-white shadow-lg shadow-rose-500/30">
-                    <i data-lucide="heart" class="w-8 h-8 fill-current"></i>
-                </div>
-                <h2 class="text-4xl font-black">반가워요!</h2>
-            </div>
-            
-            <div id="aboutCard" class="grid md:grid-cols-12 gap-10 items-stretch p-10 rounded-[40px] border-2 bg-slate-900/50 border-white/10 transition-colors duration-500 shadow-xl">
-                <div class="md:col-span-4 flex flex-col items-center justify-center">
-                    <div class="relative group mb-6">
-                        <div class="absolute -inset-4 bg-gradient-to-tr from-pink-500 via-purple-500 to-cyan-500 rounded-full blur-xl opacity-40 group-hover:opacity-100 transition duration-1000 animate-spin-slow"></div>
-                        <div class="relative w-48 h-48 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
-                            <img src="https://cdn.topstarnews.net/news/photo/202507/15721511_1631739_3119.jpg" alt="유호성 프로필 사진" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                        </div>
-                    </div>
-                    <h3 class="text-3xl font-black mb-2 text-center">유호성</h3>
-                    <p class="text-rose-500 font-bold mb-6 text-center uppercase tracking-widest text-sm">부산대학교</p>
-                    
-                    <div id="infoItems" class="space-y-4 w-full text-slate-400">
-                        <div class="flex items-center gap-4 p-3 rounded-2xl bg-slate-500/5 border border-slate-500/10 transition-transform hover:scale-105">
-                            <i data-lucide="graduation-cap" class="text-purple-500"></i>
-                            <span class="font-bold">공공정책학부 재학</span>
-                        </div>
-                        <div class="flex items-center gap-4 p-3 rounded-2xl bg-slate-500/5 border border-slate-500/10 transition-transform hover:scale-105">
-                            <i data-lucide="star" class="text-yellow-500"></i>
-                            <span class="font-bold">25살의 열정 넘치는 청년</span>
-                        </div>
-                        <div class="flex items-center gap-4 p-3 rounded-2xl bg-slate-500/5 border border-slate-500/10 transition-transform hover:scale-105">
-                            <i data-lucide="map-pin" class="text-rose-500"></i>
-                            <span class="font-bold">부산을 사랑하는 대학생</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="md:col-span-8 flex flex-col justify-center space-y-8">
-                    <div class="relative">
-                        <div class="absolute -left-6 top-0 text-6xl text-rose-500/20 font-serif">"</div>
-                        <p id="visionText" class="text-xl md:text-2xl leading-relaxed font-bold italic text-slate-200">
-                            세상을 바꾸는 따뜻한 기술, <br />
-                            데이터 속에 숨겨진 행복을 찾습니다.
-                        </p>
-                    </div>
-                    <p id="aboutDesc" class="text-lg leading-relaxed text-slate-400">
-                        안녕하세요! 저는 부산대학교에서 공공정책학을 전공하며, 더 나은 사회를 만들기 위해 데이터를 공부하는 유호성입니다. <br /><br />
-                        이번 'AI 리터러시' 수업은 저에게 큰 터닝포인트가 되었습니다. 어렵게만 느껴졌던 AI를 친구처럼 활용하며, 정책 아이디어를 시각화하고 구체화하는 매력을 알게 되었죠. 저는 차갑게만 느껴지는 기술을 따뜻한 공공 서비스로 녹여내는 연결고리가 되고 싶습니다.
-                    </p>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="px-4 py-2 bg-gradient-to-r from-rose-900/30 to-purple-900/30 rounded-full text-sm font-black text-rose-400">#긍정에너지</span>
-                        <span class="px-4 py-2 bg-gradient-to-r from-rose-900/30 to-purple-900/30 rounded-full text-sm font-black text-rose-400">#데이터탐험가</span>
-                        <span class="px-4 py-2 bg-gradient-to-r from-rose-900/30 to-purple-900/30 rounded-full text-sm font-black text-rose-400">#정책꿈나무</span>
-                        <span class="px-4 py-2 bg-gradient-to-r from-rose-900/30 to-purple-900/30 rounded-full text-sm font-black text-rose-400">#AI활용력100%</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 포트폴리오 그리드 섹션 -->
-    <section id="portfolio" class="py-32 px-6 transition-colors duration-700 bg-slate-900/40">
+    <section id="portfolio" class="py-32 px-6 bg-slate-900/40 backdrop-blur-sm">
         <div class="max-w-7xl mx-auto">
             <div class="mb-20 text-center reveal">
-                <span class="text-rose-500 font-black tracking-widest text-sm uppercase mb-4 block">아카이브</span>
-                <h2 class="text-5xl font-black mb-6">나의 소중한 기록들</h2>
-                <div class="w-24 h-2 bg-gradient-to-r from-rose-500 to-purple-500 mx-auto rounded-full"></div>
+                <h2 class="text-4xl font-black mb-4 underline decoration-pink-500 underline-offset-8">전체 과제 리스트</h2>
+                <p class="text-slate-500 mt-6">한 학기 동안 배운 생성형 AI 활용 능력과 데이터 인사이트 도출 역량의 집약체입니다.</p>
             </div>
-
             <div id="assignmentGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                <!-- 자바스크립트로 카드가 생성됩니다. -->
             </div>
         </div>
     </section>
 
-    <!-- 핵심 역량 섹션 -->
-    <section class="py-32 px-6 max-w-7xl mx-auto">
-        <div class="grid md:grid-cols-3 gap-10 reveal">
-            <div class="skill-card group p-10 rounded-[50px] border-2 transition-all duration-500 text-center hover:scale-105 bg-gradient-to-b from-slate-900 to-slate-950 border-slate-800">
-                <div class="w-20 h-20 rounded-[30px] flex items-center justify-center mx-auto mb-8 transition-transform group-hover:rotate-12 shadow-lg bg-gradient-to-br from-pink-500 to-rose-600 text-white">
-                    <i data-lucide="cpu" class="w-9 h-9"></i>
+    <div id="modalOverlay" class="fixed inset-0 z-[100] items-center justify-center p-6 bg-black/80 backdrop-blur-sm opacity-0">
+        <div id="modalContent" class="relative w-full max-w-2xl bg-slate-900 border border-white/10 p-10 rounded-[40px] shadow-2xl overflow-hidden">
+            <div class="absolute -top-24 -left-24 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl"></div>
+            <button onclick="closeModal()" class="absolute top-8 right-8 text-slate-400 hover:text-white transition-colors">
+                <i data-lucide="x"></i>
+            </button>
+            <div class="relative z-10">
+                <div id="modalBadge" class="inline-block px-4 py-1.5 rounded-full text-xs font-black text-white bg-gradient-to-r from-pink-500 to-rose-500 mb-6 shadow-md shadow-pink-500/20">과제</div>
+                <h2 id="modalTitle" class="text-4xl font-black mb-6 text-white tracking-tight">과제 제목</h2>
+                <div class="mb-8">
+                    <h3 class="text-slate-500 text-sm font-bold uppercase tracking-widest mb-2">실습 및 학습 내용</h3>
+                    <p id="modalDesc" class="text-lg leading-relaxed text-slate-300"></p>
                 </div>
-                <h4 class="text-2xl font-black mb-4">생성형 AI</h4>
-                <p class="text-base font-medium leading-relaxed text-slate-400">AI와 친구가 되어 아이디어를 현실로 만드는 마법 같은 능력</p>
-            </div>
-            <div class="skill-card group p-10 rounded-[50px] border-2 transition-all duration-500 text-center hover:scale-105 bg-gradient-to-b from-slate-900 to-slate-950 border-slate-800">
-                <div class="w-20 h-20 rounded-[30px] flex items-center justify-center mx-auto mb-8 transition-transform group-hover:rotate-12 shadow-lg bg-gradient-to-br from-purple-500 to-indigo-600 text-white">
-                    <i data-lucide="database" class="w-9 h-9"></i>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a id="modalLink" href="#" class="flex-1 px-8 py-5 bg-rose-500 text-white font-black rounded-2xl text-center flex items-center justify-center gap-2 hover:bg-rose-600 transition-all shadow-lg shadow-rose-500/20 active:scale-95">
+                        결과 보기 <i data-lucide="external-link" class="w-5 h-5"></i>
+                    </a>
+                    <button onclick="closeModal()" class="px-8 py-5 bg-slate-800 text-white font-black rounded-2xl border border-slate-700 hover:bg-slate-700 transition-all active:scale-95">
+                        닫기
+                    </button>
                 </div>
-                <h4 class="text-2xl font-black mb-4">데이터 분석</h4>
-                <p class="text-base font-medium leading-relaxed text-slate-400">복잡한 숫자 속에서 사람들의 마음과 필요를 읽어내는 힘</p>
-            </div>
-            <div class="skill-card group p-10 rounded-[50px] border-2 transition-all duration-500 text-center hover:scale-105 bg-gradient-to-b from-slate-900 to-slate-950 border-slate-800">
-                <div class="w-20 h-20 rounded-[30px] flex items-center justify-center mx-auto mb-8 transition-transform group-hover:rotate-12 shadow-lg bg-gradient-to-br from-amber-400 to-orange-500 text-white">
-                    <i data-lucide="award" class="w-9 h-9"></i>
-                </div>
-                <h4 class="text-2xl font-black mb-4">공공 정책</h4>
-                <p class="text-base font-medium leading-relaxed text-slate-400">모두가 행복한 세상을 꿈꾸며 실천하는 따뜻한 정책 마인드</p>
             </div>
         </div>
-    </section>
-
-    <!-- 푸터 -->
-    <footer class="py-16 border-t px-6 border-slate-900 transition-colors duration-700">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
-            <div class="text-center md:text-left">
-                <h2 class="text-3xl font-black mb-3">
-                    <span class="text-rose-500 italic text-rose-500">Hoseong</span> Portfolio
-                </h2>
-                <p class="font-bold text-slate-500">부산대학교 공공정책학부 유호성</p>
-            </div>
-            <div class="flex gap-4">
-                <a href="#" class="footer-link w-14 h-14 rounded-3xl flex items-center justify-center transition-all hover:scale-110 active:scale-90 border-2 bg-slate-900 border-slate-800 text-slate-400 hover:text-rose-500 hover:border-rose-500">
-                    <i data-lucide="mail"></i>
-                </a>
-                <a href="#" class="footer-link w-14 h-14 rounded-3xl flex items-center justify-center transition-all hover:scale-110 active:scale-90 border-2 bg-slate-900 border-slate-800 text-slate-400 hover:text-rose-500 hover:border-rose-500">
-                    <i data-lucide="github"></i>
-                </a>
-                <a href="#" class="footer-link w-14 h-14 rounded-3xl flex items-center justify-center transition-all hover:scale-110 active:scale-90 border-2 bg-slate-900 border-slate-800 text-slate-400 hover:text-rose-500 hover:border-rose-500">
-                    <i data-lucide="external-link"></i>
-                </a>
-            </div>
-            <div class="text-sm font-bold text-center md:text-right text-slate-500">
-                © 2026 유호성. 정성을 다해 만들었습니다.<br />
-                부산대학교 AI 리터러시 프로젝트
-            </div>
-        </div>
-    </footer>
+    </div>
 
     <script>
-        // 과제 데이터 배열
         const assignments = [
             { 
                 id: '01', 
                 title: 'AI의 이해 (NotebookLM)', 
-                desc: 'Google NotebookLM을 활용하여 AI의 개념과 발전 역사를 학습하고, 생성형 AI 관련 방대한 자료를 스마트하게 정리하는 실습을 진행했습니다.', 
-                tags: ['#NotebookLM', '#AI의역사'], 
+                desc: 'Google NotebookLM을 활용하여 AI란 무엇이고 발전의 역사와 생성형 AI에 대해 설명해주고 자료정리하는 실습을 진행했습니다.', 
+                link: './02/index.html', 
                 color: 'from-pink-400 to-rose-500',
-                link: './02/index.html'
+                tags: ['#AI기초', '#NotebookLM']
             },
-            { id: '02', title: '프롬프트 마법사', desc: 'AI와 대화하는 특별한 방법을 배워 성능을 200% 끌어올립니다.', tags: ['#대화법', '#마법사'], color: 'from-purple-400 to-indigo-500', link: '#' },
-            { id: '03', title: 'AI와 함께하는 윤리', desc: '편견 없는 착한 AI를 만들기 위한 윤리 가이드를 탐구합니다.', tags: ['#착한AI', '#윤리'], color: 'from-blue-400 to-cyan-500', link: '#' },
-            { id: '04', title: '데이터 보물찾기', desc: '세상에 흩어진 공공 데이터를 수집하여 보물 같은 정보를 찾습니다.', tags: ['#데이터', '#수집'], color: 'from-teal-400 to-emerald-500', link: '#' },
-            { id: '05', title: '데이터 깔끔 정리', desc: '복잡한 데이터를 분석하기 좋게 예쁘고 깔끔하게 다듬는 과정입니다.', tags: ['#정리왕', '#전처리'], color: 'from-green-400 to-lime-500', link: '#' },
-            { id: '06', title: '알록달록 데이터 그림', desc: '숫자 데이터를 한눈에 쏙 들어오는 예쁜 차트와 그래프로 바꿉니다.', tags: ['#그림판', '#시각화'], color: 'from-yellow-400 to-orange-500', link: '#' },
-            { id: '07', title: 'AI 예술가 되기', desc: 'AI와 협업하여 상상 속에만 있던 이미지를 현실로 만들어냅니다.', tags: ['#AI아트', '#예술가'], color: 'from-orange-400 to-red-500', link: '#' },
-            { id: '08', title: '상상력으로 문제 해결', desc: '우리 주변의 어려운 문제들을 AI 아이디어로 톡톡 튀게 해결합니다.', tags: ['#아이디어', '#해결사'], color: 'from-rose-400 to-pink-500', link: '#' },
-            { id: '09', title: '똑똑한 정책 분석', desc: '빅데이터를 활용해 더 나은 세상을 만드는 정책을 설계합니다.', tags: ['#정책왕', '#빅데이터'], color: 'from-fuchsia-400 to-purple-500', link: '#' },
-            { id: '10', title: '최종 대성공 프로젝트', desc: '한 학기 동안 갈고닦은 모든 실력을 보여주는 최고의 결과물!', tags: ['#피날레', '#캡스톤'], color: 'from-violet-400 to-purple-600', link: '#' }
+            { 
+                id: '02', 
+                title: '데이터 스토리텔링', 
+                desc: '공공데이터를 분석하고 인사이트를 도출하여 시각적으로 설득력 있는 리포트를 작성하여 스토리북으로 만들기', 
+                link: './03/index.html', 
+                color: 'from-purple-400 to-indigo-500',
+                tags: ['#Gemini 스토리북']
+            },
+            { 
+                id: '03', 
+                title: 'AI 윤리와 거버넌스', 
+                desc: 'AI 알고리즘의 편향성 문제와 공공 정책적 윤리 가이드라인을 분석하고 미래 기술 사회의 책임을 연구합니다.', 
+                link: '#', 
+                color: 'from-cyan-400 to-blue-500',
+                tags: ['#윤리', '#정책']
+            },
+            { 
+                id: '04', 
+                title: '공공 데이터 수집 실습', 
+                desc: 'Python 및 다양한 도구를 활용하여 공공 API에서 실시간 데이터를 수집하고 이를 분석 가능한 형태로 구조화했습니다.', 
+                link: '#', 
+                color: 'from-teal-400 to-emerald-500',
+                tags: ['#크롤링', '#데이터수집']
+            },
+            { 
+                id: '05', 
+                title: '데이터 정제 및 전처리', 
+                desc: '복잡하고 비정형화된 데이터를 분석에 적합하도록 정제하고, 결측치를 처리하여 데이터의 신뢰도를 높이는 실습입니다.', 
+                link: '#', 
+                color: 'from-green-400 to-lime-500',
+                tags: ['#데이터전처리', '#정제']
+            },
+            { 
+                id: '06', 
+                title: '통계적 시각화 분석', 
+                desc: '데이터 속에 숨겨진 상관관계를 파악하기 위해 다양한 차트와 그래프를 사용하여 시각적 인사이트를 도출했습니다.', 
+                link: '#', 
+                color: 'from-yellow-400 to-orange-500',
+                tags: ['#통계분석', '#시각화']
+            },
+            { 
+                id: '07', 
+                title: '생성형 AI 아트워크', 
+                desc: 'Midjourney와 DALL-E를 활용하여 브랜드 컨셉에 맞는 창의적인 디지털 에셋을 창조하는 실험적 프로젝트입니다.', 
+                link: '#', 
+                color: 'from-orange-400 to-red-500',
+                tags: ['#AI아트', '#창의성']
+            },
+            { 
+                id: '08', 
+                title: 'AI 기반 문제해결 설계', 
+                desc: '공공 정책 영역에서 발생하는 고질적인 문제들을 AI 기술을 접목하여 혁신적으로 해결하는 시나리오를 설계했습니다.', 
+                link: '#', 
+                color: 'from-rose-400 to-pink-500',
+                tags: ['#문제해결', '#디자인']
+            },
+            { 
+                id: '09', 
+                title: '빅데이터 정책 분석 리포트', 
+                desc: '대규모 인구 및 사회 데이터를 분석하여 실질적인 공공 정책 제언으로 연결하는 심층 분석 리포트입니다.', 
+                link: '#', 
+                color: 'from-fuchsia-400 to-purple-500',
+                tags: ['#정책분석', '#빅데이터']
+            },
+            { 
+                id: '10', 
+                title: '최종 캡스톤 프로젝트', 
+                desc: '학기 전체 과정을 통해 습득한 AI 리터러시 역량을 하나로 집약한 최종 통합 프로젝트 결과물입니다.', 
+                link: '#', 
+                color: 'from-violet-400 to-purple-600',
+                tags: ['#캡스톤', '#최종결과물']
+            }
         ];
 
-        // 카드 렌더링 함수
         function renderCards() {
             const grid = document.getElementById('assignmentGrid');
+            grid.innerHTML = '';
             assignments.forEach((item, idx) => {
                 const card = document.createElement('div');
-                card.className = `reveal group relative border-2 p-8 rounded-[40px] transition-all duration-500 hover:scale-[1.05] hover:-rotate-2 hover:shadow-[0_30px_60px_rgba(244,63,94,0.2)] flex flex-col justify-between overflow-hidden assignment-card`;
-                card.style.transitionDelay = `${idx * 100}ms`;
+                card.className = `reveal group relative border-2 p-8 rounded-[40px] cursor-pointer transition-all duration-500 hover:scale-[1.05] bg-white/5 border-white/10 hover:border-pink-500/50 overflow-hidden shadow-xl shadow-black/20`;
+                card.onclick = () => openModal(item);
                 
                 card.innerHTML = `
-                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br ${item.color} opacity-10 group-hover:opacity-30 transition-opacity rounded-full blur-2xl"></div>
+                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br ${item.color} opacity-10 rounded-full blur-2xl transition-opacity group-hover:opacity-30"></div>
                     <div class="relative z-10">
                         <div class="flex justify-between items-start mb-6">
-                            <div class="px-4 py-1.5 rounded-full text-[10px] font-black tracking-tighter text-white bg-gradient-to-r ${item.color} shadow-lg shadow-rose-500/20">
-                                과제 ${item.id}
-                            </div>
-                            <div class="p-2 rounded-xl transition-all duration-300 card-icon-bg">
-                                <i data-lucide="${idx % 2 === 0 ? 'cpu' : 'database'}" class="w-6 h-6"></i>
-                            </div>
+                            <div class="px-4 py-1.5 rounded-full text-[10px] font-black text-white bg-gradient-to-r ${item.color} shadow-sm">과제 ${item.id}</div>
+                            <button onclick="event.stopPropagation(); window.location.href='${item.link}';" class="p-2 rounded-full bg-white/5 text-rose-500 hover:bg-rose-500 hover:text-white transition-all shadow-inner" title="바로 이동">
+                                <i data-lucide="external-link" class="w-5 h-5"></i>
+                            </button>
                         </div>
-                        <h3 class="text-2xl font-black mb-4 group-hover:scale-105 transition-transform origin-left card-title">
-                            ${item.title}
-                        </h3>
-                        <p class="text-sm font-medium leading-relaxed mb-8 card-desc">
-                            ${item.desc}
-                        </p>
-                    </div>
-                    <div class="relative z-10">
-                        <div class="flex flex-wrap gap-2 mb-8">
-                            ${item.tags.map(tag => `<span class="tag-span text-[11px] font-black px-2 py-0.5 rounded-md">${tag}</span>`).join('')}
+                        <h3 class="text-2xl font-black mb-4 group-hover:text-pink-400 transition-colors">${item.title}</h3>
+                        <p class="text-sm text-slate-400 line-clamp-2 mb-6">${item.desc}</p>
+                        <div class="flex flex-wrap gap-2">
+                            ${item.tags.map(tag => `<span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">${tag}</span>`).join('')}
                         </div>
-                        <a href="${item.link}" class="flex items-center justify-between w-full text-sm font-black group/btn text-rose-500 hover:text-rose-600 transition-all">
-                            <span class="flex items-center gap-2">결과물 보기 <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform"></i></span>
-                            <div class="p-2 rounded-full bg-rose-500 text-white shadow-md group-hover/btn:rotate-90 transition-transform">
-                                <i data-lucide="plus" class="w-4 h-4" stroke-width="3"></i>
-                            </div>
-                        </a>
                     </div>
                 `;
                 grid.appendChild(card);
             });
-            lucide.createIcons(); // 동적으로 생성된 카드 내부 아이콘 생성
+            lucide.createIcons();
         }
 
-        // 테마 관리
-        let isDarkMode = true;
-        const themeToggle = document.getElementById('themeToggle');
-        const sunIcon = document.getElementById('sunIcon');
-        const moonIcon = document.getElementById('moonIcon');
-
-        function updateThemeStyles() {
-            const body = document.body;
-            const heroDesc = document.getElementById('heroDesc');
-            const aboutBtn = document.getElementById('aboutBtn');
-            const aboutCard = document.getElementById('aboutCard');
-            const infoItems = document.getElementById('infoItems');
-            const visionText = document.getElementById('visionText');
-            const aboutDesc = document.getElementById('aboutDesc');
-            const portfolio = document.getElementById('portfolio');
-            const skillCards = document.querySelectorAll('.skill-card');
-            const footer = document.querySelector('footer');
-            const footerLinks = document.querySelectorAll('.footer-link');
-            const assignmentCards = document.querySelectorAll('.assignment-card');
-
-            if (isDarkMode) {
-                body.className = "dark-mode";
-                themeToggle.className = "group relative p-4 rounded-3xl transition-all duration-500 hover:scale-110 active:scale-95 border-2 flex items-center justify-center bg-slate-900/80 border-slate-700 text-yellow-400 shadow-[0_0_15px_rgba(250,204,21,0.3)]";
-                sunIcon.classList.remove('hidden');
-                moonIcon.classList.add('hidden');
-                heroDesc.className = "max-w-2xl mx-auto text-lg md:text-2xl leading-relaxed mb-12 font-medium text-slate-400";
-                aboutBtn.className = "px-10 py-5 font-black rounded-3xl transition-all border-2 hover:scale-105 bg-slate-800/50 hover:bg-slate-700 text-white border-slate-700";
-                aboutCard.className = "grid md:grid-cols-12 gap-10 items-stretch p-10 rounded-[40px] border-2 bg-slate-900/50 border-white/10 transition-colors duration-500 shadow-xl";
-                infoItems.classList.replace('text-slate-500', 'text-slate-400');
-                visionText.classList.replace('text-slate-700', 'text-slate-200');
-                aboutDesc.classList.replace('text-slate-500', 'text-slate-400');
-                portfolio.classList.replace('bg-white/50', 'bg-slate-900/40');
-                skillCards.forEach(c => c.className = "skill-card group p-10 rounded-[50px] border-2 transition-all duration-500 text-center hover:scale-105 bg-gradient-to-b from-slate-900 to-slate-950 border-slate-800");
-                footer.classList.replace('border-rose-100', 'border-slate-900');
-                footerLinks.forEach(l => l.className = "footer-link w-14 h-14 rounded-3xl flex items-center justify-center transition-all hover:scale-110 active:scale-90 border-2 bg-slate-900 border-slate-800 text-slate-400 hover:text-rose-500 hover:border-rose-500");
-                assignmentCards.forEach(c => {
-                    c.classList.remove('bg-white/80', 'border-white', 'shadow-xl');
-                    c.classList.add('bg-white/5', 'border-white/10');
-                });
-            } else {
-                body.className = "light-mode";
-                themeToggle.className = "group relative p-4 rounded-3xl transition-all duration-500 hover:scale-110 active:scale-95 border-2 flex items-center justify-center bg-white/80 border-rose-200 text-rose-500 shadow-lg";
-                sunIcon.classList.add('hidden');
-                moonIcon.classList.remove('hidden');
-                heroDesc.className = "max-w-2xl mx-auto text-lg md:text-2xl leading-relaxed mb-12 font-medium text-slate-500";
-                aboutBtn.className = "px-10 py-5 font-black rounded-3xl transition-all border-2 hover:scale-105 bg-white hover:bg-rose-50 text-rose-500 border-rose-100 shadow-sm";
-                aboutCard.className = "grid md:grid-cols-12 gap-10 items-stretch p-10 rounded-[40px] border-2 bg-white border-rose-100 transition-colors duration-500 shadow-xl";
-                infoItems.classList.replace('text-slate-400', 'text-slate-500');
-                visionText.classList.replace('text-slate-200', 'text-slate-700');
-                aboutDesc.classList.replace('text-slate-400', 'text-slate-500');
-                portfolio.classList.replace('bg-slate-900/40', 'bg-white/50');
-                skillCards.forEach(c => c.className = "skill-card group p-10 rounded-[50px] border-2 transition-all duration-500 text-center hover:scale-105 bg-white border-rose-100 shadow-xl");
-                footer.classList.replace('border-slate-900', 'border-rose-100');
-                footerLinks.forEach(l => l.className = "footer-link w-14 h-14 rounded-3xl flex items-center justify-center transition-all hover:scale-110 active:scale-90 border-2 bg-white border-rose-100 text-rose-300 hover:text-rose-500 hover:border-rose-200 shadow-md");
-                assignmentCards.forEach(c => {
-                    c.classList.add('bg-white/80', 'border-white', 'shadow-xl');
-                    c.classList.remove('bg-white/5', 'border-white/10');
-                });
-            }
-            updateBlobs();
+        function openModal(data) {
+            const modal = document.getElementById('modalOverlay');
+            document.getElementById('modalBadge').innerText = `과제 ${data.id}`;
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalDesc').innerText = data.desc;
+            document.getElementById('modalLink').href = data.link;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
-        function updateBlobs() {
-            const b1 = document.getElementById('blob1');
-            const b2 = document.getElementById('blob2');
-            const b3 = document.getElementById('blob3');
-            if(isDarkMode) {
-                b1.className = "absolute top-[10%] left-[5%] w-64 h-64 rounded-full blur-[100px] opacity-30 animate-pulse bg-purple-600 transition-colors duration-1000";
-                b2.className = "absolute bottom-[10%] right-[5%] w-80 h-80 rounded-full blur-[100px] opacity-30 animate-pulse bg-cyan-600 transition-colors duration-1000";
-                b3.className = "absolute top-[40%] right-[15%] w-40 h-40 rounded-full blur-[80px] opacity-20 animate-bounce bg-rose-600 transition-colors duration-1000";
-            } else {
-                b1.className = "absolute top-[10%] left-[5%] w-64 h-64 rounded-full blur-[100px] opacity-30 animate-pulse bg-pink-300 transition-colors duration-1000";
-                b2.className = "absolute bottom-[10%] right-[5%] w-80 h-80 rounded-full blur-[100px] opacity-30 animate-pulse bg-blue-300 transition-colors duration-1000";
-                b3.className = "absolute top-[40%] right-[15%] w-40 h-40 rounded-full blur-[80px] opacity-20 animate-bounce bg-yellow-200 transition-colors duration-1000";
-            }
+        function closeModal() {
+            const modal = document.getElementById('modalOverlay');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
 
-        themeToggle.addEventListener('click', () => {
-            isDarkMode = !isDarkMode;
-            updateThemeStyles();
+        document.getElementById('modalOverlay').addEventListener('click', (e) => {
+            if (e.target.id === 'modalOverlay') closeModal();
         });
 
-        // 스크롤 애니메이션 옵저버
-        const observerOptions = {
-            threshold: 0.1
+        const themeBtn = document.getElementById('themeToggle');
+        themeBtn.onclick = () => {
+            const body = document.body;
+            const sun = document.getElementById('sunIcon');
+            const moon = document.getElementById('moonIcon');
+            if (body.classList.contains('dark-mode')) {
+                body.classList.replace('dark-mode', 'light-mode');
+                sun.classList.add('hidden');
+                moon.classList.remove('hidden');
+            } else {
+                body.classList.replace('light-mode', 'dark-mode');
+                sun.classList.remove('hidden');
+                moon.classList.add('hidden');
+            }
         };
 
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
         }, observerOptions);
 
-        // 초기화
-        window.addEventListener('DOMContentLoaded', () => {
+        window.onload = () => {
             renderCards();
-            lucide.createIcons();
-            
-            document.querySelectorAll('.reveal').forEach(el => {
-                observer.observe(el);
-            });
-            updateThemeStyles(); // 초기 테마 설정
-        });
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        };
     </script>
 </body>
 </html>
