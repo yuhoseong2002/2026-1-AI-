@@ -46,16 +46,22 @@
     <!--
         [INFOGRAPHIC PLAN & CONFIRMATION]
         * Theme: Modern Bright & Vibrant (Palette: Sky Blue, Rose Pink, Amber)
-        * Plan: Added a fixed Home button in the top-left corner linking to ../index.html.
-        * Structure: Header -> KPI Grid -> Trend Analysis -> Composition -> Regional Analysis -> Strategy -> Footer.
+        * Navigation Update: Added a fixed side navigation container with 'Home' and 'Storybook' buttons.
+        * Storybook Link: https://gemini.google.com/share/35b9564f5795
         * EXPLICIT CONFIRMATION: I confirm that NEITHER Mermaid JS NOR SVG were used in this output. All icons are standard Unicode symbols.
     -->
 
-    <!-- Home Button -->
-    <div class="fixed top-6 left-6 z-50">
+    <!-- Navigation Buttons -->
+    <div class="fixed top-6 left-6 z-50 flex flex-col gap-3">
+        <!-- Home Button -->
         <a href="../index.html" class="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-md border border-slate-200 rounded-full shadow-lg hover:bg-white hover:border-sky-300 transition-all group">
             <span class="text-xl">🏠</span>
             <span class="text-sm font-bold text-slate-700 group-hover:text-sky-600">홈으로</span>
+        </a>
+        <!-- Storybook Button -->
+        <a href="https://gemini.google.com/share/35b9564f5795" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-md border border-slate-200 rounded-full shadow-lg hover:bg-white hover:border-rose-300 transition-all group">
+            <span class="text-xl">📖</span>
+            <span class="text-sm font-bold text-slate-700 group-hover:text-rose-600">스토리북 보기</span>
         </a>
     </div>
 
