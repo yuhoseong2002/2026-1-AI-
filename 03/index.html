@@ -34,6 +34,18 @@
             height: 350px;
             max-height: 400px;
         }
+        
+        /* 비디오 모달 애니메이션 */
+        #videoModal {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        #videoModal.active {
+            display: flex;
+            opacity: 1;
+        }
+
         @media (min-width: 768px) {
             .chart-container {
                 height: 400px;
@@ -45,9 +57,9 @@
 
     <!--
         [INFOGRAPHIC PLAN & CONFIRMATION]
-        * Theme: Modern Bright & Vibrant (Palette: Sky Blue, Rose Pink, Amber)
-        * Navigation Update: Added a fixed side navigation container with 'Home' and 'Storybook' buttons.
-        * Storybook Link: https://gemini.google.com/share/35b9564f5795
+        * Theme: Modern Bright & Vibrant
+        * Navigation Update: Added 'Watch Video' button linking to a video modal.
+        * Video File: ./mv2.mp4
         * EXPLICIT CONFIRMATION: I confirm that NEITHER Mermaid JS NOR SVG were used in this output. All icons are standard Unicode symbols.
     -->
 
@@ -63,6 +75,28 @@
             <span class="text-xl">📖</span>
             <span class="text-sm font-bold text-slate-700 group-hover:text-rose-600">스토리북 보기</span>
         </a>
+        <!-- Video Button -->
+        <button id="openVideoBtn" class="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-md border border-slate-200 rounded-full shadow-lg hover:bg-white hover:border-purple-300 transition-all group">
+            <span class="text-xl">🎬</span>
+            <span class="text-sm font-bold text-slate-700 group-hover:text-purple-600">영상보기</span>
+        </button>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="fixed inset-0 z-[100] items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+        <div class="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden shadow-2xl">
+            <!-- Close Button -->
+            <button id="closeVideoBtn" class="absolute top-4 right-4 z-[110] w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 text-white rounded-full transition-colors">
+                <span class="text-2xl">✕</span>
+            </button>
+            <!-- Video Element -->
+            <div class="aspect-video w-full flex items-center justify-center">
+                <video id="analysisVideo" class="w-full h-full" controls>
+                    <source src="./mv2.mp4" type="video/mp4">
+                    브라우저가 비디오 태그를 지원하지 않습니다.
+                </video>
+            </div>
+        </div>
     </div>
 
     <!-- Header Section -->
@@ -254,6 +288,30 @@
     </footer>
 
     <script>
+        // 비디오 모달 관련 로직
+        const videoModal = document.getElementById('videoModal');
+        const openVideoBtn = document.getElementById('openVideoBtn');
+        const closeVideoBtn = document.getElementById('closeVideoBtn');
+        const analysisVideo = document.getElementById('analysisVideo');
+
+        openVideoBtn.addEventListener('click', () => {
+            videoModal.classList.add('active');
+            analysisVideo.play();
+            document.body.style.overflow = 'hidden'; // 스크롤 방지
+        });
+
+        const closeFunc = () => {
+            videoModal.classList.remove('active');
+            analysisVideo.pause();
+            analysisVideo.currentTime = 0; // 영상 초기화
+            document.body.style.overflow = ''; // 스크롤 허용
+        };
+
+        closeVideoBtn.addEventListener('click', closeFunc);
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) closeFunc();
+        });
+
         // Label Wrapping Utility (16-char logic)
         function wrapLabel(label) {
             if (label.length <= 16) return label;
