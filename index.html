@@ -8,56 +8,29 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-        
         body { font-family: 'Pretendard', sans-serif; transition: background-color 0.5s; overflow-x: hidden; margin: 0; }
-        
-        /* 애니메이션 효과 */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        
-        /* 모달 스타일 */
-        #modalOverlay { 
-            transition: opacity 0.3s ease; 
-            display: none; 
-            position: fixed; 
-            inset: 0; 
-            z-index: 100; 
-            align-items: center; 
-            justify-content: center; 
-            background: rgba(0, 0, 0, 0.8); 
-            backdrop-filter: blur(8px);
-        }
+        #modalOverlay { transition: opacity 0.3s ease; display: none; position: fixed; inset: 0; z-index: 100; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(8px); }
         #modalContent { transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
         #modalOverlay.active { display: flex; opacity: 1; }
         #modalOverlay.active #modalContent { transform: scale(1); }
-
-        /* 다크모드 기본값 */
         .dark-mode { background-color: #020617; color: #f1f5f9; }
         .light-mode { background-color: #fff1f2; color: #0f172a; }
-        
-        .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;  
-            overflow: hidden;
-        }
-
-        .nav-btn:hover {
-            box-shadow: 0 0 20px rgba(244, 63, 94, 0.3);
-        }
+        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .nav-btn:hover { box-shadow: 0 0 20px rgba(244, 63, 94, 0.3); }
     </style>
 </head>
 <body class="dark-mode transition-colors duration-700">
 
-    <!-- 장식용 배경 -->
     <div class="fixed inset-0 overflow-hidden -z-10 pointer-events-none">
         <div id="blob1" class="absolute top-[10%] left-[5%] w-64 h-64 rounded-full blur-[100px] opacity-30 animate-pulse bg-purple-600"></div>
         <div id="blob2" class="absolute bottom-[10%] right-[5%] w-80 h-80 rounded-full blur-[100px] opacity-30 animate-pulse bg-cyan-600"></div>
     </div>
 
-    <!-- 좌측 상단 고정 네비게이션 -->
+    <!-- 좌측 상단 네비게이션 -->
     <div class="fixed top-6 left-6 z-50 flex flex-col gap-3">
-        <a href="../index.html" class="nav-btn flex items-center gap-2 px-4 py-2.5 bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl shadow-lg hover:bg-white/20 transition-all group">
+        <a href="#" class="nav-btn flex items-center gap-2 px-4 py-2.5 bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl shadow-lg hover:bg-white/20 transition-all group">
             <i data-lucide="home" class="w-5 h-5 text-rose-500"></i>
             <span class="text-sm font-black group-hover:text-rose-400">홈으로</span>
         </a>
@@ -67,7 +40,6 @@
         </a>
     </div>
 
-    <!-- 우측 상단 테마 버튼 -->
     <div class="fixed top-6 right-6 z-50">
         <button id="themeToggle" class="p-4 rounded-3xl border-2 bg-slate-900/80 border-slate-700 text-yellow-400 hover:scale-110 transition-transform">
             <i data-lucide="sun" id="sunIcon"></i>
@@ -75,107 +47,60 @@
         </button>
     </div>
 
-    <!-- 히어로 섹션 -->
     <header class="min-h-screen flex flex-col items-center justify-center text-center px-6">
         <div class="reveal">
             <div class="inline-block px-4 py-1.5 mb-6 rounded-full border border-pink-500/30 bg-pink-500/10 text-pink-400 text-sm font-bold tracking-widest uppercase">Portfolio 2026</div>
-            <h1 class="text-6xl md:text-8xl font-black mb-8 tracking-tighter leading-tight">
-                AI 리터러시:<br />
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-cyan-500">데이터와 꿈의 연결</span>
-            </h1>
+            <h1 class="text-6xl md:text-8xl font-black mb-8 tracking-tighter leading-tight">AI 리터러시:<br /><span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-cyan-500">데이터와 꿈의 연결</span></h1>
             <div class="flex flex-col items-center gap-6 mb-12">
-                <div class="relative group">
-                    <div class="absolute -inset-2 bg-gradient-to-r from-pink-500 to-cyan-500 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-                    <img src="https://cdn.topstarnews.net/news/photo/202507/15721511_1631739_3119.jpg" alt="유호성" class="relative w-32 h-32 rounded-full object-cover border-4 border-white/10 shadow-2xl transition-transform group-hover:scale-105 duration-500">
-                </div>
+                <img src="https://cdn.topstarnews.net/news/photo/202507/15721511_1631739_3119.jpg" alt="유호성" class="w-32 h-32 rounded-full object-cover border-4 border-white/10 shadow-2xl transition-transform hover:scale-105 duration-500">
                 <div>
                     <p class="text-2xl font-black text-white">유호성 (Yu Ho-seong)</p>
                     <p class="text-slate-400 font-bold">부산대학교 공공정책학부</p>
                 </div>
             </div>
-            <button onclick="document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' })" class="px-10 py-5 bg-rose-500 text-white font-black rounded-3xl shadow-lg shadow-rose-500/30 hover:scale-105 transition-transform">과제 아카이브 탐색</button>
+            <button onclick="document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' })" class="px-10 py-5 bg-rose-500 text-white font-black rounded-3xl shadow-lg hover:scale-105 transition-transform">과제 아카이브 탐색</button>
         </div>
     </header>
 
-    <!-- 과제 그리드 섹션 -->
     <section id="portfolio" class="py-32 px-6 bg-slate-900/40 backdrop-blur-sm">
         <div class="max-w-7xl mx-auto">
             <div class="mb-20 text-center reveal">
-                <h2 class="text-4xl font-black mb-4 underline decoration-pink-500 underline-offset-8">전체 과제 리스트</h2>
-                <p class="text-slate-500 mt-6">데이터와 생성형 AI를 활용한 실습 기록입니다.</p>
+                <h2 class="text-4xl font-black mb-4 underline decoration-pink-500 underline-offset-8 uppercase">Archive</h2>
             </div>
-            <div id="assignmentGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                <!-- JS에서 카드 자동 생성 -->
-            </div>
+            <div id="assignmentGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"></div>
         </div>
     </section>
 
-    <!-- 과제 상세 모달 -->
     <div id="modalOverlay" class="fixed inset-0 z-[100] items-center justify-center p-6 bg-black/80 backdrop-blur-sm opacity-0">
         <div id="modalContent" class="relative w-full max-w-2xl bg-slate-900 border border-white/10 p-10 rounded-[40px] shadow-2xl overflow-hidden">
-            <div class="absolute -top-24 -left-24 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl"></div>
-            <button onclick="closeModal()" class="absolute top-8 right-8 text-slate-400 hover:text-white transition-colors">
-                <i data-lucide="x"></i>
-            </button>
+            <button onclick="closeModal()" class="absolute top-8 right-8 text-slate-400 hover:text-white transition-colors"><i data-lucide="x"></i></button>
             <div class="relative z-10">
                 <div id="modalBadge" class="inline-block px-4 py-1.5 rounded-full text-xs font-black text-white bg-gradient-to-r from-pink-500 to-rose-500 mb-6 uppercase">Assignment</div>
-                <h2 id="modalTitle" class="text-4xl font-black mb-6 text-white tracking-tight">과제 제목</h2>
+                <h2 id="modalTitle" class="text-4xl font-black mb-6 text-white tracking-tight"></h2>
                 <div class="mb-8">
-                    <h3 class="text-slate-500 text-sm font-bold uppercase tracking-widest mb-2">실습 및 학습 내용</h3>
+                    <h3 class="text-slate-500 text-sm font-bold uppercase tracking-widest mb-2">과제 내용</h3>
                     <p id="modalDesc" class="text-lg leading-relaxed text-slate-300"></p>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a id="modalLink" href="#" target="_blank" class="flex-1 px-8 py-5 bg-rose-500 text-white font-black rounded-2xl text-center flex items-center justify-center gap-2 hover:bg-rose-600 transition-all shadow-lg active:scale-95">
-                        결과물 확인하기 <i data-lucide="external-link" class="w-5 h-5"></i>
-                    </a>
-                    <button onclick="closeModal()" class="px-8 py-5 bg-slate-800 text-white font-black rounded-2xl border border-slate-700 hover:bg-slate-700 transition-all active:scale-95">
-                        닫기
-                    </button>
+                    <a id="modalLink" href="#" target="_blank" class="flex-1 px-8 py-5 bg-rose-500 text-white font-black rounded-2xl text-center flex items-center justify-center gap-2 hover:bg-rose-600 transition-all shadow-lg active:scale-95">결과물 확인 <i data-lucide="external-link" class="w-5 h-5"></i></a>
+                    <button onclick="closeModal()" class="px-8 py-5 bg-slate-800 text-white font-black rounded-2xl border border-slate-700 hover:bg-slate-700 transition-all active:scale-95">닫기</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 푸터 -->
-    <footer class="py-20 border-t border-white/5 text-center px-6">
-        <h3 class="text-2xl font-black mb-4 italic text-rose-500 uppercase tracking-widest">Yu Hoseong</h3>
-        <p class="text-slate-500 text-sm mb-8">© 2026 Busan National University. AI Literacy Portfolio.</p>
-        <div class="flex justify-center gap-4 text-slate-400">
-            <i data-lucide="mail" class="hover:text-rose-500 cursor-pointer transition-colors"></i>
-            <i data-lucide="github" class="hover:text-rose-500 cursor-pointer transition-colors"></i>
-        </div>
-    </footer>
-
     <script>
         const assignments = [
-            { 
-                id: '01', 
-                title: 'AI의 이해 (NotebookLM)', 
-                desc: 'Google NotebookLM을 활용하여 AI의 역사와 발전 원리, 생성형 AI의 메커니즘을 심도 있게 분석하고 방대한 정보를 구조화하는 실습을 진행했습니다.', 
-                link: './02/index.html', 
-                color: 'from-pink-400 to-rose-500'
-            },
-            { 
-                id: '02', 
-                title: '데이터 스토리텔링', 
-                desc: '공공데이터를 분석하고 인사이트를 도출하여 시각적으로 설득력 있는 리포트를 작성하고 디지털 스토리북으로 구성하는 과정을 학습했습니다.', 
-                link: './03/index.html', 
-                color: 'from-purple-400 to-indigo-500'
-            },
-            { 
-                id: '03', 
-                title: '웹기술의 이해(실습과제)', 
-                desc: '현대 웹을 구성하는 HTML, CSS, JavaScript의 기초를 배우고, 나만의 포트폴리오 사이트를 구축하는 실무 과정을 경험했습니다.', 
-                link: '#', 
-                color: 'from-cyan-400 to-blue-500'
-            },
-            { id: '04', title: '프롬프트 엔지니어링', desc: 'LLM의 성능을 극대화하기 위한 효과적인 프롬프트 설계 전략과 페르소나 설정 기법을 실습했습니다.', link: '#', color: 'from-teal-400 to-emerald-500' },
-            { id: '05', title: '데이터 정제 및 전처리', desc: '수집된 비정형 데이터를 분석에 적합하도록 정제하고 결측치를 처리하는 데이터 엔지니어링 기초를 학습했습니다.', link: '#', color: 'from-green-400 to-lime-500' },
-            { id: '06', title: '통계적 시각화 분석', desc: '수치 데이터를 차트와 그래프로 변환하여 숨겨진 트렌드를 시각적으로 도출하는 역량을 키웠습니다.', link: '#', color: 'from-yellow-400 to-orange-500' },
-            { id: '07', title: '생성형 AI 아트워크', desc: 'Midjourney와 DALL-E를 활용하여 정책 아이디어를 창의적인 디지털 에셋으로 창조하는 실습을 진행했습니다.', link: '#', color: 'from-orange-400 to-red-500' },
-            { id: '08', title: 'AI 기반 문제해결 설계', desc: '지역 사회의 문제를 AI 기술로 해결하기 위한 혁신적인 서비스 시나리오를 설계했습니다.', link: '#', color: 'from-rose-400 to-pink-500' },
-            { id: '09', title: '빅데이터 정책 리포트', desc: '대규모 인구 및 사회 데이터를 분석하여 데이터 기반의 실질적인 정책 제언 리포트를 작성했습니다.', link: '#', color: 'from-fuchsia-400 to-purple-500' },
-            { id: '10', title: '최종 캡스톤 프로젝트', desc: '한 학기 동안 배운 모든 리터러시 역량을 집약한 최종 통합 결과물입니다.', link: '#', color: 'from-violet-400 to-purple-600' }
+            { id: '01', title: 'AI의 이해 (NotebookLM)', desc: 'AI의 역사와 발전 원리를 학습하고 자료를 구조화했습니다.', link: './02/index.html', color: 'from-pink-400 to-rose-500' },
+            { id: '02', title: '데이터 스토리텔링', desc: '공공데이터를 분석하여 시각적 스토리북을 제작했습니다.', link: 'https://gemini.google.com/share/35b9564f5795', color: 'from-purple-400 to-indigo-500' },
+            { id: '03', title: '웹기술의 이해(실습과제)', desc: 'HTML, CSS, JS를 활용한 실무 결과물 프로젝트입니다.', link: './03/index.html', color: 'from-cyan-400 to-blue-500' },
+            { id: '04', title: '공공 데이터 수집 실습', desc: 'API를 통해 실시간 데이터를 수집하는 과정을 실습했습니다.', link: '#', color: 'from-teal-400 to-emerald-500' },
+            { id: '05', title: '데이터 정제 및 전처리', desc: '데이터의 신뢰도를 높이기 위한 전처리 실습입니다.', link: '#', color: 'from-green-400 to-lime-500' },
+            { id: '06', title: '통계적 시각화 분석', desc: '복잡한 데이터를 차트로 변환하여 인사이트를 도출했습니다.', link: '#', color: 'from-yellow-400 to-orange-500' },
+            { id: '07', title: '생성형 AI 아트워크', desc: 'AI 도구를 활용해 창의적인 이미지를 생성했습니다.', link: '#', color: 'from-orange-400 to-red-500' },
+            { id: '08', title: 'AI 기반 문제해결 설계', desc: '사회 문제를 AI 기술로 해결하는 시나리오를 설계했습니다.', link: '#', color: 'from-rose-400 to-pink-500' },
+            { id: '09', title: '빅데이터 정책 리포트', desc: '데이터 기반의 실질적인 정책 제언 리포트입니다.', link: '#', color: 'from-fuchsia-400 to-purple-500' },
+            { id: '10', title: '최종 캡스톤 프로젝트', desc: '한 학기 역량을 집약한 최종 결과물입니다.', link: '#', color: 'from-violet-400 to-purple-600' }
         ];
 
         function renderCards() {
@@ -183,20 +108,17 @@
             grid.innerHTML = '';
             assignments.forEach((item) => {
                 const card = document.createElement('div');
-                card.className = `reveal group relative border-2 p-8 rounded-[40px] cursor-pointer transition-all duration-500 hover:scale-[1.05] bg-white/5 border-white/10 hover:border-pink-500/50 overflow-hidden shadow-xl`;
+                card.className = `reveal group relative border-2 p-8 rounded-[40px] cursor-pointer transition-all duration-500 hover:scale-[1.05] bg-white/5 border-white/10 overflow-hidden shadow-xl`;
                 card.onclick = () => openModal(item);
-                
                 card.innerHTML = `
-                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br ${item.color} opacity-10 rounded-full blur-2xl transition-opacity group-hover:opacity-30"></div>
-                    <div class="relative z-10 h-full flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-6">
-                                <div class="px-4 py-1.5 rounded-full text-[10px] font-black text-white bg-gradient-to-r ${item.color}">과제 ${item.id}</div>
-                                <i data-lucide="plus-circle" class="text-rose-500 group-hover:rotate-90 transition-transform"></i>
-                            </div>
-                            <h3 class="text-2xl font-black mb-4 group-hover:text-pink-400 transition-colors">${item.title}</h3>
-                            <p class="text-sm text-slate-400 line-clamp-2">${item.desc}</p>
+                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br ${item.color} opacity-10 rounded-full blur-2xl"></div>
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="px-4 py-1.5 rounded-full text-[10px] font-black text-white bg-gradient-to-r ${item.color}">과제 ${item.id}</div>
+                            <i data-lucide="plus-circle" class="text-rose-500 group-hover:rotate-90 transition-transform"></i>
                         </div>
+                        <h3 class="text-2xl font-black mb-4 group-hover:text-pink-400 transition-colors">${item.title}</h3>
+                        <p class="text-sm text-slate-400 line-clamp-2">${item.desc}</p>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -206,11 +128,9 @@
 
         function openModal(data) {
             const modal = document.getElementById('modalOverlay');
-            document.getElementById('modalBadge').innerText = `Assignment ${data.id}`;
             document.getElementById('modalTitle').innerText = data.title;
             document.getElementById('modalDesc').innerText = data.desc;
             document.getElementById('modalLink').href = data.link;
-            
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -221,20 +141,15 @@
             document.body.style.overflow = 'auto';
         }
 
-        // 테마 토글
         document.getElementById('themeToggle').onclick = () => {
-            const body = document.body;
-            body.classList.toggle('dark-mode');
-            body.classList.toggle('light-mode');
+            document.body.classList.toggle('dark-mode');
+            document.body.classList.toggle('light-mode');
             document.getElementById('sunIcon').classList.toggle('hidden');
             document.getElementById('moonIcon').classList.toggle('hidden');
         };
 
-        // 스크롤 감지 애니메이션
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
 
         window.onload = () => {
