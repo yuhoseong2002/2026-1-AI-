@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유호성 | 웹 기술의 이해 & AI 윤리</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+                
+        /* Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        
+        /* Action Button Style */
+        .btn-action {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-action:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Video Modal */
+        #videoModal { display: none; opacity: 0; transition: opacity 0.3s ease; }
+        #videoModal.active { display: flex; opacity: 1; }
+
+        .tech-tag {
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body class="selection:bg-cyan-500/30">
+
+    <!-- [NAV] 상단 고정 네비게이션 -->
+    <nav class="fixed top-6 left-6 z-50">
+        <a href="../index.html" class="flex items-center gap-2 px-5 py-2.5 glass rounded-2xl shadow-xl hover:bg-white/10 transition-all group">
+            <i data-lucide="arrow-left" class="w-5 h-5 text-rose-500"></i>
+            <span class="text-sm font-black group-hover:text-rose-400">홈으로 돌아가기</span>
+        </a>
+    </nav>
+
+    <!-- [HERO] 히어로 섹션 -->
+    <header class="min-h-[80vh] flex flex-col items-center justify-center text-center px-6 relative overflow-hidden">
+        <div class="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] animate-pulse"></div>
+        <div class="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px] animate-pulse" style="animation-delay: 1s;"></div>
+        
+        <div class="reveal relative z-10">
+            <div class="tech-tag bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-6 inline-block">Assignment 04</div>
+            <h1 class="text-6xl md:text-8xl font-black mb-8 tracking-tighter leading-tight">
+                웹 기술의 <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500">해부와 조립</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto leading-relaxed font-medium">
+                HTML, CSS, JavaScript를 통한 디지털 청사진 설계와<br/>
+                신뢰할 수 있는 AI를 위한 윤리적 거버넌스 탐구
+            </p>
+        </div>
+
+        <!-- [Quick Actions] 요청하신 버튼 섹션 -->
+        <div class="reveal mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-4xl px-4">
+            <button onclick="openVideoModal()" class="btn-action flex flex-col items-center p-8 glass rounded-[40px] border-rose-500/20">
+                <div class="w-16 h-16 bg-rose-500/20 text-rose-500 rounded-2xl flex items-center justify-center mb-4"><i data-lucide="play-circle" size="32"></i></div>
+                <span class="text-lg font-black">동영상 보기</span>
+                <span class="text-xs text-slate-500 mt-1">./movie.mp4</span>
+            </button>
+            
+            <a href="./slide.pdf" class="btn-action flex flex-col items-center p-8 glass rounded-[40px] border-amber-500/20">
+                <div class="w-16 h-16 bg-amber-500/20 text-amber-500 rounded-2xl flex items-center justify-center mb-4"><i data-lucide="file-text" size="32"></i></div>
+                <span class="text-lg font-black">슬라이드 보기</span>
+                <span class="text-xs text-slate-500 mt-1">./slide.pdf</span>
+            </a>
+
+            <a href="./info.png" class="btn-action flex flex-col items-center p-8 glass rounded-[40px] border-cyan-500/20">
+                <div class="w-16 h-16 bg-cyan-500/20 text-cyan-400 rounded-2xl flex items-center justify-center mb-4"><i data-lucide="image" size="32"></i></div>
+                <span class="text-lg font-black">인포그래픽 보기</span>
+                <span class="text-xs text-slate-500 mt-1">./info.png</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- [TECH SECTION] 웹 기술 핵심 개념 -->
+    <section class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-20 reveal">
+            <h2 class="text-4xl font-black mb-4">Core Web Technologies</h2>
+            <div class="h-1.5 w-20 bg-cyan-500 mx-auto rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- HTML -->
+            <div class="reveal p-12 rounded-[50px] glass border-orange-500/10">
+                <div class="text-orange-500 mb-8"><i data-lucide="layout" size="48"></i></div>
+                <h3 class="text-3xl font-black mb-6">HTML: 구조적 뼈대</h3>
+                <p class="text-slate-400 leading-relaxed mb-6">웹 콘텐츠의 의미와 구조를 정의하는 <strong>디지털 청사진</strong>입니다. 요소(Element)를 통해 정보의 위계를 세웁니다.</p>
+                <ul class="space-y-3 text-sm text-slate-300 font-bold">
+                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-orange-500"></i> Root & Meta 데이터 관리</li>
+                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-orange-500"></i> 시맨틱 태그를 통한 구조화</li>
+                </ul>
+            </div>
+
+            <!-- CSS -->
+            <div class="reveal p-12 rounded-[50px] glass border-blue-500/10" style="transition-delay: 0.1s;">
+                <div class="text-blue-400 mb-8"><i data-lucide="palette" size="48"></i></div>
+                <h3 class="text-3xl font-black mb-6">CSS: 시각적 입힘</h3>
+                <p class="text-slate-400 leading-relaxed mb-6">문서의 스타일과 레이아웃을 담당하는 <strong>인테리어</strong> 역할을 합니다. 선택자(Selector)를 통해 디자인을 분리 관리합니다.</p>
+                <div class="grid grid-cols-2 gap-4 mt-4">
+                    <div class="p-4 bg-white/5 rounded-2xl text-center text-xs border border-white/5">
+                        <p class="font-black text-blue-400 mb-1">Flexbox</p>
+                        <p class="text-[10px] text-slate-500">1차원 레이아웃</p>
+                    </div>
+                    <div class="p-4 bg-white/5 rounded-2xl text-center text-xs border border-white/5">
+                        <p class="font-black text-blue-400 mb-1">CSS Grid</p>
+                        <p class="text-[10px] text-slate-500">2차원 레이아웃</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JS -->
+            <div class="reveal p-12 rounded-[50px] glass border-yellow-500/10" style="transition-delay: 0.2s;">
+                <div class="text-yellow-400 mb-8"><i data-lucide="zap" size="48"></i></div>
+                <h3 class="text-3xl font-black mb-6">JS: 동적인 뇌</h3>
+                <p class="text-slate-400 leading-relaxed mb-6">사용자 행동에 반응하고 생명력을 불어넣는 <strong>동력 엔진</strong>입니다. JIT 컴파일 방식을 통해 극대화된 속도를 보장합니다.</p>
+                <ul class="space-y-3 text-sm text-slate-300 font-bold">
+                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400"></i> DOM 요소를 통한 실시간 제어</li>
+                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400"></i> 서버 통신 및 데이터 저장</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- [ETHICS SECTION] AI 윤리 -->
+    <section class="py-32 bg-slate-900/40 border-y border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="reveal grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-5xl font-black mb-8 leading-tight">신뢰할 수 있는 AI,<br/><span class="text-rose-500">윤리적 가이드라인</span></h2>
+                    <p class="text-slate-400 text-lg leading-relaxed mb-10">웹 기술이 정보의 전달을 담당한다면, AI 리터러시는 그 정보의 <strong>공정성과 투명성</strong>을 책임집니다. 기술 발전의 속도에 맞춘 거버넌스 수립이 필수적입니다.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="shrink-0 w-12 h-12 glass rounded-xl flex items-center justify-center text-rose-500"><i data-lucide="shield-check"></i></div>
+                            <div>
+                                <h4 class="font-black text-xl mb-1">안전성 및 보안</h4>
+                                <p class="text-sm text-slate-500">AI 시스템의 오작동 방지 및 데이터 유출 차단</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="shrink-0 w-12 h-12 glass rounded-xl flex items-center justify-center text-cyan-400"><i data-lucide="scale"></i></div>
+                            <div>
+                                <h4 class="font-black text-xl mb-1">공정성 및 투명성</h4>
+                                <p class="text-sm text-slate-500">편향된 데이터 배제 및 알고리즘 결정 과정 공개</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal relative">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-rose-500 to-purple-600 rounded-[60px] blur opacity-20"></div>
+                    <div class="relative glass p-10 rounded-[60px] border border-white/10">
+                        <h3 class="text-2xl font-black mb-6 flex items-center gap-2"><i data-lucide="cpu" class="text-rose-500"></i> AI 거버넌스 4대 원칙</h3>
+                        <div class="space-y-4">
+                            <div class="p-4 bg-white/5 rounded-2xl border border-white/5 font-bold">01. 인간 존엄성 존중</div>
+                            <div class="p-4 bg-white/5 rounded-2xl border border-white/5 font-bold">02. 사회적 공익 기여</div>
+                            <div class="p-4 bg-white/5 rounded-2xl border border-white/5 font-bold">03. 기술의 합목적성</div>
+                            <div class="p-4 bg-white/5 rounded-2xl border border-white/5 font-bold">04. 책임의 한계 명확화</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- [FOOTER] -->
+    <footer class="py-20 text-center text-slate-600 border-t border-white/5">
+        <div class="flex justify-center gap-6 mb-8 text-slate-400">
+            <i data-lucide="github" class="hover:text-white cursor-pointer transition-colors"></i>
+            <i data-lucide="mail" class="hover:text-white cursor-pointer transition-colors"></i>
+        </div>
+        <p class="font-black uppercase tracking-widest text-sm mb-2">Yu Ho-seong Portfolio</p>
+        <p class="text-xs">© 2026 Busan National University. AI Literacy Portfolio Project.</p>
+    </footer>
+
+    <!-- [MODAL] 동영상 팝업 -->
+    <div id="videoModal" class="fixed inset-0 z-[100] items-center justify-center bg-black/95 p-4 backdrop-blur-xl">
+        <div class="relative w-full max-w-5xl bg-black rounded-[40px] overflow-hidden shadow-2xl border border-white/10">
+            <button onclick="closeVideoModal()" class="absolute top-8 right-8 z-10 bg-white/10 p-3 rounded-full text-white hover:bg-white/20 transition-all">
+                <i data-lucide="x" size="32"></i>
+            </button>
+            <div class="aspect-video w-full flex items-center justify-center bg-slate-900">
+                <video id="pnuminVideo" controls class="w-full h-full">
+                    <source src="./movie.mp4" type="video/mp4">
+                    브라우저가 비디오를 지원하지 않습니다.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Video Modal Logic
+        const vModal = document.getElementById('videoModal');
+        const vTag = document.getElementById('pnuminVideo');
+
+        function openVideoModal() {
+            vModal.style.display = 'flex';
+            setTimeout(() => vModal.classList.add('active'), 10);
+            vTag.play();
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoModal() {
+            vModal.classList.remove('active');
+            setTimeout(() => {
+                vModal.style.display = 'none';
+                vTag.pause();
+            }, 300);
+            document.body.style.overflow = '';
+        }
+
+        // Scroll Reveal Logic
+        const observerOptions = { threshold: 0.15 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        window.onload = () => {
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        };
+
+        // Close modal on background click
+        vModal.addEventListener('click', (e) => {
+            if (e.target === vModal) closeVideoModal();
+        });
+    </script>
+</body>
+</html>
