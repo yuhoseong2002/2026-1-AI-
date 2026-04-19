@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공공정책 포트폴리오 | 유호성</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@100;400;700;900&display=swap');
+        
+        :root {
+            --brand-navy: #0f172a;
+            --brand-blue: #2563eb;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: #fcfdfe;
+            color: var(--brand-navy);
+            word-break: keep-all;
+        }
+
+        .bento-card {
+            background: white;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--brand-blue);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+        }
+
+        .animate-reveal {
+            animation: reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @keyframes reveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 상단 네비게이션 -->
+    <nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white">
+                    <i class="fa-solid fa-landmark-flag"></i>
+                </div>
+                <span class="font-bold tracking-tight text-lg uppercase">Public Policy Hub</span>
+            </div>
+            <div class="hidden md:flex space-x-4 text-xs font-bold text-slate-400">
+                <span>PNU 24학번 유호성</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 히어로 섹션 -->
+    <header class="pt-40 pb-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="inline-block px-4 py-1.5 mb-6 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-xs font-bold tracking-widest animate-reveal">
+                2024학년도 중간고사 과제
+            </div>
+            <h1 class="text-5xl md:text-7xl font-black text-slate-900 leading-[1.2] mb-8 animate-reveal stagger-1">
+                공공의 가치를 <br><span class="text-blue-600">탐구하고 설계하다.</span>
+            </h1>
+            <p class="text-xl text-slate-500 max-w-2xl leading-relaxed animate-reveal stagger-2">
+                유호성의 학문적 여정과 정체성을 기록한 디지털 포트폴리오입니다. <br class="hidden md:block">
+                현상을 분석하는 통찰력과 미래를 설계하는 전문성을 담았습니다.
+            </p>
+        </div>
+    </header>
+
+    <!-- 벤토 그리드 메뉴 (5가지 메뉴 완벽 복구 및 연결) -->
+    <section class="px-6 mb-32">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-6 gap-4">
+            
+            <!-- 1. 자기 정체성 분석 (who.html 연결) -->
+            <a href="./who.html" class="md:col-span-3 bento-card rounded-[2.5rem] p-10 flex flex-col justify-between animate-reveal stagger-3">
+                <div>
+                    <div class="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center text-blue-600 mb-6 border border-slate-100">
+                        <i class="fa-solid fa-user-check text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">자기 정체성 분석</h3>
+                    <p class="text-slate-500 leading-relaxed">나는 어떤 사람인가?<br>개인의 가치관과 공공정책학의 상관관계 탐색</p>
+                </div>
+                <div class="mt-8 flex items-center text-sm font-bold text-blue-600">
+                    상세 보기 <i class="fa-solid fa-arrow-right ml-2"></i>
+                </div>
+            </a>
+
+            <!-- 2. 나의 전공 공공정책학부 (major.html 연결) -->
+            <a href="./major.html" class="md:col-span-3 bento-card rounded-[2.5rem] p-10 flex flex-col justify-between animate-reveal" style="animation-delay: 0.4s;">
+                <div>
+                    <div class="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center text-blue-600 mb-6 border border-slate-100">
+                        <i class="fa-solid fa-building-columns text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">나의 전공 공공정책학부</h3>
+                    <p class="text-slate-500 leading-relaxed">공공정책학부의 학문적 토대와<br>4대 전문 트랙 시스템 및 커리큘럼 분석</p>
+                </div>
+                <div class="mt-8 flex items-center text-sm font-bold text-blue-600">
+                    상세 보기 <i class="fa-solid fa-arrow-right ml-2"></i>
+                </div>
+            </a>
+
+            <!-- 3. 나와 전공의 연결 (link.html 연결) -->
+            <a href="./link.html" class="md:col-span-2 bento-card rounded-[2rem] p-8 flex flex-col justify-between animate-reveal" style="animation-delay: 0.5s;">
+                <div class="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-blue-600 mb-4 border border-slate-100">
+                    <i class="fa-solid fa-link"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-1">나와 전공의 연결</h4>
+                    <p class="text-slate-500 text-sm">실천적 활동과 이론의 유기적 결합</p>
+                </div>
+            </a>
+
+            <!-- 4. 전공의 사회적 의미 (society.html 연결) -->
+            <a href="./society.html" class="md:col-span-2 bento-card rounded-[2rem] p-8 flex flex-col justify-between animate-reveal" style="animation-delay: 0.6s;">
+                <div class="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-blue-600 mb-4 border border-slate-100">
+                    <i class="fa-solid fa-earth-asia"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-1">전공의 사회적 의미</h4>
+                    <p class="text-slate-500 text-sm">사회를 바꾸는 정책의 실질적 가치</p>
+                </div>
+            </a>
+
+            <!-- 5. 나의 미래 진로 (future.html 연결) -->
+            <a href="./future.html" class="md:col-span-2 bento-card rounded-[2rem] p-8 flex flex-col justify-between animate-reveal" style="animation-delay: 0.7s;">
+                <div class="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-blue-600 mb-4 border border-slate-100">
+                    <i class="fa-solid fa-compass"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-1">나의 미래 진로</h4>
+                    <p class="text-slate-500 text-sm">정책 전문가로의 로드맵 설계</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- 결과물 섹션 -->
+    <section class="bg-slate-900 py-32 px-6 text-white rounded-[3rem] mx-2 md:mx-6 mb-10 overflow-hidden relative">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-blue-600/10 blur-[120px] rounded-full"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="mb-20">
+                <span class="text-blue-400 font-bold tracking-widest text-xs uppercase mb-4 block">Deliverables</span>
+                <h2 class="text-4xl font-bold">과제 결과물 아카이브</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- 비디오 -->
+                <div class="lg:col-span-7 bg-white/5 backdrop-blur-sm p-4 rounded-[2.5rem] border border-white/10">
+                    <div class="aspect-video rounded-[1.8rem] overflow-hidden bg-black relative group">
+                        <video class="w-full h-full object-cover" controls>
+                            <source src="./movie.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="w-16 h-16 rounded-full bg-blue-600 flex items-center justify-center text-white shadow-2xl">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 px-4 pb-4">
+                        <h4 class="text-xl font-bold">정책 스토리북 영상</h4>
+                        <p class="text-slate-400 text-sm mt-1">Digital Storytelling for Public Value</p>
+                    </div>
+                </div>
+
+                <!-- 인포그래픽 -->
+                <div class="lg:col-span-5 bg-white/5 backdrop-blur-sm p-4 rounded-[2.5rem] border border-white/10 flex flex-col">
+                    <div class="flex-grow rounded-[1.8rem] overflow-hidden bg-slate-800 border border-white/5 group relative cursor-pointer">
+                        <img src="./info.png" alt="인포그래픽" class="w-full h-full object-cover transition-transform group-hover:scale-105" onerror="this.src='https://images.unsplash.com/photo-1551288049-bbbda5366391?auto=format&fit=crop&w=1200&q=80'">
+                        <div class="absolute inset-0 bg-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
+                    <div class="mt-6 px-4 pb-4">
+                        <h4 class="text-xl font-bold">핵심 인포그래픽</h4>
+                        <p class="text-slate-400 text-sm mt-1">Data Visualization Analysis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-16 text-center text-slate-400 text-sm border-t border-slate-100">
+        <p class="mb-2">&copy; 2024 유호성 포트폴리오 | Public Policy Hub</p>
+        <p class="text-slate-300 font-medium uppercase tracking-widest text-[10px]">Pusan National University</p>
+    </footer>
+
+</body>
+</html>
