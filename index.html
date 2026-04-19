@@ -17,14 +17,15 @@
         #modalOverlay.active #modalContent { transform: scale(1); }
         .dark-mode { background-color: #020617; color: #f1f5f9; }
         .light-mode { background-color: #fff1f2; color: #0f172a; }
+        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .nav-btn:hover { box-shadow: 0 0 20px rgba(244, 63, 94, 0.3); }
     </style>
 </head>
 <body class="dark-mode transition-colors duration-700">
 
     <div class="fixed inset-0 overflow-hidden -z-10 pointer-events-none">
-        <div class="absolute top-[10%] left-[5%] w-64 h-64 rounded-full blur-[100px] opacity-30 animate-pulse bg-purple-600"></div>
-        <div class="absolute bottom-[10%] right-[5%] w-80 h-80 rounded-full blur-[100px] opacity-30 animate-pulse bg-cyan-600"></div>
+        <div id="blob1" class="absolute top-[10%] left-[5%] w-64 h-64 rounded-full blur-[100px] opacity-30 animate-pulse bg-purple-600"></div>
+        <div id="blob2" class="absolute bottom-[10%] right-[5%] w-80 h-80 rounded-full blur-[100px] opacity-30 animate-pulse bg-cyan-600"></div>
     </div>
 
     <!-- 좌측 상단 네비게이션 -->
@@ -96,8 +97,8 @@
         const assignments = [
             { id: '01', title: 'AI의 이해 (NotebookLM)', desc: 'AI의 발전 역사와 생성형 AI의 메커니즘 분석 실습.', link: './02/index.html', color: 'from-pink-400 to-rose-500' },
             { id: '02', title: '데이터 스토리텔링', desc: '공공데이터 기반 시각적 스토리북 제작 실습.', link: 'https://gemini.google.com/share/35b9564f5795', color: 'from-purple-400 to-indigo-500' },
-            { id: '03', title: 'AI 윤리와 거버넌스', desc: '신뢰할 수 있는 AI를 위한 윤리적 가이드라인 연구.', link: '#', color: 'from-cyan-400 to-blue-500' }, 
-            { id: '04', title: '웹기술의 이해(실습과제)', desc: 'HTML, CSS, JS를 활용한 멀티미디어 포트폴리오 결과물.', link: './04/index.html', color: 'from-teal-400 to-emerald-500' },
+            { id: '03', title: 'AI 윤리와 거버넌스', desc: '신뢰할 수 있는 AI를 위한 윤리적 가이드라인 연구.', link: './03/index.html', color: 'from-cyan-400 to-blue-500', directLink: true }, 
+            { id: '04', title: '웹기술의 이해(실습과제)', desc: 'HTML, CSS, JS를 활용한 멀티미디어 포트폴리오 결과물.', link: './04/index.html', color: 'from-teal-400 to-emerald-500', directLink: true },
             { id: '05', title: '데이터 정제 및 전처리', desc: '분석의 정확도를 높이기 위한 데이터 가공 실습.', link: '#', color: 'from-green-400 to-lime-500' },
             { id: '06', title: '통계적 시각화 분석', desc: '데이터 속에 숨겨진 트렌드를 시각적으로 도출.', link: '#', color: 'from-yellow-400 to-orange-500' },
             { id: '07', title: '생성형 AI 아트워크', desc: 'AI 도구를 활용하여 정책 아이디어 시각화.', link: '#', color: 'from-orange-400 to-red-500' },
@@ -112,12 +113,21 @@
             assignments.forEach((item) => {
                 const card = document.createElement('div');
                 card.className = `reveal group relative border-2 p-8 rounded-[40px] cursor-pointer transition-all duration-500 hover:scale-[1.05] bg-white/5 border-white/10 overflow-hidden shadow-xl`;
-                card.onclick = () => openModal(item);
-                card.innerHTML = `<div class="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br ${item.color} opacity-10 rounded-full blur-2xl"></div>
+                
+                // directLink가 true인 경우 페이지 이동, 아니면 모달 오픈
+                card.onclick = () => {
+                    if (item.directLink && item.link !== '#') {
+                        window.location.href = item.link;
+                    } else {
+                        openModal(item);
+                    }
+                };
+                
+                card.innerHTML = `<div class="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br ${item.color} opacity-10 rounded-full blur-2xl transition-opacity group-hover:opacity-30"></div>
                     <div class="relative z-10 h-full flex flex-col justify-between text-white">
                         <div class="flex justify-between items-start mb-6">
                             <div class="px-4 py-1.5 rounded-full text-[10px] font-black text-white bg-gradient-to-r ${item.color}">과제 ${item.id}</div>
-                            <i data-lucide="plus-circle" class="text-rose-500"></i>
+                            <i data-lucide="${item.directLink ? 'external-link' : 'plus-circle'}" class="text-rose-500 transition-transform group-hover:rotate-12"></i>
                         </div>
                         <h3 class="text-2xl font-black mb-4 group-hover:text-pink-400 transition-colors">${item.title}</h3>
                         <p class="text-sm text-slate-400 line-clamp-2">${item.desc}</p>
