@@ -114,11 +114,11 @@
                 2024학년도 중간고사 과제
             </div>
             <h1 class="text-5xl md:text-7xl font-black text-slate-900 leading-[1.2] mb-8 animate-reveal stagger-1">
-                사회를 설계하고 <br><span class="text-blue-600">공공의 가치를 실현하다.</span>
+                따뜻한 공감으로 세상을 읽고, <br><span class="text-blue-600">내일을 정교하게 설계하다.</span>
             </h1>
             <p class="text-xl text-slate-500 max-w-2xl leading-relaxed animate-reveal stagger-2">
-                부산대학교 공공정책학부 24학번 유호성입니다. <br class="hidden md:block">
-                현상을 정밀하게 분석하고 더 나은 공동체를 위한 정책 대안을 설계합니다.
+                커피 한 잔의 여유 속에서도 시민의 일상을 고민합니다. <br class="hidden md:block">
+                데이터 뒤에 숨겨진 사람의 마음을 읽는 정책 전문가, 유호성입니다.
             </p>
         </div>
     </header>
@@ -133,7 +133,8 @@
                     <!-- 프로필 카드 -->
                     <div class="bento-card rounded-[2.5rem] p-8 flex flex-col md:flex-row items-center gap-8">
                         <div class="w-40 h-52 rounded-2xl overflow-hidden shadow-xl flex-shrink-0 bg-slate-100">
-                            <img src="IMG_1923.jpg" alt="유호성 프로필" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80'">
+                            <!-- 요청하신 ./my_profile.png 반영 -->
+                            <img src="./my_profile.png" alt="유호성 프로필" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80'">
                         </div>
                         <div>
                             <h2 class="text-3xl font-black text-slate-900 mb-2 text-center md:text-left">유호성</h2>
@@ -151,12 +152,12 @@
                         <div class="bento-card rounded-[2rem] p-8 bg-blue-50/50 border-blue-100 group">
                             <div class="flex items-start gap-4">
                                 <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-blue-600 shadow-sm flex-shrink-0">
-                                    <i class="fa-solid fa-hands-holding-circle text-xl"></i>
+                                    <i class="fa-solid fa-mug-hot text-xl"></i>
                                 </div>
                                 <div>
                                     <h4 class="text-xl font-bold text-slate-900 mb-2">성격의 강점: 봉사하는 마음</h4>
                                     <p class="text-slate-500 text-sm leading-relaxed">
-                                        타인의 어려움에 깊이 공감하며, 더 나은 사회를 위해 기꺼이 헌신하는 마음가짐을 가지고 있습니다.
+                                        부드러운 소통 속에 타인의 어려움에 깊이 공감하며, 더 나은 사회를 위해 기꺼이 헌신하는 따뜻한 리더십을 갖추고 있습니다.
                                     </p>
                                 </div>
                             </div>
@@ -256,7 +257,7 @@
                     <!-- 트랙 선택 버튼 -->
                     <div class="flex flex-wrap gap-4 mb-16">
                         <button onclick="changeTrack('gov', this)" class="track-btn active-track-btn px-8 py-4 rounded-full border border-white/20 font-bold hover:bg-white/10 transition-all">
-                            정책관리 트랙
+                            공무원 트랙
                         </button>
                         <button onclick="changeTrack('corp', this)" class="track-btn px-8 py-4 rounded-full border border-white/20 font-bold hover:bg-white/10 transition-all">
                             공기업정책 트랙
@@ -275,7 +276,7 @@
                         </div>
                         <div class="lg:col-span-5">
                             <div id="track-content" class="fade-in">
-                                <h4 id="track-title" class="text-3xl font-bold text-blue-400 mb-4">정책관리 트랙</h4>
+                                <h4 id="track-title" class="text-3xl font-bold text-blue-400 mb-4">공무원 트랙</h4>
                                 <p id="track-desc" class="text-slate-300 text-lg leading-relaxed mb-8">
                                     행정 고시 및 공무원 시험을 준비하여 국가직/지방직 공직 전문가로 진출합니다. 정부 부처의 핵심 인재로서 국가 정책을 직접 기획하고 집행하는 역량을 갖춥니다.
                                 </p>
@@ -331,7 +332,7 @@
         // 트랙 데이터 정의
         const trackData = {
             gov: {
-                title: "정책관리 트랙",
+                title: "공무원 트랙",
                 desc: "행정 고시 및 공무원 시험을 준비하여 국가직/지방직 공직 전문가로 진출합니다. 정부 부처의 핵심 인재로서 국가 정책을 직접 기획하고 집행하는 역량을 갖춥니다.",
                 target: "국가직/지방직 공직 전문가",
                 img: "./roadmap_gov.png"
