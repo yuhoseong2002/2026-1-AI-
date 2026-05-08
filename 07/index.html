@@ -1,205 +1,199 @@
-import React from 'react';
-import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  Cell, ReferenceLine, LabelList
-} from 'recharts';
-import { Bike, AlertCircle, ShieldAlert, Navigation, Lightbulb, ThermometerSun } from 'lucide-react';
-
-const App = () => {
-  // 기사 및 데이터 파일 기반 통계치
-  const data = [
-    { month: '1월', count: 229 },
-    { month: '2월', count: 192 },
-    { month: '3월', count: 329 },
-    { month: '4월', count: 568 },
-    { month: '5월', count: 667 },
-    { month: '6월', count: 686 },
-    { month: '7월', count: 520 },
-    { month: '8월', count: 565 },
-    { month: '9월', count: 542 },
-    { month: '10월', count: 521 },
-    { month: '11월', count: 470 },
-    { month: '12월', count: 282 },
-  ];
-
-  const total = 5571;
-  const peakMonth = '6월';
-  const peakCount = 686;
-  const lowestCount = 192; // 2월
-
-  return (
-    <div className="min-h-screen bg-slate-50 p-4 md:p-8 font-sans text-slate-900">
-      <div className="max-w-5xl mx-auto">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2024 자전거 교통사고 통계 리포트</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700;900&display=swap');
+        body { font-family: 'Pretendard', sans-serif; }
+        .chart-container { position: relative; height: 320px; width: 100%; }
+    </style>
+</head>
+<body class="bg-slate-50 p-4 md:p-8 text-slate-900">
+    <div class="max-w-5xl mx-auto">
         
-        {/* Header Section */}
-        <header className="mb-10 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div>
-            <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold mb-3">
-              <Bike className="w-4 h-4" /> 2024년 통계 분석 리포트
+        <!-- Header Section -->
+        <header class="mb-10 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+                <div class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold mb-3">
+                    <i data-lucide="bike" class="w-4 h-4"></i> 2024년 통계 분석 리포트
+                </div>
+                <h1 class="text-3xl md:text-4xl font-black text-slate-800 tracking-tight">
+                    나들이 철, <span class="text-emerald-600">자전거 도로</span> 위 빨간불
+                </h1>
+                <p class="text-slate-500 mt-2 text-lg">기온 상승과 함께 급증하는 자전거 사고, 예방이 최선입니다.</p>
             </div>
-            <h1 className="text-3xl md:text-4xl font-black text-slate-800 tracking-tight">
-              나들이 철, <span className="text-emerald-600">자전거 도로</span> 위 빨간불
-            </h1>
-            <p className="text-slate-500 mt-2 text-lg">기온 상승과 함께 급증하는 자전거 사고, 예방이 최선입니다.</p>
-          </div>
-          <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 text-right">
-            <p className="text-xs text-slate-400 font-bold uppercase">연간 총 사고 건수</p>
-            <p className="text-3xl font-black text-emerald-600">{total.toLocaleString()}<span className="text-sm font-normal text-slate-400 ml-1">건</span></p>
-          </div>
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 text-right">
+                <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">연간 총 사고 건수</p>
+                <p class="text-3xl font-black text-emerald-600">5,571<span class="text-sm font-normal text-slate-400 ml-1">건</span></p>
+            </div>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {/* Highlight Card 1: Peak Month */}
-          <div className="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex flex-col justify-between">
-            <div className="bg-red-50 w-12 h-12 rounded-2xl flex items-center justify-center mb-4">
-              <AlertCircle className="w-6 h-6 text-red-500" />
+        <!-- Highlight Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <!-- Peak Month -->
+            <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex flex-col justify-between">
+                <div class="bg-red-50 w-12 h-12 rounded-2xl flex items-center justify-center mb-4">
+                    <i data-lucide="alert-circle" class="w-6 h-6 text-red-500"></i>
+                </div>
+                <div>
+                    <p class="text-sm text-slate-500 font-medium italic">Most Frequent</p>
+                    <h3 class="text-xl font-bold text-slate-800 leading-tight">연중 사고 최대 발생달</h3>
+                    <p class="text-4xl font-black text-red-500 mt-2">6월</p>
+                    <p class="text-sm text-slate-400 mt-1">한 달간 총 686건 발생</p>
+                </div>
             </div>
-            <div>
-              <p className="text-sm text-slate-500 font-medium italic">Most Frequent</p>
-              <h3 className="text-xl font-bold text-slate-800 leading-tight">연중 사고 최대 발생일</h3>
-              <p className="text-4xl font-black text-red-500 mt-2">{peakMonth}</p>
-              <p className="text-sm text-slate-400 mt-1">한 달간 총 {peakCount}건 발생</p>
-            </div>
-          </div>
 
-          {/* Highlight Card 2: Growth Rate */}
-          <div className="bg-emerald-600 p-6 rounded-3xl shadow-lg text-white flex flex-col justify-between relative overflow-hidden">
-            <ThermometerSun className="absolute -right-4 -top-4 w-24 h-24 text-emerald-500/30" />
-            <div className="relative z-10">
-              <p className="text-emerald-100 text-sm font-medium">Seasonal Increase</p>
-              <h3 className="text-xl font-bold leading-tight mt-1">겨울(2월) 대비<br />사고 발생률</h3>
-              <div className="flex items-baseline gap-1 mt-3">
-                <span className="text-4xl font-black">3.5</span>
-                <span className="text-xl font-bold">배 급증</span>
-              </div>
+            <!-- Growth Rate -->
+            <div class="bg-emerald-600 p-6 rounded-3xl shadow-lg text-white flex flex-col justify-between relative overflow-hidden">
+                <i data-lucide="thermometer-sun" class="absolute -right-4 -top-4 w-24 h-24 text-emerald-500/30"></i>
+                <div class="relative z-10">
+                    <p class="text-emerald-100 text-sm font-medium">Seasonal Increase</p>
+                    <h3 class="text-xl font-bold leading-tight mt-1">겨울(2월) 대비<br />사고 발생률</h3>
+                    <div class="flex items-baseline gap-1 mt-3">
+                        <span class="text-4xl font-black">3.5</span>
+                        <span class="text-xl font-bold">배 급증</span>
+                    </div>
+                </div>
+                <p class="text-emerald-100/70 text-xs mt-4 relative z-10">
+                    * 기온 상승에 따른 이용객 증가와 비례
+                </p>
             </div>
-            <p className="text-emerald-100/70 text-xs mt-4 relative z-10">
-              * 기온 상승에 따른 이용객 증가와 비례
-            </p>
-          </div>
 
-          {/* Highlight Card 3: Danger Period */}
-          <div className="bg-slate-900 p-6 rounded-3xl shadow-sm text-white flex flex-col justify-between">
-             <div className="bg-slate-800 w-12 h-12 rounded-2xl flex items-center justify-center mb-4">
-              <ShieldAlert className="w-6 h-6 text-amber-400" />
+            <!-- Danger Period -->
+            <div class="bg-slate-900 p-6 rounded-3xl shadow-sm text-white flex flex-col justify-between">
+                 <div class="bg-slate-800 w-12 h-12 rounded-2xl flex items-center justify-center mb-4">
+                    <i data-lucide="shield-alert" class="w-6 h-6 text-amber-400"></i>
+                </div>
+                <div>
+                    <p class="text-slate-400 text-sm font-medium">Dangerous Months</p>
+                    <h3 class="text-xl font-bold leading-tight mt-1">5~6월 집중 현상</h3>
+                    <div class="flex items-baseline gap-2 mt-2">
+                        <span class="text-3xl font-black text-amber-400">24.3%</span>
+                        <span class="text-xs text-slate-400">전체 사고 중 비중</span>
+                    </div>
+                </div>
             </div>
-            <div>
-              <p className="text-slate-400 text-sm font-medium">Dangerous Months</p>
-              <h3 className="text-xl font-bold leading-tight mt-1">5~6월 집중 현상</h3>
-              <div className="flex items-baseline gap-2 mt-2">
-                <span className="text-3xl font-black text-amber-400">24.3%</span>
-                <span className="text-xs text-slate-400">전체 사고 중 비중</span>
-              </div>
-            </div>
-          </div>
         </div>
 
-        {/* Main Chart Section */}
-        <div className="bg-white p-6 md:p-10 rounded-[2.5rem] shadow-sm border border-slate-100 mb-8">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-            <div>
-              <h3 className="text-2xl font-black text-slate-800">월별 자전거 사고 현황</h3>
-              <p className="text-slate-500 text-sm">4월부터 사고 건수가 500건 이상으로 가파르게 상승합니다.</p>
+        <!-- Main Chart Section -->
+        <div class="bg-white p-6 md:p-10 rounded-[2.5rem] shadow-sm border border-slate-100 mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                <div>
+                    <h3 class="text-2xl font-black text-slate-800">월별 자전거 사고 현황</h3>
+                    <p class="text-slate-500 text-sm">4월부터 사고 건수가 500건 이상으로 가파르게 상승합니다.</p>
+                </div>
+                <div class="flex gap-4">
+                    <div class="flex items-center gap-2 text-xs font-bold text-slate-400">
+                        <div class="w-3 h-3 rounded-full bg-slate-100"></div> 평시
+                    </div>
+                    <div class="flex items-center gap-2 text-xs font-bold text-slate-400">
+                        <div class="w-3 h-3 rounded-full bg-emerald-500"></div> 주의
+                    </div>
+                </div>
             </div>
-            <div className="flex gap-4">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-slate-100"></div>
-                <span className="text-xs font-bold text-slate-400 uppercase">평시</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
-                <span className="text-xs font-bold text-slate-400 uppercase">주의</span>
-              </div>
-            </div>
-          </div>
 
-          <div className="h-80 w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={data} margin={{ top: 20, right: 10, left: -20, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                <XAxis 
-                  dataKey="month" 
-                  axisLine={false} 
-                  tickLine={false} 
-                  tick={{fill: '#94a3b8', fontSize: 13, fontWeight: 700}} 
-                  dy={10}
-                />
-                <YAxis axisLine={false} tickLine={false} hide />
-                <Tooltip 
-                  cursor={{fill: '#f8fafc'}}
-                  content={({ active, payload }) => {
-                    if (active && payload && payload.length) {
-                      return (
-                        <div className="bg-slate-900 text-white p-3 rounded-2xl shadow-xl text-sm font-bold">
-                          {payload[0].payload.month}: <span className="text-emerald-400 ml-1">{payload[0].value}건</span>
+            <div class="chart-container">
+                <canvas id="bicycleChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Safety Guide Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-8 rounded-[2rem] border border-slate-100">
+                <h4 class="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                    <i data-lucide="shield-alert" class="w-6 h-6 text-emerald-600"></i> 자전거 운전자 안전 수칙
+                </h4>
+                <ul class="space-y-6">
+                    <li class="flex gap-4">
+                        <div class="w-10 h-10 bg-emerald-50 rounded-full flex items-center justify-center shrink-0">
+                            <i data-lucide="navigation" class="w-5 h-5 text-emerald-600"></i>
                         </div>
-                      );
-                    }
-                    return null;
-                  }}
-                />
-                <Bar dataKey="count" radius={[12, 12, 12, 12]} barSize={40}>
-                  {data.map((entry, index) => (
-                    <Cell 
-                      key={`cell-${index}`} 
-                      fill={entry.count >= 500 ? '#10b981' : '#f1f5f9'} 
-                    />
-                  ))}
-                  <LabelList 
-                    dataKey="count" 
-                    position="top" 
-                    style={{ fill: '#64748b', fontSize: 11, fontWeight: 800 }} 
-                    offset={10}
-                  />
-                </Bar>
-                <ReferenceLine y={500} stroke="#cbd5e1" strokeDasharray="3 3" label={{ position: 'right', value: '주의 구간', fill: '#94a3b8', fontSize: 10, fontWeight: 700 }} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
+                        <div>
+                            <p class="font-bold text-slate-800 text-sm">교차로 일시정지 및 주변 확인</p>
+                            <p class="text-xs text-slate-500 mt-1 leading-relaxed italic">사고 10건 중 7건이 교차로에서 발생합니다.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-4">
+                        <div class="w-10 h-10 bg-emerald-50 rounded-full flex items-center justify-center shrink-0">
+                            <i data-lucide="lightbulb" class="w-5 h-5 text-emerald-600"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-slate-800 text-sm">안전모 착용 및 야간 등화 장착</p>
+                            <p class="text-xs text-slate-500 mt-1 leading-relaxed">안전모는 머리 부상 위험을 80% 이상 감소시킵니다.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-slate-100 p-8 rounded-[2rem] flex flex-col justify-center">
+                <blockquote class="text-lg font-medium text-slate-700 leading-relaxed italic">
+                    "자전거는 도로교통법상 <span class="text-emerald-700 font-bold">'차'</span>에 해당합니다. 맑은 날씨에 방심하지 말고 전방 주시와 안전거리 확보를 철저히 해야 합니다."
+                </blockquote>
+                <p class="mt-4 text-sm text-slate-400 font-bold text-right">— 교통안전 관계자</p>
+            </div>
         </div>
 
-        {/* Safety Guide Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white p-8 rounded-[2rem] border border-slate-100">
-            <h4 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
-              <ShieldAlert className="w-6 h-6 text-emerald-600" /> 자전거 운전자 안전 수칙
-            </h4>
-            <ul className="space-y-6">
-              <li className="flex gap-4">
-                <div className="w-10 h-10 bg-emerald-50 rounded-full flex items-center justify-center shrink-0">
-                  <Navigation className="w-5 h-5 text-emerald-600" />
-                </div>
-                <div>
-                  <p className="font-bold text-slate-800 text-sm">교차로 일시정지 및 주변 확인</p>
-                  <p className="text-xs text-slate-500 mt-1 leading-relaxed italic">사고 10건 중 7건이 교차로에서 발생합니다.</p>
-                </div>
-              </li>
-              <li className="flex gap-4">
-                <div className="w-10 h-10 bg-emerald-50 rounded-full flex items-center justify-center shrink-0">
-                  <Lightbulb className="w-5 h-5 text-emerald-600" />
-                </div>
-                <div>
-                  <p className="font-bold text-slate-800 text-sm">안전모 착용 및 야간 등화 장착</p>
-                  <p className="text-xs text-slate-500 mt-1 leading-relaxed">안전모는 머리 부상 위험을 80% 이상 감소시킵니다.</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div className="bg-slate-100 p-8 rounded-[2rem] flex flex-col justify-center">
-            <blockquote className="text-lg font-medium text-slate-700 leading-relaxed italic">
-              "자전거는 도로교통법상 <span className="text-emerald-700 font-bold">'차'</span>에 해당합니다. 맑은 날씨에 방심하지 말고 전방 주시와 안전거리 확보를 철저히 해야 합니다."
-            </blockquote>
-            <p className="mt-4 text-sm text-slate-400 font-bold text-right">— 교통안전 관계자</p>
-          </div>
-        </div>
-
-        <footer className="mt-12 text-center text-slate-400 text-[10px] font-bold tracking-widest uppercase pb-10">
-          Source: 2024 Traffic Accident Statistics | Design for Public Safety
+        <footer class="mt-12 text-center text-slate-400 text-[10px] font-bold tracking-widest uppercase pb-10">
+            Source: 2024 Traffic Accident Statistics | Design for Public Safety
         </footer>
-      </div>
     </div>
-  );
-};
 
-export default App;
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lucide 아이콘 초기화
+            lucide.createIcons();
+
+            // 차트 데이터
+            const labels = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
+            const counts = [229, 192, 329, 568, 667, 686, 520, 565, 542, 521, 470, 282];
+            
+            // 500건 이상인 경우 색상 강조
+            const backgroundColors = counts.map(count => count >= 500 ? '#10b981' : '#f1f5f9');
+            const hoverColors = counts.map(count => count >= 500 ? '#059669' : '#e2e8f0');
+
+            const ctx = document.getElementById('bicycleChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '사고 건수',
+                        data: counts,
+                        backgroundColor: backgroundColors,
+                        hoverBackgroundColor: hoverColors,
+                        borderRadius: 12,
+                        borderSkipped: false,
+                        barThickness: window.innerWidth < 768 ? 15 : 35
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#0f172a',
+                            titleFont: { size: 14, weight: 'bold' },
+                            padding: 12,
+                            cornerRadius: 12,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.parsed.y}건 발생`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: {
+                                font: { size: 12, weight
