@@ -169,7 +169,7 @@
             { id: '05', title: '중간고사 (Midterm)', desc: '나 자신과 전공에 대한 데이터 기반 분석 및 로드맵 설계.', link: './05/index.html', color: 'from-green-400 to-lime-500', directLink: true },
             { id: '06', title: '데이터 분석 1', desc: '수치 데이터를 시각화하여 트렌드를 도출하는 역량을 키웠습니다.', link: './06/index.html', color: 'from-yellow-400 to-orange-500', directLink: true },
             { id: '07', title: '데이터 분석 2', desc: 'AI 도구를 활용하여 정책 아이디어를 시각화했습니다.', link: './07/index.html', color: 'from-orange-400 to-red-500', directLink: true },
-            { id: '08', title: '문제해결 설계', desc: '사회 문제를 AI 기술로 해결하기 위한 서비스 시나리오를 설계했습니다.', link: '#', color: 'from-rose-400 to-pink-500' },
+            { id: '08', title: 'AI 기반 문제해결 설계', desc: '사회 문제를 AI 기술로 해결하기 위한 서비스 시나리오를 설계했습니다.', link: '#', color: 'from-rose-400 to-pink-500' },
             { id: '09', title: '빅데이터 정책 리포트', desc: '데이터 기반 정책 제언 리포트 및 인사이트 도출.', link: '#', color: 'from-fuchsia-400 to-purple-500' },
             { id: '10', title: '캡스톤 프로젝트', desc: '한 학기 역량을 집약한 최종 통합 결과물입니다.', link: '#', color: 'from-violet-400 to-purple-600' }
         ];
@@ -182,7 +182,7 @@
                 const card = document.createElement('div');
                 card.className = `reveal group relative border-2 p-8 rounded-[40px] cursor-pointer transition-all duration-500 hover:scale-[1.05] bg-white/5 border-white/10 hover:border-pink-500/50 overflow-hidden shadow-xl`;
                 
-                // directLink가 true일 경우 새 창(_blank)으로 열기, 아닐 경우 모달 열기
+                // directLink가 true일 경우 window.open을 사용하여 새 탭(_blank)으로 열기
                 card.onclick = () => { 
                     if (item.directLink && item.link !== '#') { 
                         window.open(item.link, '_blank'); 
