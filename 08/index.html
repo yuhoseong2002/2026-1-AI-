@@ -15,10 +15,9 @@
             background-color: #ffffff;
         }
 
-        /* 선명한 메인 섹션: 이미지 없이 컬러와 타이포그래피로 승부 */
         .hero-section {
             background: linear-gradient(135deg, #0044cc 0%, #0088ff 100%);
-            min-height: 90vh;
+            min-height: 95vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -26,24 +25,25 @@
             overflow: hidden;
         }
 
-        /* 배경에 은은한 패턴 추가 (선명함 유지) */
+        /* 배경 장식 타이포그래피 */
         .hero-section::before {
             content: "BUSAN";
             position: absolute;
             font-size: 25vw;
             font-weight: 900;
-            color: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.04);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             white-space: nowrap;
             z-index: 0;
+            pointer-events: none;
         }
 
         .glass-nav {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #f0f0f0;
         }
 
         .gradient-text {
@@ -52,15 +52,9 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .blue-gradient-text {
-            background: linear-gradient(90deg, #0044cc, #0088ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
         .card-shadow {
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
-            border: 1px solid #f0f0f0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+            border: 1px solid #f1f5f9;
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
@@ -81,19 +75,15 @@
             transform: translateY(0);
         }
 
-        .boogi-icon-box {
-            animation: float 4s ease-in-out infinite;
+        .pdf-button {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        /* 섹션 구분선 */
-        .section-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #eee, transparent);
+        .pdf-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-2px);
         }
     </style>
 </head>
@@ -108,10 +98,10 @@
             <a href="#concept" class="hover:text-blue-600 transition">컨셉</a>
             <a href="#programs" class="hover:text-blue-600 transition">프로그램</a>
             <a href="#reviews" class="hover:text-blue-600 transition">리뷰</a>
-            <a href="#trust" class="hover:text-blue-600 transition">신뢰</a>
+            <a href="#resources" class="hover:text-blue-600 transition">자료실</a>
         </div>
         <button class="bg-blue-600 text-white px-8 py-2.5 rounded-full font-bold shadow-lg hover:bg-blue-700 transition active:scale-95">
-            예약하기
+            투어 예약
         </button>
     </nav>
 
@@ -119,22 +109,25 @@
     <header class="hero-section">
         <div class="relative z-10 text-center px-4">
             <div class="inline-block bg-white/10 border border-white/20 px-5 py-1.5 rounded-full text-white text-xs font-bold mb-8 tracking-[0.2em]">
-                2026 BUSAN LOCALITY
+                2026 BUSAN LOCALITY PROJECT
             </div>
             <h1 class="text-6xl md:text-9xl font-black text-white mb-10 leading-none tracking-tighter">
                 진짜 부산을<br>
                 <span class="gradient-text">선명하게</span>
             </h1>
             <p class="text-blue-50 text-xl md:text-2xl max-w-2xl mx-auto font-light mb-14 leading-relaxed opacity-90">
-                흐릿한 이미지 대신, 가슴 뻥 뚫리는 부산의 진짜 속살을 보여드립니다.<br>
-                현지인이 사랑하는 골목과 숨결을 생생하게 경험하세요.
+                이미지보다 생생한 부산의 진짜 목소리를 담았습니다.<br>
+                현지인이 사랑하는 골목의 숨결을 지금 경험하세요.
             </p>
-            <div class="flex flex-col md:flex-row gap-5 justify-center">
-                <a href="#programs" class="bg-white text-blue-700 px-12 py-4 rounded-full font-black text-lg shadow-2xl hover:bg-blue-50 transition">
+            
+            <div class="flex flex-col md:flex-row gap-5 justify-center items-center">
+                <a href="#programs" class="w-full md:w-auto bg-white text-blue-700 px-12 py-4 rounded-full font-black text-lg shadow-2xl hover:bg-blue-50 transition">
                     투어 시작하기
                 </a>
-                <a href="#concept" class="bg-transparent text-white border border-white/40 px-12 py-4 rounded-full font-black text-lg hover:bg-white/10 transition">
-                    철학 보기
+                <!-- PDF Button 1 -->
+                <a href="./pusan.pdf" target="_blank" class="w-full md:w-auto pdf-button text-white px-8 py-4 rounded-full font-bold text-lg flex items-center justify-center gap-3">
+                    <i class="far fa-file-pdf text-xl"></i>
+                    부산대학교 관련 자료 보기(PDF)
                 </a>
             </div>
         </div>
@@ -166,168 +159,76 @@
     <section id="concept" class="py-32 px-6">
         <div class="max-w-5xl mx-auto reveal">
             <div class="text-center mb-24">
-                <span class="text-blue-600 font-black text-sm tracking-widest uppercase mb-4 block">Our Identity</span>
+                <span class="text-blue-600 font-black text-sm tracking-widest uppercase mb-4 block">Identity</span>
                 <h2 class="text-4xl md:text-6xl font-black mb-8 leading-tight">
                     아파트 숲에 가려진<br>
-                    <span class="blue-gradient-text">진짜 부산의 얼굴</span>
+                    <span class="text-blue-600">진짜 얼굴</span>
                 </h2>
                 <div class="w-20 h-1.5 bg-blue-600 mx-auto rounded-full mb-10"></div>
                 <p class="text-slate-600 text-xl md:text-2xl leading-relaxed max-w-3xl mx-auto font-light">
-                    높게 솟은 아파트는 부산의 전무가 아닙니다. 좁은 골목 사이로 흐르는 정, 
-                    투박하지만 따뜻한 상인들의 사투리, 산복도로에서 바라보는 압도적인 야경이 
-                    당신이 찾아야 할 진짜 부산입니다.
+                    부산은 아파트가 전부가 아닙니다. 골목 사이로 흐르는 정, 
+                    투박한 상인들의 사투리, 산복도로의 압도적인 야경이 
+                    당신이 찾아야 할 진짜 부산의 가치입니다.
                 </p>
             </div>
-
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="p-10 bg-slate-50 rounded-[40px] border border-slate-100">
-                    <div class="text-blue-600 text-3xl mb-6"><i class="fas fa-won-sign"></i></div>
-                    <h4 class="text-2xl font-black mb-4">제주보다 합리적인 가성비</h4>
-                    <p class="text-slate-500 leading-relaxed">바가지 요금 논란 없는 정직한 로컬 맛집과 교통의 편리함. 지갑 걱정 없는 풍성한 여행을 보장합니다.</p>
-                </div>
-                <div class="p-10 bg-blue-600 rounded-[40px] text-white shadow-2xl shadow-blue-200">
-                    <div class="text-blue-200 text-3xl mb-6"><i class="fas fa-map-marked-alt"></i></div>
-                    <h4 class="text-2xl font-black mb-4">현지인이 인정하는 천국</h4>
-                    <p class="text-blue-100 leading-relaxed">"부산 살 때는 몰랐는데, 떠나보니 알겠다"는 실제 후기들이 증명하는 독보적인 대도시 휴양 인프라.</p>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Program Section -->
-    <section id="programs" class="py-32 bg-slate-50 px-6">
+    <!-- Review Section -->
+    <section id="reviews" class="py-24 bg-slate-50 px-6">
         <div class="max-w-6xl mx-auto">
-            <div class="mb-20 text-center reveal">
-                <h2 class="text-5xl font-black mb-6">시그니처 로컬 투어</h2>
-                <p class="text-slate-500 text-lg">오직 '진짜 부산'에서만 경험할 수 있는 선명한 체험</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Program 1 -->
-                <div class="bg-white p-10 rounded-[40px] card-shadow reveal">
-                    <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-8">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <h3 class="text-2xl font-black mb-4">"니 서장 남천동 살제?"</h3>
-                    <p class="text-slate-500 leading-relaxed mb-10">외국인들이 가장 열광하는 부산 사투리 미션 투어. 상인들과 직접 소통하며 부산의 리듬을 배워보세요.</p>
-                    <div class="font-bold text-blue-600 flex items-center cursor-pointer group">
-                        자세히 보기 <i class="fas fa-chevron-right ml-2 group-hover:translate-x-1 transition"></i>
-                    </div>
-                </div>
-
-                <!-- Program 2 -->
-                <div class="bg-white p-10 rounded-[40px] card-shadow reveal" style="transition-delay: 0.1s;">
-                    <div class="w-16 h-16 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center text-2xl mb-8">
-                        <i class="fas fa-house-user"></i>
-                    </div>
-                    <h3 class="text-2xl font-black mb-4">산복도로 노을 스테이</h3>
-                    <p class="text-slate-500 leading-relaxed mb-10">천편일률적인 아파트 숲 대신, 원도심의 역사를 간직한 재생 주택에서 인생 노을과 야경을 즐기세요.</p>
-                    <div class="font-bold text-blue-600 flex items-center cursor-pointer group">
-                        자세히 보기 <i class="fas fa-chevron-right ml-2 group-hover:translate-x-1 transition"></i>
-                    </div>
-                </div>
-
-                <!-- Program 3 -->
-                <div class="bg-white p-10 rounded-[40px] card-shadow reveal" style="transition-delay: 0.2s;">
-                    <div class="w-16 h-16 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center text-2xl mb-8">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <h3 class="text-2xl font-black mb-4">나만의 커스텀 국밥</h3>
-                    <p class="text-slate-500 leading-relaxed mb-10">부추와 다대기, 새우젓의 황금 비율을 찾아가는 미식 클래스. 만 원으로 즐기는 시장 가성비 챌린지.</p>
-                    <div class="font-bold text-blue-600 flex items-center cursor-pointer group">
-                        자세히 보기 <i class="fas fa-chevron-right ml-2 group-hover:translate-x-1 transition"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Review Section (Based on YouTube Data) -->
-    <section id="reviews" class="py-32 bg-white px-6">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-black text-center mb-20 reveal">우리가 들은 생생한 민심</h2>
+            <h2 class="text-4xl font-black text-center mb-16 reveal">유튜브 생생 리뷰</h2>
             <div class="grid md:grid-cols-2 gap-8">
-                <div class="p-10 bg-slate-50 rounded-3xl reveal border-l-8 border-blue-600">
-                    <p class="text-xl font-medium text-slate-700 italic mb-6">"제주도는 돈 쓰면서 아~ 이 돈이 맞나? 싶은데, 부산은 돈을 써도 전혀 아깝지 않다는 생각이 듭니다."</p>
-                    <span class="text-sm font-black text-slate-400">- @gokds7 (유튜브 베스트 댓글)</span>
+                <div class="p-10 bg-white rounded-3xl reveal border-l-8 border-blue-600 shadow-sm">
+                    <p class="text-xl font-medium text-slate-700 italic mb-6">"제주도는 돈 쓰면서 아까운 생각이 드는데, 부산은 돈을 써도 전혀 아깝지 않아요."</p>
+                    <span class="text-sm font-black text-slate-400">- @gokds7</span>
                 </div>
-                <div class="p-10 bg-slate-50 rounded-3xl reveal border-l-8 border-blue-400" style="transition-delay: 0.1s;">
-                    <p class="text-xl font-medium text-slate-700 italic mb-6">"30년 살면서 몰랐는데, 타지 사니까 부산이 천국이네요. 바다 옆 대도시라는 메리트는 진짜 독보적입니다."</p>
-                    <span class="text-sm font-black text-slate-400">- @whe_e_geol (유튜브 베스트 댓글)</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Trust Guarantee Section -->
-    <section id="trust" class="py-24 bg-blue-700 text-white relative overflow-hidden">
-        <div class="max-w-5xl mx-auto px-6 text-center relative z-10 reveal">
-            <div class="inline-block border border-white/30 px-6 py-2 rounded-full font-bold text-xs mb-8 tracking-widest uppercase">Trust Protocol</div>
-            <h2 class="text-5xl font-black mb-10 leading-tight">신뢰할 수 없는 관광은<br>진짜 부산이 아닙니다.</h2>
-            <p class="text-blue-100 text-xl max-w-2xl mx-auto mb-16 leading-relaxed">
-                바가지 요금 신고 시 200% 즉시 보상, 시 인증 착한 가격 업소 매칭.<br>
-                우리는 수치보다 당신의 신뢰를 더 중요하게 생각합니다.
-            </p>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-                <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20">
-                    <p class="text-2xl font-black mb-2">200%</p>
-                    <p class="text-xs text-blue-200">바가지 보상제</p>
-                </div>
-                <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20">
-                    <p class="text-2xl font-black mb-2">정찰제</p>
-                    <p class="text-xs text-blue-200">안심 투어 서비스</p>
-                </div>
-                <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 col-span-2 md:col-span-1">
-                    <p class="text-2xl font-black mb-2">Zero</p>
-                    <p class="text-xs text-blue-200">숨겨진 수수료</p>
+                <div class="p-10 bg-white rounded-3xl reveal border-l-8 border-blue-400 shadow-sm" style="transition-delay: 0.1s;">
+                    <p class="text-xl font-medium text-slate-700 italic mb-6">"30년 살면서 몰랐는데, 타지 사니까 부산이 천국이네요. 바다 옆 대도시는 독보적입니다."</p>
+                    <span class="text-sm font-black text-slate-400">- @whe_e_geol</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Boogi & CTA -->
-    <section class="py-40 bg-white text-center px-6">
+    <!-- Resource Section (PDF Section) -->
+    <section id="resources" class="py-32 bg-white px-6">
         <div class="max-w-4xl mx-auto reveal">
-            <div class="boogi-icon-box inline-block mb-12">
-                <div class="w-32 h-32 bg-blue-100 text-blue-600 rounded-[40px] flex items-center justify-center text-6xl shadow-2xl">
-                    <i class="fas fa-paper-plane"></i>
+            <div class="bg-blue-50 rounded-[40px] p-12 text-center border border-blue-100">
+                <div class="w-20 h-20 bg-blue-600 text-white rounded-2xl flex items-center justify-center text-3xl mx-auto mb-8 shadow-xl shadow-blue-200">
+                    <i class="fas fa-file-pdf"></i>
                 </div>
+                <h2 class="text-3xl font-black mb-6 text-blue-900">상세 연구 및 관련 자료</h2>
+                <p class="text-slate-600 text-lg mb-10 leading-relaxed">
+                    부산의 관광 잠재력과 학술적 가치를 확인하고 싶으신가요?<br>
+                    부산대학교와 함께한 심층 분석 자료를 확인해 보세요.
+                </p>
+                <!-- PDF Button 2 -->
+                <a href="./pusan.pdf" target="_blank" class="inline-flex items-center gap-4 bg-blue-700 text-white px-10 py-5 rounded-full text-xl font-black shadow-2xl hover:bg-blue-800 transition active:scale-95">
+                    <i class="fas fa-external-link-alt text-lg"></i>
+                    pusan.pdf 보기
+                </a>
             </div>
-            <h2 class="text-6xl font-black mb-8 italic">"부산으로 억수로 오이소!"</h2>
-            <p class="text-slate-500 text-2xl font-light leading-relaxed mb-16">
-                타이완 MZ세대도 반한 진짜 부산의 매력.<br>
-                부기와 함께하는 로컬 투어, 지금 바로 신청하세요.
-            </p>
-            <button class="bg-blue-600 text-white px-16 py-6 rounded-full text-3xl font-black shadow-2xl shadow-blue-300 hover:bg-blue-700 hover:scale-105 transition active:scale-95">
-                지금 예약하기
-            </button>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-slate-900 text-slate-500 py-24 px-6">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-20">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20">
             <div>
                 <div class="text-3xl font-black text-white tracking-tighter mb-8">THE REAL <span class="text-blue-500">BUSAN</span></div>
-                <p class="leading-relaxed">부산광역시 관광 활성화 프로젝트 "진짜 부산"은 랜드마크 중심의 관광에서 벗어나 부산만의 독창적인 로컬리티를 발굴합니다.</p>
+                <p class="leading-relaxed max-w-sm">부산광역시 관광 활성화 프로젝트 "진짜 부산"은 랜드마크 중심에서 벗어나 독창적인 로컬리티를 발굴합니다.</p>
             </div>
-            <div>
-                <h5 class="text-white font-bold mb-8 uppercase tracking-widest text-xs">Quick Links</h5>
-                <ul class="space-y-4">
-                    <li><a href="#concept" class="hover:text-white transition">우리의 가치</a></li>
-                    <li><a href="#programs" class="hover:text-white transition">체험 프로그램</a></li>
-                    <li><a href="#reviews" class="hover:text-white transition">방문 후기</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="text-white font-bold mb-8 uppercase tracking-widest text-xs">Connect</h5>
+            <div class="flex flex-col md:items-end space-y-6">
                 <div class="flex space-x-8 text-2xl">
                     <a href="#" class="hover:text-white transition"><i class="fab fa-instagram"></i></a>
                     <a href="#" class="hover:text-white transition"><i class="fab fa-youtube"></i></a>
-                    <a href="#" class="hover:text-white transition"><i class="fab fa-tiktok"></i></a>
                 </div>
-                <p class="mt-8 text-sm">help@realbusan.go.kr</p>
-                <p class="text-sm font-bold text-blue-500 mt-2">051-123-4567</p>
+                <div class="text-sm text-right">
+                    <p class="text-white font-bold mb-2">Contact</p>
+                    <p>help@realbusan.go.kr</p>
+                    <p class="text-blue-500 font-bold mt-1">051-123-4567</p>
+                </div>
             </div>
         </div>
         <div class="max-w-7xl mx-auto pt-16 mt-16 border-t border-white/5 text-center text-xs">
@@ -347,11 +248,8 @@
                 }
             }
         }
-
         window.addEventListener("scroll", reveal);
-        window.onload = function() {
-            setTimeout(reveal, 100);
-        };
+        window.onload = function() { setTimeout(reveal, 100); };
     </script>
 </body>
 </html>
