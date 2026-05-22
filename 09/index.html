@@ -61,19 +61,71 @@
     <!-- Main Container -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
         
-        <!-- Welcome Banner -->
-        <div class="relative overflow-hidden bg-gradient-to-br from-blue-950/60 via-indigo-950/40 to-slate-950 rounded-2xl p-6 sm:p-8 border border-slate-800/80 shadow-lg">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.12),transparent_50%)]"></div>
-            <div class="relative z-10 max-w-4xl space-y-2">
-                <span class="inline-flex items-center bg-blue-500/10 text-blue-300 text-xs font-semibold px-3 py-1 rounded-md border border-blue-500/20">
-                    💡 종합 트렌드 브리핑
-                </span>
-                <h2 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white leading-tight tracking-tight">
-                    외국인 관광 지출 <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-pink-400">1조 원 돌파!</span> 부산의 도약과 극복 과제
-                </h2>
-                <p class="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-3xl">
-                    부산이 사상 최초로 연 관광객 300만 명을 돌파하며 인천을 제치고 전국 2위에 등극했습니다. 전통시장의 미식 코스가 새로운 K-컬처 아이콘으로 부활한 반면, 일부 도심에만 편중된 쏠림 현상과 열악한 입국 인프라라는 그늘이 여전히 숙제로 남았습니다. 시민들의 생생한 <strong>757건의 목소리</strong>와 데이터를 균형 있게 조명합니다.
-                </p>
+        <!-- Welcome Banner (초고급 시네마틱 오션 레이아웃으로 업그레이드) -->
+        <div class="relative overflow-hidden bg-gradient-to-br from-indigo-950 via-blue-950 to-slate-950 rounded-2xl p-6 sm:p-10 border border-blue-500/20 shadow-2xl">
+            <!-- Background Decorative Glowing Orbs -->
+            <div class="absolute top-0 right-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
+            <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl -ml-20 -mb-20"></div>
+            
+            <!-- Dynamic SVG Wave Identity (부산 바다의 상징) -->
+            <div class="absolute bottom-0 right-0 w-full opacity-10 pointer-events-none">
+                <svg viewBox="0 0 1440 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full">
+                    <path d="M0,96L120,112C240,128,480,160,720,160C960,160,1200,128,1320,112L1440,96L1440,200L1320,200C1200,200,960,200,720,200C480,200,240,200,120,200L0,200Z" fill="url(#waveGrad)"/>
+                    <defs>
+                        <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#3b82f6"/>
+                            <stop offset="100%" stop-color="#8b5cf6"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- Left: Cinematic Catchphrase -->
+                <div class="lg:col-span-8 space-y-4">
+                    <div class="flex flex-wrap gap-2">
+                        <span class="inline-flex items-center bg-blue-500/20 text-blue-300 text-xs font-bold px-3 py-1 rounded border border-blue-500/30">
+                            <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-ping mr-1.5"></span>
+                            INSIGHT REPORT
+                        </span>
+                        <span class="inline-flex items-center bg-purple-500/20 text-purple-300 text-xs font-bold px-3 py-1 rounded border border-purple-500/30">
+                            🏆 1조 원 돌파 스페셜 에디션
+                        </span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight tracking-tight">
+                        WAVE TO THE FUTURE<br>
+                        부산, <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-pink-400 font-extrabold">외국인 소비 1조 원</span> 시대를 열다
+                    </h2>
+                    <p class="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-2xl">
+                        부산이 사상 최초로 연 외국인 관광객 300만 명을 돌파하며 인천을 제치고 전국 2위에 등극했습니다. 전통시장의 미식 코스가 새로운 K-컬처 아이콘으로 부활한 반면, 일부 도심에만 편중된 쏠림 현상과 열악한 입국 인프라라는 그늘이 여전히 숙제로 남았습니다. 시민들의 생생한 <strong>757건의 진짜 목소리</strong>와 데이터를 균형 있게 조명합니다.
+                    </p>
+                </div>
+                
+                <!-- Right: Glassmorphic Quick Metric Dashboard Card (이목 집중 장치) -->
+                <div class="lg:col-span-4 bg-slate-900/90 border border-slate-800/80 p-5 rounded-2xl flex flex-col justify-between space-y-4 shadow-2xl relative overflow-hidden group hover:border-purple-500/30 transition-all duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 pointer-events-none"></div>
+                    <div class="text-[11px] font-bold text-purple-400 uppercase tracking-widest flex items-center justify-between">
+                        <span>실시간 핵심 성과 요약</span>
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    </div>
+                    <div class="space-y-2 text-xs">
+                        <div class="flex justify-between items-center border-b border-slate-800/60 pb-2">
+                            <span class="text-slate-400 font-medium">외국인 연 지출액</span>
+                            <span class="font-extrabold text-white">잠정 1조 원 돌파</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-slate-800/60 pb-2">
+                            <span class="text-slate-400 font-medium">국내 소비지 순위</span>
+                            <span class="font-extrabold text-blue-400">전국 2위 (인천 추월)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400 font-medium">해운대·서면 쏠림</span>
+                            <span class="font-extrabold text-pink-400">53.0% (불균형 주의)</span>
+                        </div>
+                    </div>
+                    <button onclick="document.getElementById('activeCountBadge').scrollIntoView({behavior: 'smooth'})" class="w-full py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-extrabold text-xs rounded-xl shadow-lg shadow-purple-500/20 transition-all transform hover:-translate-y-0.5 active:translate-y-0 text-center">
+                        🎯 관광 현안 해결해보기
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -574,7 +626,7 @@
             { id: 9, author: "@우리아름다운나라-v9g", content: "솔직히 산이면 산 바다면 바다가 조화된 경관 자체는 서울 인천 아니 대한민국 어디에 내 놔도 손색이 없는 도시지 인프라 또한 서울 못지 않고 당연히 관광 1번지가 되어야 마땅하다고 본다.", category: "지역자부심", likes: 607 },
             { id: 10, author: "@용산뻐꾸기", content: "부산 변질되지않고 부산만의 고유한 특색 유지하길 ㅎㅎ 부산 매력적이긴 함 ㅎㅎ 다양한 컨텐츠나 볼거리 .도시 개선 다양하게 개발해주시길", category: "정책제안", likes: 205 },
             { id: 11, author: "@위생최우선", content: "위생적, 청소청결이 최고의 경쟁력이 됩니다. 전통시장 먹거리가 유명해지다보니 위생 부분에 눈살이 찌푸려지는 경우가 간혹 생기네요.", category: "정책제안", likes: 178 },
-            { id: 12, author: "@김해신공항", content: "김해공항이 너무 좁다. 화장실도 리모델링 좀 해라. 외국인들이 한국 첫 관문인데 인상이 깎인다.", category: "교통문제", likes: 351 },
+            { id: 12, opacity: 1, author: "@김해신공항", content: "김해공항이 너무 좁다. 화장실도 리모델링 좀 해라. 외국인들이 한국 첫 관문인데 인상이 깎인다.", category: "교통문제", likes: 351 },
             { id: 13, author: "@일자리찾는청년", content: "일자리만 많아봐라 한국 청년들 다 모인다. 부산 관광업이 발전해서 양질의 일자리가 많아지기를...", category: "경제효과", likes: 350 },
             { id: 14, author: "@글로벌예약", content: "다 좋은데 외국인도 온라인 예매가 가능하게 좀 해줘라. 한국만큼 온라인 예매 힘든 나라도 드물다.", category: "정책제안", likes: 104 },
             { id: 15, author: "@쏠림대책시급", content: "전부 해운대 광안리만 가니까 주말에 지하철도 너무 터져나간다. 다른 영도나 다대포 같은 서부산 쪽도 분산 시킬 수 있게 지하철 역 중심으로 연계 버스 노선 더 만들어라.", category: "관광객쏠림", likes: 61 }
