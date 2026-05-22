@@ -61,7 +61,7 @@
     <!-- Main Container -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
         
-        <!-- Welcome Banner (세련되고 콤팩트한 비율로 완비) -->
+        <!-- Welcome Banner -->
         <div class="relative overflow-hidden bg-gradient-to-br from-blue-950/60 via-indigo-950/40 to-slate-950 rounded-2xl p-6 sm:p-8 border border-slate-800/80 shadow-lg">
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.12),transparent_50%)]"></div>
             <div class="relative z-10 max-w-4xl space-y-2">
@@ -77,7 +77,7 @@
             </div>
         </div>
 
-        <!-- 1. KPI Metrics Grid (지나치게 비대하지 않도록 수치/마진 리사이징) -->
+        <!-- 1. KPI Metrics Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <!-- Metric 1 -->
             <div class="bg-slate-900/60 border border-slate-800/80 rounded-xl p-5 hover:border-blue-500/30 transition-all duration-200 shadow-md flex flex-col justify-between">
@@ -161,7 +161,7 @@
                     <p class="text-[11px] text-slate-400 mt-1">상위 3개 행정동이 과반 지출 점유</p>
                 </div>
                 
-                <!-- Center Info Donut Chart Container (살짝 소형화로 세련된 레이아웃 연출) -->
+                <!-- Center Info Donut Chart Container -->
                 <div class="my-4 relative flex justify-center items-center">
                     <div class="w-40 h-40 relative">
                         <canvas id="concentrationChart"></canvas>
@@ -228,7 +228,7 @@
                     <p class="text-[11px] text-slate-400 mt-1">시민들이 지적한 757건 중 핵심 테마별 출현율 분석</p>
                 </div>
 
-                <!-- pusan.png를 콤팩트하면서도 세련되게 카드 내 수용 -->
+                <!-- pusan.png 배치 -->
                 <div class="my-4 relative overflow-hidden rounded-xl border border-slate-800 bg-slate-950 aspect-[16/9.5] flex items-center justify-center group flex-grow">
                     <img id="busanImage" 
                          src="pusan.png" 
@@ -250,12 +250,12 @@
             </div>
         </div>
 
-        <!-- 3. 부산시 맞춤형 정책 시뮬레이터 (ELEVATED but Compacted & Perfectly Balanced) -->
-        <div class="bg-gradient-to-b from-slate-900 to-indigo-950/40 border border-purple-500/20 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <!-- 3. 부산시 맞춤형 정책 시뮬레이터 (ELEVATED & Revamped with presets & beginner-friendly descriptors) -->
+        <div class="bg-gradient-to-b from-slate-900 to-indigo-950/40 border border-purple-500/30 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b border-slate-800/60 pb-3">
                 <div class="space-y-1">
                     <span class="inline-flex items-center bg-purple-500/10 text-purple-300 text-[10px] font-bold px-2.5 py-0.5 rounded border border-purple-500/20">
-                        🛡️ 정책 결합 솔루션
+                        🛡️ 정책 모의 설계망
                     </span>
                     <h3 class="text-base sm:text-lg font-extrabold text-white flex items-center space-x-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -263,11 +263,32 @@
                         </svg>
                         <span>부산 관광 정책 믹스 시뮬레이터</span>
                     </h3>
+                    <p class="text-[11px] text-slate-400">여러 개의 정책을 중복 선택하거나, 간편 추천 조합 버튼을 클릭해 실시간 시너지 효과를 분석해 보세요.</p>
                 </div>
                 <div class="mt-2 md:mt-0 flex items-center space-x-1.5 text-xs bg-purple-950/60 border border-purple-900/40 px-3 py-1.5 rounded-lg text-purple-300">
                     <span class="font-bold">선택 정책:</span>
                     <span id="activeCountBadge" class="bg-purple-600 text-white font-extrabold px-2 py-0.5 rounded-full text-[10px]">0개</span>
                 </div>
+            </div>
+
+            <!-- Beginner-friendly Preset Quick Buttons -->
+            <div class="flex flex-wrap gap-1.5 p-3 rounded-xl bg-slate-950/50 border border-slate-800/80">
+                <span class="text-[11px] font-bold text-slate-400 flex items-center mr-1">🎯 추천 조합 즉시 체험:</span>
+                <button onclick="applyPreset('budget')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-[10px] font-bold text-slate-200 transition-all border border-slate-700 flex items-center space-x-1">
+                    <span>💸 알뜰가성비</span>
+                </button>
+                <button onclick="applyPreset('foreigner')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-[10px] font-bold text-slate-200 transition-all border border-slate-700 flex items-center space-x-1">
+                    <span>✈️ 외국인대만족</span>
+                </button>
+                <button onclick="applyPreset('balance')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-[10px] font-bold text-slate-200 transition-all border border-slate-700 flex items-center space-x-1">
+                    <span>🗺️ 대혼잡제어 분산</span>
+                </button>
+                <button onclick="applyPreset('all')" class="px-2.5 py-1 rounded bg-purple-900/30 hover:bg-purple-800/40 text-[10px] font-bold text-purple-300 transition-all border border-purple-700/40 flex items-center space-x-1">
+                    <span>🚀 종합 마스터플랜</span>
+                </button>
+                <button onclick="applyPreset('reset')" class="px-2.5 py-1 rounded bg-slate-900 hover:bg-slate-850 text-[10px] font-bold text-rose-400 transition-all border border-slate-800 flex items-center space-x-1 ml-auto">
+                    <span>초기화</span>
+                </button>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -277,7 +298,7 @@
                     <label class="block cursor-pointer select-none">
                         <input type="checkbox" id="policy-pass" onchange="togglePolicyItem('pass')" class="sr-only peer">
                         <div class="bg-slate-950/40 border border-slate-800 peer-checked:border-purple-500/60 peer-checked:bg-purple-950/10 rounded-xl p-3.5 transition-all hover:bg-slate-800/30 flex items-start space-x-3">
-                            <div class="mt-0.5 flex items-center justify-center w-4 h-4 rounded border border-slate-700 bg-slate-800 text-transparent peer-checked:text-purple-400 peer-checked:border-purple-500 transition-colors">
+                            <div class="mt-1 flex items-center justify-center w-4 h-4 rounded border border-slate-700 bg-slate-800 text-transparent peer-checked:text-purple-400 peer-checked:border-purple-500 transition-colors">
                                 <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="checkbox-icon-pass"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" /></svg>
                             </div>
                             <div class="flex-grow space-y-1">
@@ -285,6 +306,7 @@
                                     <span class="text-xs sm:text-sm font-bold text-slate-200">① 원스톱 글로벌 결제 패스망 (Pass)</span>
                                     <span class="text-[10px] font-bold text-blue-300 bg-blue-950/40 border border-blue-800/30 px-1.5 py-0.5 rounded">45억</span>
                                 </div>
+                                <span class="inline-block px-1.5 py-0.5 rounded text-[9px] font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-1">🎯 해결 과제: 예약/결제 장벽 전면 제거</span>
                                 <p class="text-[11px] text-slate-400 leading-relaxed">외국인 대상 KTX·지하철 사전 결제 및 전통시장 원스톱 예매 패키지 개설.</p>
                             </div>
                         </div>
@@ -294,7 +316,7 @@
                     <label class="block cursor-pointer select-none">
                         <input type="checkbox" id="policy-out" onchange="togglePolicyItem('out')" class="sr-only peer">
                         <div class="bg-slate-950/40 border border-slate-800 peer-checked:border-purple-500/60 peer-checked:bg-purple-950/10 rounded-xl p-3.5 transition-all hover:bg-slate-800/30 flex items-start space-x-3">
-                            <div class="mt-0.5 flex items-center justify-center w-4 h-4 rounded border border-slate-700 bg-slate-800 text-transparent peer-checked:text-purple-400 peer-checked:border-purple-500 transition-colors">
+                            <div class="mt-1 flex items-center justify-center w-4 h-4 rounded border border-slate-700 bg-slate-800 text-transparent peer-checked:text-purple-400 peer-checked:border-purple-500 transition-colors">
                                 <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="checkbox-icon-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" /></svg>
                             </div>
                             <div class="flex-grow space-y-1">
@@ -302,6 +324,7 @@
                                     <span class="text-xs sm:text-sm font-bold text-slate-200">② 트리플 원아웃 상권 정화제 (Out)</span>
                                     <span class="text-[10px] font-bold text-blue-300 bg-blue-950/40 border border-blue-800/30 px-1.5 py-0.5 rounded">12억</span>
                                 </div>
+                                <span class="inline-block px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 mb-1">🎯 해결 과제: 한탕주의 바가지 원천 단속</span>
                                 <p class="text-[11px] text-slate-400 leading-relaxed">바가지 요금, 고질적 위생 불량 상가 3회 경고 시 전통시장 가맹 자격 박탈.</p>
                             </div>
                         </div>
@@ -311,7 +334,7 @@
                     <label class="block cursor-pointer select-none">
                         <input type="checkbox" id="policy-marketing" onchange="togglePolicyItem('marketing')" class="sr-only peer">
                         <div class="bg-slate-950/40 border border-slate-800 peer-checked:border-purple-500/60 peer-checked:bg-purple-950/10 rounded-xl p-3.5 transition-all hover:bg-slate-800/30 flex items-start space-x-3">
-                            <div class="mt-0.5 flex items-center justify-center w-4 h-4 rounded border border-slate-700 bg-slate-800 text-transparent peer-checked:text-purple-400 peer-checked:border-purple-500 transition-colors">
+                            <div class="mt-1 flex items-center justify-center w-4 h-4 rounded border border-slate-700 bg-slate-800 text-transparent peer-checked:text-purple-400 peer-checked:border-purple-500 transition-colors">
                                 <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="checkbox-icon-marketing"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" /></svg>
                             </div>
                             <div class="flex-grow space-y-1">
@@ -319,6 +342,7 @@
                                     <span class="text-xs sm:text-sm font-bold text-slate-200">③ 동서부산 분산형 로컬마케팅 (Marketing)</span>
                                     <span class="text-[10px] font-bold text-blue-300 bg-blue-950/40 border border-blue-800/30 px-1.5 py-0.5 rounded">80억</span>
                                 </div>
+                                <span class="inline-block px-1.5 py-0.5 rounded text-[9px] font-bold bg-pink-500/10 text-pink-400 border border-pink-500/20 mb-1">🎯 해결 과제: 해운대 극심한 대혼잡 해소</span>
                                 <p class="text-[11px] text-slate-400 leading-relaxed">해운대 과밀을 영도 공장식 개조몰, 낙동강 생태벨트 등으로 분산하는 상품 육성.</p>
                             </div>
                         </div>
@@ -328,7 +352,7 @@
                     <label class="block cursor-pointer select-none">
                         <input type="checkbox" id="policy-airport" onchange="togglePolicyItem('airport')" class="sr-only peer">
                         <div class="bg-slate-950/40 border border-slate-800 peer-checked:border-purple-500/60 peer-checked:bg-purple-950/10 rounded-xl p-3.5 transition-all hover:bg-slate-800/30 flex items-start space-x-3">
-                            <div class="mt-0.5 flex items-center justify-center w-4 h-4 rounded border border-slate-700 bg-slate-800 text-transparent peer-checked:text-purple-400 peer-checked:border-purple-500 transition-colors">
+                            <div class="mt-1 flex items-center justify-center w-4 h-4 rounded border border-slate-700 bg-slate-800 text-transparent peer-checked:text-purple-400 peer-checked:border-purple-500 transition-colors">
                                 <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="checkbox-icon-airport"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" /></svg>
                             </div>
                             <div class="flex-grow space-y-1">
@@ -336,24 +360,28 @@
                                     <span class="text-xs sm:text-sm font-bold text-slate-200">④ 김해공항 관문 위생 및 프로세스 보완 (Airport)</span>
                                     <span class="text-[10px] font-bold text-blue-300 bg-blue-950/40 border border-blue-800/30 px-1.5 py-0.5 rounded">150억</span>
                                 </div>
+                                <span class="inline-block px-1.5 py-0.5 rounded text-[9px] font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-1">🎯 해결 과제: 낙후된 공항 첫인상 전면 개편</span>
                                 <p class="text-[11px] text-slate-400 leading-relaxed">댓글 요구 1순위. 국제선 청사 위생 전면 개선 및 통역 가이드 프로세스 증설.</p>
                             </div>
                         </div>
                     </label>
                 </div>
 
-                <!-- Right Column: Live Progress Dash Panel -->
+                <!-- Right Column: Live Progress Dash Panel with Dynamic Status Badges -->
                 <div class="lg:col-span-5 bg-slate-950/60 border border-slate-800/60 rounded-xl p-4.5 flex flex-col justify-between space-y-4">
-                    <div class="space-y-3.5">
+                    <div class="space-y-4">
                         <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">실시간 성과 시뮬레이션</div>
                         
                         <!-- Metric Indicator 1: Budget Progress -->
                         <div class="space-y-1.5">
                             <div class="flex justify-between items-center text-xs">
                                 <span class="text-slate-400">총 소요 예산</span>
-                                <span id="sim-budget-val" class="font-extrabold text-white text-xs sm:text-sm">0억 원</span>
+                                <div class="flex items-center space-x-1.5">
+                                    <span id="status-budget-badge" class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-slate-800 text-slate-400">비용 없음</span>
+                                    <span id="sim-budget-val" class="font-extrabold text-white text-xs sm:text-sm">0억 원</span>
+                                </div>
                             </div>
-                            <div class="w-full bg-slate-900 h-2 rounded-full overflow-hidden">
+                            <div class="w-full bg-slate-900 h-2.5 rounded-full overflow-hidden">
                                 <div id="sim-budget-bar" class="bg-gradient-to-r from-blue-600 to-cyan-400 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
                             </div>
                         </div>
@@ -362,9 +390,12 @@
                         <div class="space-y-1.5">
                             <div class="flex justify-between items-center text-xs">
                                 <span class="text-slate-400">종합 시민 동의율</span>
-                                <span id="sim-approval-val" class="font-extrabold text-emerald-400 text-xs sm:text-sm">0%</span>
+                                <div class="flex items-center space-x-1.5">
+                                    <span id="status-approval-badge" class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-slate-800 text-slate-400">의견대기</span>
+                                    <span id="sim-approval-val" class="font-extrabold text-emerald-400 text-xs sm:text-sm">0%</span>
+                                </div>
                             </div>
-                            <div class="w-full bg-slate-900 h-2 rounded-full overflow-hidden">
+                            <div class="w-full bg-slate-900 h-2.5 rounded-full overflow-hidden">
                                 <div id="sim-approval-bar" class="bg-gradient-to-r from-emerald-600 to-emerald-400 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
                             </div>
                         </div>
@@ -373,9 +404,12 @@
                         <div class="space-y-1.5">
                             <div class="flex justify-between items-center text-xs">
                                 <span class="text-slate-400">글로벌 관광경쟁력</span>
-                                <span id="sim-attract-val" class="font-extrabold text-purple-400 text-xs sm:text-sm">60 / 100</span>
+                                <div class="flex items-center space-x-1.5">
+                                    <span id="status-attract-badge" class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-slate-800 text-slate-400">보통</span>
+                                    <span id="sim-attract-val" class="font-extrabold text-purple-400 text-xs sm:text-sm">60 / 100</span>
+                                </div>
                             </div>
-                            <div class="w-full bg-slate-900 h-2 rounded-full overflow-hidden">
+                            <div class="w-full bg-slate-900 h-2.5 rounded-full overflow-hidden">
                                 <div id="sim-attract-bar" class="bg-gradient-to-r from-purple-600 to-pink-500 h-full rounded-full transition-all duration-300" style="width: 60%"></div>
                             </div>
                         </div>
@@ -383,10 +417,13 @@
                         <!-- Metric Indicator 4: Congestion Level -->
                         <div class="space-y-1.5">
                             <div class="flex justify-between items-center text-xs">
-                                <span class="text-slate-400">관광지 혼잡도</span>
-                                <span id="sim-congestion-val" class="font-extrabold text-amber-500 text-xs sm:text-sm">85% (혼잡)</span>
+                                <span class="text-slate-400">도심 혼잡 정체도</span>
+                                <div class="flex items-center space-x-1.5">
+                                    <span id="status-congestion-badge" class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-red-900/40 text-red-400">매우혼잡</span>
+                                    <span id="sim-congestion-val" class="font-extrabold text-amber-500 text-xs sm:text-sm">85% (혼잡)</span>
+                                </div>
                             </div>
-                            <div class="w-full bg-slate-900 h-2 rounded-full overflow-hidden">
+                            <div class="w-full bg-slate-900 h-2.5 rounded-full overflow-hidden">
                                 <div id="sim-congestion-bar" class="bg-gradient-to-r from-red-500 to-amber-500 h-full rounded-full transition-all duration-300" style="width: 85%"></div>
                             </div>
                         </div>
@@ -714,6 +751,59 @@
             updateSimulationUI();
         }
 
+        // Apply Scenario Presets for Easy Interactive Navigation
+        function applyPreset(presetType) {
+            // Reset all first
+            const keys = ['pass', 'out', 'marketing', 'airport'];
+            keys.forEach(k => {
+                activePolicies[k] = false;
+                document.getElementById(`policy-${k}`).checked = false;
+                const checkboxIcon = document.getElementById(`checkbox-icon-${k}`);
+                checkboxIcon.classList.remove('text-purple-400');
+                checkboxIcon.classList.add('text-transparent');
+            });
+
+            // Apply selected
+            if (presetType === 'budget') {
+                activePolicies.pass = true;
+                activePolicies.out = true;
+                document.getElementById('policy-pass').checked = true;
+                document.getElementById('policy-out').checked = true;
+                document.getElementById('checkbox-icon-pass').classList.remove('text-transparent');
+                document.getElementById('checkbox-icon-pass').classList.add('text-purple-400');
+                document.getElementById('checkbox-icon-out').classList.remove('text-transparent');
+                document.getElementById('checkbox-icon-out').classList.add('text-purple-400');
+            } else if (presetType === 'foreigner') {
+                activePolicies.pass = true;
+                activePolicies.airport = true;
+                document.getElementById('policy-pass').checked = true;
+                document.getElementById('policy-airport').checked = true;
+                document.getElementById('checkbox-icon-pass').classList.remove('text-transparent');
+                document.getElementById('checkbox-icon-pass').classList.add('text-purple-400');
+                document.getElementById('checkbox-icon-airport').classList.remove('text-transparent');
+                document.getElementById('checkbox-icon-airport').classList.add('text-purple-400');
+            } else if (presetType === 'balance') {
+                activePolicies.marketing = true;
+                activePolicies.airport = true;
+                document.getElementById('policy-marketing').checked = true;
+                document.getElementById('policy-airport').checked = true;
+                document.getElementById('checkbox-icon-marketing').classList.remove('text-transparent');
+                document.getElementById('checkbox-icon-marketing').classList.add('text-purple-400');
+                document.getElementById('checkbox-icon-airport').classList.remove('text-transparent');
+                document.getElementById('checkbox-icon-airport').classList.add('text-purple-400');
+            } else if (presetType === 'all') {
+                keys.forEach(k => {
+                    activePolicies[k] = true;
+                    document.getElementById(`policy-${k}`).checked = true;
+                    const checkboxIcon = document.getElementById(`checkbox-icon-${k}`);
+                    checkboxIcon.classList.remove('text-transparent');
+                    checkboxIcon.classList.add('text-purple-400');
+                });
+            }
+
+            updateSimulationUI();
+        }
+
         function updateSimulationUI() {
             let totalBudget = 0;
             let totalApproval = 0;
@@ -745,19 +835,64 @@
             // Update DOM Elements
             document.getElementById('activeCountBadge').innerText = `${activeCount}개`;
             
-            // Budget Rendering
+            // 1. Budget UI Update with Dynamic Badges
             document.getElementById('sim-budget-val').innerText = `${totalBudget}억 원`;
             document.getElementById('sim-budget-bar').style.width = `${budgetPercent}%`;
+            
+            const budgetBadge = document.getElementById('status-budget-badge');
+            if (totalBudget === 0) {
+                budgetBadge.className = "px-1.5 py-0.5 rounded text-[9px] font-bold bg-slate-850 text-slate-400";
+                budgetBadge.innerText = "비용 없음";
+            } else if (totalBudget <= 60) {
+                budgetBadge.className = "px-1.5 py-0.5 rounded text-[9px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-500/20";
+                budgetBadge.innerText = "초저예산 알뜰";
+            } else if (totalBudget <= 150) {
+                budgetBadge.className = "px-1.5 py-0.5 rounded text-[9px] font-bold bg-blue-950 text-blue-400 border border-blue-500/20";
+                budgetBadge.innerText = "적정규모 예산";
+            } else {
+                budgetBadge.className = "px-1.5 py-0.5 rounded text-[9px] font-bold bg-pink-950 text-pink-400 border border-pink-500/20";
+                budgetBadge.innerText = "대규모 대형사업";
+            }
 
-            // Approval Rendering
+            // 2. Approval UI Update with Dynamic Badges
             document.getElementById('sim-approval-val').innerText = activeCount > 0 ? `${averageApproval}%` : '0%';
             document.getElementById('sim-approval-bar').style.width = activeCount > 0 ? `${averageApproval}%` : '0%';
+            
+            const approvalBadge = document.getElementById('status-approval-badge');
+            if (activeCount === 0) {
+                approvalBadge.className = "px-1.5 py-0.5 rounded text-[9px] font-bold bg-slate-850 text-slate-400";
+                approvalBadge.innerText = "의견대기";
+            } else if (averageApproval >= 90) {
+                approvalBadge.className = "px-1.5 py-0.5 rounded text-[9px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-500/20";
+                approvalBadge.innerText = "시민 대환영";
+            } else if (averageApproval >= 85) {
+                approvalBadge.className = "px-1.5 py-0.5 rounded text-[9px] font-bold bg-indigo-950 text-indigo-400 border border-indigo-500/20";
+                approvalBadge.innerText = "원만함";
+            } else {
+                approvalBadge.className = "px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-950 text-amber-400 border border-amber-500/20";
+                approvalBadge.innerText = "일부 조율 필요";
+            }
 
-            // Attraction Index Rendering
+            // 3. Attraction Index UI Update with Dynamic Badges
             document.getElementById('sim-attract-val').innerText = `${attractionBase} / 100`;
             document.getElementById('sim-attract-bar').style.width = `${attractionBase}%`;
+            
+            const attractBadge = document.getElementById('status-attract-badge');
+            if (attractionBase <= 60) {
+                attractBadge.className = "px-1.5 py-0.5 rounded text-[9px] font-bold bg-slate-850 text-slate-400";
+                attractBadge.innerText = "국내 보통수준";
+            } else if (attractionBase <= 75) {
+                attractBadge.className = "px-1.5 py-0.5 rounded text-[9px] font-bold bg-blue-950 text-blue-400 border border-blue-500/20";
+                attractBadge.innerText = "국내 대표급";
+            } else if (attractionBase <= 90) {
+                attractBadge.className = "px-1.5 py-0.5 rounded text-[9px] font-bold bg-purple-950 text-purple-400 border border-purple-500/20";
+                attractBadge.innerText = "아시아 허브급";
+            } else {
+                attractBadge.className = "px-1.5 py-0.5 rounded text-[9px] font-bold bg-pink-950 text-pink-400 border border-pink-500/20";
+                attractBadge.innerText = "글로벌 최일류";
+            }
 
-            // Congestion Index Rendering
+            // 4. Congestion Index UI Update with Dynamic Badges
             let congestionText = `${congestionBase}%`;
             if (congestionBase >= 80) congestionText += ' (혼잡)';
             else if (congestionBase >= 50) congestionText += ' (보통)';
@@ -765,6 +900,18 @@
             
             document.getElementById('sim-congestion-val').innerText = activeCount > 0 ? congestionText : '85% (혼잡)';
             document.getElementById('sim-congestion-bar').style.width = activeCount > 0 ? `${congestionBase}%` : '85%';
+            
+            const congestionBadge = document.getElementById('status-congestion-badge');
+            if (congestionBase >= 80) {
+                congestionBadge.className = "px-1.5 py-0.5 rounded text-[9px] font-bold bg-red-950 text-red-400 border border-red-500/20";
+                congestionBadge.innerText = "극심한 과밀";
+            } else if (congestionBase >= 50) {
+                congestionBadge.className = "px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-950 text-amber-400 border border-amber-500/20";
+                congestionBadge.innerText = "정상 정체";
+            } else {
+                congestionBadge.className = "px-1.5 py-0.5 rounded text-[9px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-500/20";
+                congestionBadge.innerText = "한적하고 쾌적";
+            }
 
             // Generate AI Summary analysis text
             const scenarioDesc = document.getElementById('sim-scenario-desc');
