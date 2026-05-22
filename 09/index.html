@@ -61,8 +61,8 @@
     <!-- Main Container -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
         
-        <!-- Welcome Banner (초고급 시네마틱 오션 레이아웃으로 업그레이드) -->
-        <div class="relative overflow-hidden bg-gradient-to-br from-indigo-950 via-blue-950 to-slate-950 rounded-2xl p-6 sm:p-10 border border-blue-500/20 shadow-2xl">
+        <!-- Welcome Banner -->
+        <div class="relative overflow-hidden bg-gradient-to-br from-indigo-950 via-blue-950 to-slate-955 rounded-2xl p-6 sm:p-10 border border-blue-500/20 shadow-2xl">
             <!-- Background Decorative Glowing Orbs -->
             <div class="absolute top-0 right-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
             <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl -ml-20 -mb-20"></div>
@@ -101,7 +101,7 @@
                     </p>
                 </div>
                 
-                <!-- Right: Glassmorphic Quick Metric Dashboard Card (이목 집중 장치) -->
+                <!-- Right: Glassmorphic Quick Metric Dashboard Card -->
                 <div class="lg:col-span-4 bg-slate-900/90 border border-slate-800/80 p-5 rounded-2xl flex flex-col justify-between space-y-4 shadow-2xl relative overflow-hidden group hover:border-purple-500/30 transition-all duration-300">
                     <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 pointer-events-none"></div>
                     <div class="text-[11px] font-bold text-purple-400 uppercase tracking-widest flex items-center justify-between">
@@ -302,7 +302,7 @@
             </div>
         </div>
 
-        <!-- 3. 부산시 맞춤형 정책 시뮬레이터 (ELEVATED & Revamped with presets & beginner-friendly descriptors) -->
+        <!-- 3. 부산시 맞춤형 정책 시뮬레이터 -->
         <div class="bg-gradient-to-b from-slate-900 to-indigo-950/40 border border-purple-500/30 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b border-slate-800/60 pb-3">
                 <div class="space-y-1">
@@ -315,7 +315,7 @@
                         </svg>
                         <span>부산 관광 정책 믹스 시뮬레이터</span>
                     </h3>
-                    <p class="text-[11px] text-slate-400">여러 개의 정책을 중복 선택하거나, 간편 추천 조합 버튼을 클릭해 실시간 시너지 효과를 분석해 보세요.</p>
+                    <p class="text-[11px] text-slate-400">정책 카드들을 마음껏 중복 활성화하거나 하단의 원클릭 프리셋 버튼으로 대시보드 지표 변화를 탐색해 보세요.</p>
                 </div>
                 <div class="mt-2 md:mt-0 flex items-center space-x-1.5 text-xs bg-purple-950/60 border border-purple-900/40 px-3 py-1.5 rounded-lg text-purple-300">
                     <span class="font-bold">선택 정책:</span>
@@ -417,6 +417,54 @@
                             </div>
                         </div>
                     </label>
+
+                    <!-- Policy 5 (New - 특별 디자인 표기 탑재) -->
+                    <label class="block cursor-pointer select-none">
+                        <input type="checkbox" id="policy-night" onchange="togglePolicyItem('night')" class="sr-only peer">
+                        <div class="bg-slate-950/40 border-2 border-purple-500/10 peer-checked:border-purple-500 peer-checked:bg-purple-950/15 rounded-xl p-3.5 transition-all hover:bg-slate-800/30 flex items-start space-x-3 relative overflow-hidden">
+                            <!-- 사용자 제안 정책을 위한 은은한 보라빛 백그라운드 그라데이션 장식 -->
+                            <div class="absolute -right-10 -bottom-10 w-24 h-24 bg-purple-500/5 rounded-full blur-xl pointer-events-none"></div>
+                            
+                            <div class="mt-1 flex items-center justify-center w-4 h-4 rounded border border-slate-700 bg-slate-800 text-transparent peer-checked:text-purple-400 peer-checked:border-purple-500 transition-colors">
+                                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="checkbox-icon-night"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" /></svg>
+                            </div>
+                            <div class="flex-grow space-y-1">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs sm:text-sm font-bold text-slate-200 flex items-center gap-1.5 flex-wrap">
+                                        ⑤ 밤바다 미디어 크루즈 & 야간 명소 확충 (Night)
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[9px] font-black bg-gradient-to-r from-purple-500 to-indigo-600 text-white shadow shadow-purple-500/30 tracking-tight">✨ 내가 제안한 정책</span>
+                                    </span>
+                                    <span class="text-[10px] font-bold text-blue-300 bg-blue-950/40 border border-blue-800/30 px-1.5 py-0.5 rounded">60억</span>
+                                </div>
+                                <span class="inline-block px-1.5 py-0.5 rounded text-[9px] font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mb-1">🎯 해결 과제: 야간 체류형 미식 및 소비 촉진</span>
+                                <p class="text-[11px] text-slate-400 leading-relaxed">광안대교 LED 연출 고도화 및 야간 해양 미식 크루즈 운항 노선 증설.</p>
+                            </div>
+                        </div>
+                    </label>
+
+                    <!-- Policy 6 (New - 특별 디자인 표기 탑재) -->
+                    <label class="block cursor-pointer select-none">
+                        <input type="checkbox" id="policy-smart" onchange="togglePolicyItem('smart')" class="sr-only peer">
+                        <div class="bg-slate-950/40 border-2 border-purple-500/10 peer-checked:border-purple-500 peer-checked:bg-purple-950/15 rounded-xl p-3.5 transition-all hover:bg-slate-800/30 flex items-start space-x-3 relative overflow-hidden">
+                            <!-- 사용자 제안 정책을 위한 은은한 보라빛 백그라운드 그라데이션 장식 -->
+                            <div class="absolute -right-10 -bottom-10 w-24 h-24 bg-purple-500/5 rounded-full blur-xl pointer-events-none"></div>
+
+                            <div class="mt-1 flex items-center justify-center w-4 h-4 rounded border border-slate-700 bg-slate-800 text-transparent peer-checked:text-purple-400 peer-checked:border-purple-500 transition-colors">
+                                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="checkbox-icon-smart"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" /></svg>
+                            </div>
+                            <div class="flex-grow space-y-1">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs sm:text-sm font-bold text-slate-200 flex items-center gap-1.5 flex-wrap">
+                                        ⑥ 실시간 다국어 AI 가이드 & 스마트 도보 안내 (Smart)
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[9px] font-black bg-gradient-to-r from-purple-500 to-indigo-600 text-white shadow shadow-purple-500/30 tracking-tight">✨ 내가 제안한 정책</span>
+                                    </span>
+                                    <span class="text-[10px] font-bold text-blue-300 bg-blue-950/40 border border-blue-800/30 px-1.5 py-0.5 rounded">25억</span>
+                                </div>
+                                <span class="inline-block px-1.5 py-0.5 rounded text-[9px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-1">🎯 해결 과제: 초행길 외국인 도보 안내 및 소통 해소</span>
+                                <p class="text-[11px] text-slate-400 leading-relaxed">주요 지하철역 및 전통시장에 다국어 통역 단말기 비치 및 QR 가이드 안내판 대대적 정비.</p>
+                            </div>
+                        </div>
+                    </label>
                 </div>
 
                 <!-- Right Column: Live Progress Dash Panel with Dynamic Status Badges -->
@@ -435,6 +483,10 @@
                             </div>
                             <div class="w-full bg-slate-900 h-2.5 rounded-full overflow-hidden">
                                 <div id="sim-budget-bar" class="bg-gradient-to-r from-blue-600 to-cyan-400 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+                            </div>
+                            <div class="flex justify-between text-[9px] text-slate-500">
+                                <span>최소 0억</span>
+                                <span>한도 400억</span>
                             </div>
                         </div>
 
@@ -639,14 +691,18 @@
             pass: false,
             out: false,
             marketing: false,
-            airport: false
+            airport: false,
+            night: false,
+            smart: false
         };
 
         const policyMetadata = {
             pass: { title: "디지털 패스", budget: 45, approval: 92, attractionBoost: 15, congestionImpact: 0 },
             out: { title: "트리플 원아웃", budget: 12, approval: 88, attractionBoost: 10, congestionImpact: 0 },
             marketing: { title: "동서부산 분산", budget: 80, approval: 79, attractionBoost: 12, congestionImpact: -20 },
-            airport: { title: "김해공항 긴급 수선", budget: 150, approval: 95, attractionBoost: 25, congestionImpact: 5 }
+            airport: { title: "김해공항 긴급 수선", budget: 150, approval: 95, attractionBoost: 25, congestionImpact: 5 },
+            night: { title: "야간 크루즈", budget: 60, approval: 85, attractionBoost: 18, congestionImpact: 10 },
+            smart: { title: "스마트 가이드", budget: 25, approval: 91, attractionBoost: 8, congestionImpact: -5 }
         };
 
         // Initialize Charts on Load
@@ -806,7 +862,7 @@
         // Apply Scenario Presets for Easy Interactive Navigation
         function applyPreset(presetType) {
             // Reset all first
-            const keys = ['pass', 'out', 'marketing', 'airport'];
+            const keys = ['pass', 'out', 'marketing', 'airport', 'night', 'smart'];
             keys.forEach(k => {
                 activePolicies[k] = false;
                 document.getElementById(`policy-${k}`).checked = false;
@@ -819,30 +875,42 @@
             if (presetType === 'budget') {
                 activePolicies.pass = true;
                 activePolicies.out = true;
+                activePolicies.smart = true;
                 document.getElementById('policy-pass').checked = true;
                 document.getElementById('policy-out').checked = true;
+                document.getElementById('policy-smart').checked = true;
                 document.getElementById('checkbox-icon-pass').classList.remove('text-transparent');
                 document.getElementById('checkbox-icon-pass').classList.add('text-purple-400');
                 document.getElementById('checkbox-icon-out').classList.remove('text-transparent');
                 document.getElementById('checkbox-icon-out').classList.add('text-purple-400');
+                document.getElementById('checkbox-icon-smart').classList.remove('text-transparent');
+                document.getElementById('checkbox-icon-smart').classList.add('text-purple-400');
             } else if (presetType === 'foreigner') {
                 activePolicies.pass = true;
                 activePolicies.airport = true;
+                activePolicies.smart = true;
                 document.getElementById('policy-pass').checked = true;
                 document.getElementById('policy-airport').checked = true;
+                document.getElementById('policy-smart').checked = true;
                 document.getElementById('checkbox-icon-pass').classList.remove('text-transparent');
                 document.getElementById('checkbox-icon-pass').classList.add('text-purple-400');
                 document.getElementById('checkbox-icon-airport').classList.remove('text-transparent');
                 document.getElementById('checkbox-icon-airport').classList.add('text-purple-400');
+                document.getElementById('checkbox-icon-smart').classList.remove('text-transparent');
+                document.getElementById('checkbox-icon-smart').classList.add('text-purple-400');
             } else if (presetType === 'balance') {
                 activePolicies.marketing = true;
                 activePolicies.airport = true;
+                activePolicies.smart = true;
                 document.getElementById('policy-marketing').checked = true;
                 document.getElementById('policy-airport').checked = true;
+                document.getElementById('policy-smart').checked = true;
                 document.getElementById('checkbox-icon-marketing').classList.remove('text-transparent');
                 document.getElementById('checkbox-icon-marketing').classList.add('text-purple-400');
                 document.getElementById('checkbox-icon-airport').classList.remove('text-transparent');
                 document.getElementById('checkbox-icon-airport').classList.add('text-purple-400');
+                document.getElementById('checkbox-icon-smart').classList.remove('text-transparent');
+                document.getElementById('checkbox-icon-smart').classList.add('text-purple-400');
             } else if (presetType === 'all') {
                 keys.forEach(k => {
                     activePolicies[k] = true;
@@ -881,8 +949,8 @@
             if (congestionBase < 10) congestionBase = 10;
             if (congestionBase > 100) congestionBase = 100;
 
-            // Budget Max threshold in UI is 300
-            const budgetPercent = Math.min((totalBudget / 300) * 100, 100);
+            // Budget Max threshold in UI is now 400 (Since max is 372)
+            const budgetPercent = Math.min((totalBudget / 400) * 100, 100);
 
             // Update DOM Elements
             document.getElementById('activeCountBadge').innerText = `${activeCount}개`;
@@ -895,10 +963,10 @@
             if (totalBudget === 0) {
                 budgetBadge.className = "px-1.5 py-0.5 rounded text-[9px] font-bold bg-slate-850 text-slate-400";
                 budgetBadge.innerText = "비용 없음";
-            } else if (totalBudget <= 60) {
+            } else if (totalBudget <= 100) {
                 budgetBadge.className = "px-1.5 py-0.5 rounded text-[9px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-500/20";
                 budgetBadge.innerText = "초저예산 알뜰";
-            } else if (totalBudget <= 150) {
+            } else if (totalBudget <= 220) {
                 budgetBadge.className = "px-1.5 py-0.5 rounded text-[9px] font-bold bg-blue-950 text-blue-400 border border-blue-500/20";
                 budgetBadge.innerText = "적정규모 예산";
             } else {
@@ -976,20 +1044,20 @@
             }
 
             // Special Combo Detection
-            if (activePolicies.pass && activePolicies.out && activePolicies.marketing && activePolicies.airport) {
-                return "🚨 [올인원 마스터플랜] 예산 부담(287억)은 높으나 공항 편의 개선, 서부산 분산 상품, 정찰 제도가 결합되어 연 지출액이 단기간에 2조 원대까지 폭발적 도약할 시너지를 지닙니다.";
+            if (activePolicies.pass && activePolicies.out && activePolicies.marketing && activePolicies.airport && activePolicies.night && activePolicies.smart) {
+                return "🚀 [올인원 뉴 부산 대평정 마스터플랜] 예산 확보 부담(372억)은 상당하나, 교통 장벽 해소, 상권 정찰제, 분산 유도, 국제공항 관문 리모델링 및 밤바다 크루즈 미식이 완벽하게 융합되었습니다. 글로벌 브랜드 평판과 체류 소비율을 동시에 거머쥐는 최상위 시나리오입니다.";
             }
 
-            if (activePolicies.pass && activePolicies.airport && !activePolicies.marketing) {
-                return "✈️ [입국-결제 속도 우선 조합] 관문 공항 환경과 사전 결제망이 해결되어 여행객의 소비 편의가 극대화되나, 서부산 등 외곽 분산 노력이 없어 일부 권역의 지하철 마비 현상이 지속될 위험이 있습니다.";
+            if (activePolicies.pass && activePolicies.airport && activePolicies.smart && !activePolicies.marketing && !activePolicies.night) {
+                return "✈️ [외국인 입국 프리패스 스마트 플랜] 외국인이 도달하는 국제공항, 실시간 가이드 통역망, 결제 패스가 결합되어 유입 속도가 극대화됩니다. 개별 자유 여행객(대만/일본 등)의 만족도가 가장 높은 스마트 시나리오입니다.";
             }
 
-            if (activePolicies.out && activePolicies.marketing && !activePolicies.airport) {
-                return "🌿 [실속형 전통가치 보전형] 공항 확충을 배제하고 전통시장 신뢰 정찰제와 서부산 친수 콘텐츠를 확장합니다. 가성비 높은 예산(92억) 투자 대비 여론 및 고유 정취 유지율이 탄탄합니다.";
+            if (activePolicies.out && activePolicies.marketing && activePolicies.night && !activePolicies.airport) {
+                return "🌙 [로컬 체류형 로맨틱 밤바다 패키지] 한탕 바가지를 통제하고, 동서부산의 로컬 양조장 상품 및 광안리 해상 미식 크루즈를 융합하여 체박/체류 숙박 비율을 획기적으로 견인합니다. 가성비 우수한 시민 환영 조합입니다.";
             }
 
-            if (activePolicies.airport && activePolicies.marketing && !activePolicies.pass) {
-                return "🧱 [물리적 인프라 균형안] 공항 환경 수선과 공간 분산은 우수하나, 외국인의 온라인 티켓/철도 예매 편의가 개선되지 않아 실제 소비 전환율이 다소 정체될 수 있습니다.";
+            if (activePolicies.airport && activePolicies.night && !activePolicies.smart && !activePolicies.pass) {
+                return "🧱 [하드웨어 지리적 개발 조합] 대형 인프라인 공항 개보수와 밤바다 크루즈 개발은 호화롭게 진행되나, 사전 간편 결제망과 모바일 가이드 연동이 부족하여 소프트웨어적 편의성에서 한계를 노출할 수 있습니다.";
             }
 
             // Single Toggles or minor combinations
@@ -998,6 +1066,8 @@
                 if (activePolicies.pass) return "💳 [결제 디지털화 집중] 사전 예매 장벽을 무너뜨려 관광 재방문율과 편리함을 극대화하는 시나리오입니다.";
                 if (activePolicies.out) return "⚖️ [상권 신뢰 정량제] 제주/울릉 등의 바가지 이미지를 사전 예방하고, 지속가능한 정찰 문화를 확고히 다집니다.";
                 if (activePolicies.marketing) return "🧭 [동서 균형 안착] 해운대 중심의 쏠림(53%)을 원도심으로 분산하여 극심한 휴가철 체증을 미연에 방지합니다.";
+                if (activePolicies.night) return "🚢 [야간 크루즈 시범사업] 영상 인터뷰의 요구 수용. 밤바다 체류 매력을 자극하여 당일치기 관광도시의 한계를 극복하기 시작하는 유의미한 첫 단추입니다.";
+                if (activePolicies.smart) return "📱 [다국어 정보 스마트화] 비교적 합리적인 비용(25억)으로 도보 표지판과 실시간 역무원 통역 단말기를 개량해 도심 곳곳의 외국인 방황률을 즉시 떨어뜨립니다.";
             }
 
             return `💡 [하이브리드 다변화 결합] 현재 ${count}개의 연계 정책 조합으로 총 ${budget}억 원의 투자가 시뮬레이션됩니다. 경쟁력은 ${attraction}점까지 고속 상승하며, 시민 여론도 ${approval}%로 상당히 우호적입니다.`;
