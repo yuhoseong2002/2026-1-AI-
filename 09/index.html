@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>부산 관광 분석 및 여론 대시보드</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts (Pretendard) -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <style>
+        body {
+            font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+            background-color: #0f172a; /* Slate 900 */
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+    </style>
+</head>
+<body class="text-slate-100 min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <!-- Marine Logo Icon -->
+                <div class="p-2 bg-blue-600 rounded-lg text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h2m4-3.5a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-white tracking-tight">글로벌 관광 도시, 부산</h1>
+                    <p class="text-xs text-slate-400">데이터로 보는 도약과 과제 (KBS 뉴스 및 757개 여론 분석)</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2 text-xs bg-slate-800 px-3 py-1.5 rounded-full text-slate-300">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>실시간 데이터 반영됨</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+        
+        <!-- Welcome Banner -->
+        <div class="relative overflow-hidden bg-gradient-to-r from-blue-900 via-indigo-950 to-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-2xl">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.15),transparent_50%)]"></div>
+            <div class="relative z-10 max-w-3xl">
+                <span class="bg-blue-500/20 text-blue-300 text-xs font-semibold px-3 py-1 rounded-full border border-blue-500/30">종합 분석 리포트</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-3 leading-tight">외국인 관광 지출 1조 원 시대,<br class="hidden sm:inline">부산은 진짜 글로벌 명소가 될 수 있을까?</h2>
+                <p class="text-slate-300 mt-2 text-sm sm:text-base leading-relaxed">
+                    부산이 사상 최초로 외국인 관광객 300만 명을 돌파하며 인천을 제치고 전국 2위에 올랐습니다. 미식과 전통시장이 부활하고 있는 지금, 시민들의 생생한 목소리를 통해 지속 가능한 부산 관광의 실마리를 찾습니다.
+                </p>
+            </div>
+        </div>
+
+        <!-- 1. KPI Metrics Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- Metric 1 -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 hover:border-blue-500/30 transition-all shadow-lg flex flex-col justify-between">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs text-slate-400 font-medium">연간 외국인 지출액</span>
+                    <span class="p-1.5 bg-blue-500/10 text-blue-400 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </span>
+                </div>
+                <div class="mt-4">
+                    <div class="flex items-baseline space-x-1.5">
+                        <span class="text-2xl sm:text-3xl font-black text-white">1조 원 +</span>
+                        <span class="text-xs text-emerald-400 font-bold">(잠정)</span>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-1 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-emerald-400 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+                        전년 대비 <span class="font-semibold text-emerald-400 ml-0.5">32.4% 증가</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Metric 2 -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 hover:border-indigo-500/30 transition-all shadow-lg flex flex-col justify-between">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs text-slate-400 font-medium">국내 지출 순위</span>
+                    <span class="p-1.5 bg-indigo-500/10 text-indigo-400 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg>
+                    </span>
+                </div>
+                <div class="mt-4">
+                    <div class="flex items-baseline space-x-1.5">
+                        <span class="text-2xl sm:text-3xl font-black text-white">전국 2위</span>
+                        <span class="text-xs text-indigo-300 font-semibold">인천 돌파</span>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-1">인천공항 후광을 넘은 순수 지자체 쾌거</p>
+                </div>
+            </div>
+
+            <!-- Metric 3 -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 hover:border-pink-500/30 transition-all shadow-lg flex flex-col justify-between">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs text-slate-400 font-medium">관광 소비 쏠림도</span>
+                    <span class="p-1.5 bg-pink-500/10 text-pink-400 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" /></svg>
+                    </span>
+                </div>
+                <div class="mt-4">
+                    <div class="flex items-baseline space-x-1.5">
+                        <span class="text-2xl sm:text-3xl font-black text-white">53.0%</span>
+                        <span class="text-xs text-pink-400 font-bold">집중</span>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-1">우동·중동(해운대) 및 부전동(서면) 편중</p>
+                </div>
+            </div>
+
+            <!-- Metric 4 -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 hover:border-cyan-500/30 transition-all shadow-lg flex flex-col justify-between">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs text-slate-400 font-medium">분석 데이터 모수</span>
+                    <span class="p-1.5 bg-cyan-500/10 text-cyan-400 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" /></svg>
+                    </span>
+                </div>
+                <div class="mt-4">
+                    <div class="flex items-baseline space-x-1.5">
+                        <span class="text-2xl sm:text-3xl font-black text-white">757 건</span>
+                        <span class="text-xs text-cyan-300 font-semibold">시민 여론</span>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-1">유튜브 뉴스 시청자 반응 대량 크롤링</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Charts and Visualization Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <!-- Left: Donut Chart (Spending Location) - IMPROVED FOR BEST AT-A-GLANCE READABILITY -->
+            <div class="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl flex flex-col justify-between">
+                <div>
+                    <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+                        <span class="w-1.5 h-4 bg-pink-500 rounded-full"></span>
+                        <span>외국인 관광 소비 편중 현황</span>
+                    </h3>
+                    <p class="text-xs text-slate-400 mt-1">단 3개 법정동이 전체 매출의 절반 이상을 독식</p>
+                </div>
+                
+                <!-- Center Info Donut Chart Container -->
+                <div class="my-5 relative flex justify-center items-center">
+                    <div class="w-48 h-48 sm:w-52 sm:h-52 relative">
+                        <canvas id="concentrationChart"></canvas>
+                        <!-- Center Label Overlaid for intuitive understanding -->
+                        <div class="absolute inset-0 flex flex-col justify-center items-center pointer-events-none">
+                            <span class="text-3xl font-black text-pink-500 tracking-tight">53.0%</span>
+                            <span class="text-[10px] text-slate-400 font-semibold mt-0.5">3개동 집중</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Detailed Progress Bars for Immediate Contrast Comparison -->
+                <div class="space-y-3 text-xs bg-slate-950/40 p-4 rounded-2xl border border-slate-800">
+                    <div class="text-[11px] font-bold text-slate-400 border-b border-slate-800/80 pb-1.5">지역별 세부 매출 비중</div>
+                    
+                    <!-- Top 1: Haeundae-gu (Woo-dong, Jung-dong) -->
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-center text-[11px]">
+                            <span class="text-pink-300 font-semibold flex items-center">
+                                <span class="w-1.5 h-1.5 rounded-full bg-pink-500 mr-1.5"></span>
+                                해운대구 우동·중동
+                            </span>
+                            <span class="text-pink-400 font-bold">31.2%</span>
+                        </div>
+                        <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                            <div class="bg-gradient-to-r from-pink-600 to-pink-500 h-full rounded-full" style="width: 31.2%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Top 2: Busanjin-gu (Bujeon-dong / Seomyeon) -->
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-center text-[11px]">
+                            <span class="text-pink-300 font-semibold flex items-center">
+                                <span class="w-1.5 h-1.5 rounded-full bg-pink-400 mr-1.5"></span>
+                                부산진구 부전동 (서면)
+                            </span>
+                            <span class="text-pink-300 font-bold">21.8%</span>
+                        </div>
+                        <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                            <div class="bg-gradient-to-r from-pink-500 to-pink-400 h-full rounded-full" style="width: 21.8%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Leftovers (13 entire districts avg) -->
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-center text-[11px]">
+                            <span class="text-slate-400 font-medium flex items-center">
+                                <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mr-1.5"></span>
+                                나머지 13개 자치구군 (평균)
+                            </span>
+                            <span class="text-slate-400 font-bold">구당 3.6%</span>
+                        </div>
+                        <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                            <div class="bg-slate-600 h-full rounded-full" style="width: 3.6%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Image Section (pusan.png 직접 삽입) -->
+            <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl flex flex-col justify-between">
+                <div>
+                    <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+                        <span class="w-1.5 h-4 bg-blue-500 rounded-full"></span>
+                        <span>유튜브 댓글 키워드/테마 빈도</span>
+                    </h3>
+                    <p class="text-xs text-slate-400 mt-1">시민들이 가장 활발하게 지적하거나 공감한 주제</p>
+                </div>
+
+                <!-- 그래프와 스냅샷 문구를 전부 없애고 깔끔하게 pusan.png 이미지를 바로 배치 -->
+                <div class="my-4 relative overflow-hidden rounded-xl border border-slate-800 bg-slate-950 aspect-[16/10] flex items-center justify-center group flex-grow">
+                    <img id="busanImage" 
+                         src="pusan.png" 
+                         alt="부산 관광 트렌드" 
+                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                         onerror="handleImageError(this)">
+                    
+                    <!-- 로드 오류 시 나타날 폴백 플레이스홀더 -->
+                    <div id="imagePlaceholder" class="hidden absolute inset-0 flex flex-col items-center justify-center p-4 text-center bg-slate-950">
+                        <svg class="h-8 w-8 text-slate-600 mb-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <p class="text-xs text-slate-400 font-medium">이미지를 불러올 수 없습니다 (pusan.png)</p>
+                        <p class="text-[10px] text-slate-500 mt-0.5 max-w-sm">
+                            로컬 폴더에 이미지 파일을 두거나, GitHub에 업로드 후 <code>src</code>에 올바른 경로를 설정해주세요.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Dynamic Comment Explorer -->
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+                <div>
+                    <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+                        <span class="w-1.5 h-4 bg-cyan-500 rounded-full"></span>
+                        <span>실시간 여론 및 댓글 탐색기</span>
+                    </h3>
+                    <p class="text-xs text-slate-400 mt-1">각 분류 항목을 클릭하여 구체적인 여론을 확인해보세요</p>
+                </div>
+                
+                <!-- Filter Search Box -->
+                <div class="relative max-w-xs w-full">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                    </span>
+                    <input type="text" id="commentSearch" oninput="filterCommentsBySearch()" placeholder="여론 검색 (예: 바가지, 공항)..." class="w-full bg-slate-800 text-slate-200 pl-9 pr-4 py-2 rounded-xl text-xs border border-slate-700 focus:outline-none focus:border-cyan-500 transition-all placeholder-slate-500">
+                </div>
+            </div>
+
+            <!-- Tabs Grid -->
+            <div class="flex flex-wrap gap-2 pb-2 border-b border-slate-800">
+                <button onclick="switchTab('전체')" id="tab-전체" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-cyan-600 text-white transition-all shadow-md">
+                    전체 보기 (8)
+                </button>
+                <button onclick="switchTab('경제효과')" id="tab-경제효과" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-400 hover:bg-slate-700/50 hover:text-white transition-all">
+                    💰 경제효과
+                </button>
+                <button onclick="switchTab('지역자부심')" id="tab-지역자부심" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-400 hover:bg-slate-700/50 hover:text-white transition-all">
+                    🌅 지역자부심
+                </button>
+                <button onclick="switchTab('교통문제')" id="tab-교통문제" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-400 hover:bg-slate-700/50 hover:text-white transition-all">
+                    ✈️ 교통문제
+                </button>
+                <button onclick="switchTab('숙박·물가')" id="tab-숙박·물가" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-400 hover:bg-slate-700/50 hover:text-white transition-all">
+                    🦀 숙박·물가
+                </button>
+                <button onclick="switchTab('관광객쏠림')" id="tab-관광객쏠림" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-400 hover:bg-slate-700/50 hover:text-white transition-all">
+                    📍 관광객쏠림
+                </button>
+                <button onclick="switchTab('외국인인식')" id="tab-외국인인식" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-400 hover:bg-slate-700/50 hover:text-white transition-all">
+                    🎎 외국인인식
+                </button>
+                <button onclick="switchTab('정책제안')" id="tab-정책제안" class="tab-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-400 hover:bg-slate-700/50 hover:text-white transition-all">
+                    📢 정책제안
+                </button>
+            </div>
+
+            <!-- Comments Container -->
+            <div id="commentsWrapper" class="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[480px] overflow-y-auto pr-2 custom-scrollbar">
+                <!-- Dynamically Inserted -->
+            </div>
+        </div>
+
+        <!-- 4. Reality Check: Video vs. Comment -->
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl space-y-6">
+            <div>
+                <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+                    <span class="w-1.5 h-4 bg-emerald-500 rounded-full"></span>
+                    <span>뉴스 보도 vs 시민 여론: 팩트 체크 및 온도 차</span>
+                </h3>
+                <p class="text-xs text-slate-400 mt-1">보도된 긍정적 측면 뒤의 생생한 그림자를 비교합니다</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Video Highlights -->
+                <div class="bg-blue-950/20 border border-blue-500/20 p-5 rounded-2xl space-y-4">
+                    <div class="flex items-center space-x-2 text-blue-400 font-bold text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" /></svg>
+                        <span>언론 보도가 비춘 '빛'</span>
+                    </div>
+                    <ul class="space-y-3 text-xs text-slate-300">
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">✦</span>
+                            <span><strong>외국인 지출 1조 원 시대:</strong> 인천을 앞지르며 서울에 버금가는 최강 관광 거점으로의 부상.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">✦</span>
+                            <span><strong>로컬 전통시장의 부활:</strong> 부전시장, 해운대시장 등이 SNS 가성비 맛집으로 외신 조명 및 인파 폭발.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">✦</span>
+                            <span><strong>돼지국밥 등 로컬 미식 열풍:</strong> 대만 등 중화권 대상 설문조사 선호도 66.9%를 달성한 핵심 킬러 템.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Comment Reality -->
+                <div class="bg-amber-950/20 border border-amber-500/20 p-5 rounded-2xl space-y-4">
+                    <div class="flex items-center space-x-2 text-amber-400 font-bold text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" /></svg>
+                        <span>댓글 여론이 비춘 '그림자' (보완 과제)</span>
+                    </div>
+                    <ul class="space-y-3 text-xs text-slate-300">
+                        <li class="flex items-start">
+                            <span class="text-amber-500 mr-2">✦</span>
+                            <span><strong>바가지 우려와 상인회의 부재:</strong> 일시적인 유행에 흥청망청 바가지를 씌울 경우 순식간에 추락할 수 있다는 강력한 자성 촉구.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-amber-500 mr-2">✦</span>
+                            <span><strong>관문 공항(김해공항)의 극심한 낙후:</strong> 협소한 시설, 위생 부족 등으로 글로벌 허브 관문 역할을 하기에 기형적인 공항 수용성 규탄.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-amber-500 mr-2">✦</span>
+                            <span><strong>인증 장벽 및 서비스 친절도:</strong> 외국인이 예약하기 힘든 극단적인 인증 중심의 인프라 및 글로벌 통용 서비스 마련 촉구.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Interactive Policy Simulator -->
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl space-y-6">
+            <div>
+                <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+                    <span class="w-1.5 h-4 bg-purple-500 rounded-full"></span>
+                    <span>부산시 맞춤형 정책 시뮬레이터</span>
+                </h3>
+                <p class="text-xs text-slate-400 mt-1">시민들이 직접 꼽은 문제를 해결하기 위한 혁신적인 맞춤형 가상 정책을 실행해 보세요</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Policy Option 1 -->
+                <div class="bg-slate-800/40 border border-slate-700/60 p-5 rounded-2xl hover:border-purple-500/50 transition-all space-y-4 flex flex-col justify-between">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2 py-0.5 bg-blue-500/20 text-blue-300 rounded text-[10px] font-bold">교통/예매 개선</span>
+                            <span class="text-xs font-semibold text-slate-400">우선순위: 1위</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-white">원스톱 글로벌 디지털 패스 구축</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">복잡한 본인 인증 장벽을 완전히 허물고, 해외 신용카드로 대중교통 및 전통시장 패키지 원스톱 예약·예매 기능 고도화.</p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+                        <span class="text-[11px] text-slate-500">예상 만족도 상승: <strong class="text-emerald-400">+25%</strong></span>
+                        <button onclick="triggerPolicy('pass')" class="px-3 py-1 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-xs font-bold transition-all shadow-md">정책 시뮬레이션</button>
+                    </div>
+                </div>
+
+                <!-- Policy Option 2 -->
+                <div class="bg-slate-800/40 border border-slate-700/60 p-5 rounded-2xl hover:border-purple-500/50 transition-all space-y-4 flex flex-col justify-between">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2 py-0.5 bg-amber-500/20 text-amber-300 rounded text-[10px] font-bold">물가/신뢰 구축</span>
+                            <span class="text-xs font-semibold text-slate-400">우선순위: 2위</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-white">트리플 원아웃 위생·정찰제 단속</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">위생 등급 표시를 필수로 규격화하고, 단 3회의 바가지 요금 혹은 불법 상행위 적발 시 시장 퇴출 및 시 보조금 지급 전면 제외.</p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+                        <span class="text-[11px] text-slate-500">지속도 증가율: <strong class="text-emerald-400">+38%</strong></span>
+                        <button onclick="triggerPolicy('out')" class="px-3 py-1 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-xs font-bold transition-all shadow-md">정책 시뮬레이션</button>
+                    </div>
+                </div>
+
+                <!-- Policy Option 3 -->
+                <div class="bg-slate-800/40 border border-slate-700/60 p-5 rounded-2xl hover:border-purple-500/50 transition-all space-y-4 flex flex-col justify-between">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2 py-0.5 bg-pink-500/20 text-pink-300 rounded text-[10px] font-bold">공간 불균형 해소</span>
+                            <span class="text-xs font-semibold text-slate-400">우선순위: 3위</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-white">동-서부산 분산형 공간 마케팅</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">동부산에 쏠린 관광 인파를 막걸리 양조장, 영도 공장식 테마파크, 낙동강 친수 문화 공간 등으로 다변화하는 로컬 상품 연계.</p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+                        <span class="text-[11px] text-slate-500">쏠림 현상 완화: <strong class="text-emerald-400">-15%</strong></span>
+                        <button onclick="triggerPolicy('marketing')" class="px-3 py-1 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-xs font-bold transition-all shadow-md">정책 시뮬레이션</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simulation Result Block -->
+            <div id="simulationResultBlock" class="hidden bg-slate-950 border border-purple-500/30 p-6 rounded-2xl space-y-4 animate-fade-in">
+                <div class="flex items-center justify-between">
+                    <h4 class="text-sm font-bold text-purple-300 flex items-center space-x-2">
+                        <span class="w-2 h-2 rounded-full bg-purple-500 animate-ping"></span>
+                        <span id="simulatedTitle">시뮬레이션 진행 중...</span>
+                    </h4>
+                    <button onclick="closeSimulation()" class="text-xs text-slate-400 hover:text-white">닫기</button>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center mt-2">
+                    <div class="bg-slate-900 p-4 rounded-xl border border-slate-800">
+                        <div class="text-[11px] text-slate-400">필요 예상 예산</div>
+                        <div id="simBudget" class="text-lg font-black text-white mt-1">-</div>
+                    </div>
+                    <div class="bg-slate-900 p-4 rounded-xl border border-slate-800">
+                        <div class="text-[11px] text-slate-400">시민 여론 동의율</div>
+                        <div id="simApproval" class="text-lg font-black text-emerald-400 mt-1">-</div>
+                    </div>
+                    <div class="bg-slate-900 p-4 rounded-xl border border-slate-800">
+                        <div class="text-[11px] text-slate-400">글로벌 관광객 유치 잠재력</div>
+                        <div id="simPotential" class="text-lg font-black text-cyan-400 mt-1">-</div>
+                    </div>
+                </div>
+                
+                <div class="p-3 bg-purple-950/20 rounded-xl border border-purple-900/30">
+                    <p id="simDesc" class="text-xs text-slate-300 leading-relaxed"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-950 py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 space-y-3 sm:space-y-0">
+            <div>
+                © 2026 부산 관광 미래 비전 대시보드. All Rights Reserved.
+            </div>
+            <div class="flex space-x-4">
+                <span>데이터 소스: KBS 뉴스데스크 보도 및 유튜브 시청자 댓글 실데이터 (757건)</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script for Charts and Interactive Functions -->
+    <script>
+        // Sample Real-world Data from Crawler
+        const allComments = [
+            { id: 1, author: "@routemahn", content: "부산사람들 한가지만 명심하이소. 바가지 씌우는 상인있으면 그냥 두면 안됩니다. 상인회에서 그냥 퇴출시키고 왕따시키더라도 과감히 날려버려야 나머지 상인들이 살아 남는 겁니다. 울릉도처럼 되지 마세요.", category: "숙박·물가", likes: 444 },
+            { id: 2, author: "@sikg6207", content: "제대로된 공항도 없이 이 정도의 관광객이면 1위나 마찬가지다.", category: "교통문제", likes: 217 },
+            { id: 3, author: "@구글러1", content: "부산을 오사카처럼 관광 발전좀 시켜라", category: "정책제안", likes: 833 },
+            { id: 4, author: "@종군기자-q5u", content: "솔직히 외국인들 입장에서 부산같은 매력적인 도시가 이제 뜬다는 게 의아할 정도다.", category: "지역자부심", likes: 325 },
+            { id: 5, author: "@Jlawlens", content: "부산 관광도 활성화 시켜라... 부산같은 도시가 우리나라에 어딨냐 항구도 진짜 천혜의 지리다", category: "지역자부심", likes: 80 },
+            { id: 6, author: "@큐큐큐-o7b", content: "일자리만 많으면 부산만큼 살기 좋은 지역이 없지", category: "경제효과", likes: 668 },
+            { id: 7, author: "@아이민36", content: "부산토박이인데요.. 살다살다 외국인 이렇게 많은거 처음봅니다 ㅋㅋㅋ", category: "외국인인식", likes: 362 },
+            { id: 8, author: "@그린3", content: "물 들어 올때 노만 젖지 말고 바가지등 관리 잘해라,,", category: "숙박·물가", likes: 466 },
+            { id: 9, author: "@우리아름다운나라-v9g", content: "솔직히 산이면 산 바다면 바다가 조화된 경관 자체는 서울 인천 아니 대한민국 어디에 내 놔도 손색이 없는 도시지 인프라 또한 서울 못지 않고 당연히 관광 1번지가 되어야 마땅하다고 본다.", category: "지역자부심", likes: 607 },
+            { id: 10, author: "@용산뻐꾸기", content: "부산 변질되지않고 부산만의 고유한 특색 유지하길 ㅎㅎ 부산 매력적이긴 함 ㅎㅎ 다양한 컨텐츠나 볼거리 .도시 개선 다양하게 개발해주시길", category: "정책제안", likes: 205 },
+            { id: 11, author: "@위생최우선", content: "위생적, 청소청결이 최고의 경쟁력이 됩니다. 전통시장 먹거리가 유명해지다보니 위생 부분에 눈살이 찌푸려지는 경우가 간혹 생기네요.", category: "정책제안", likes: 178 },
+            { id: 12, author: "@김해신공항", content: "김해공항이 너무 좁다. 화장실도 리모델링 좀 해라. 외국인들이 한국 첫 관문인데 인상이 깎인다.", category: "교통문제", likes: 351 },
+            { id: 13, author: "@일자리찾는청년", content: "일자리만 많아봐라 한국 청년들 다 모인다. 부산 관광업이 발전해서 양질의 일자리가 많아지기를...", category: "경제효과", likes: 350 },
+            { id: 14, author: "@글로벌예약", content: "다 좋은데 외국인도 온라인 예매가 가능하게 좀 해줘라. 한국만큼 온라인 예매 힘든 나라도 드물다.", category: "정책제안", likes: 104 },
+            { id: 15, author: "@쏠림대책시급", content: "전부 해운대 광안리만 가니까 주말에 지하철도 너무 터져나간다. 다른 영도나 다대포 같은 서부산 쪽도 분산 시킬 수 있게 지하철 역 중심으로 연계 버스 노선 더 만들어라.", category: "관광객쏠림", likes: 61 }
+        ];
+
+        let currentActiveTab = "전체";
+
+        // Initialize Charts on Load
+        window.onload = function() {
+            initConcentrationChart();
+            renderComments();
+        };
+
+        // 1. Chart.js : Donut Chart (Spending Concentration)
+        function initConcentrationChart() {
+            const ctx = document.getElementById('concentrationChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['해운대 우·중동 / 서면 부전동', '기타 부산 전역'],
+                    datasets: [{
+                        data: [53, 47],
+                        backgroundColor: ['#ec4899', '#1e293b'],
+                        borderColor: ['#f472b6', '#334155'],
+                        borderWidth: 2,
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: '#0f172a',
+                            titleColor: '#fff',
+                            bodyColor: '#e2e8f0',
+                            borderWidth: 1,
+                            borderColor: '#334155',
+                            callbacks: {
+                                label: function(context) {
+                                    return ` 지출 점유율: ${context.parsed}%`;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '75%'
+                }
+            });
+        }
+
+        // 2. Render and Filter Comments
+        function renderComments(filteredList = allComments) {
+            const wrapper = document.getElementById('commentsWrapper');
+            wrapper.innerHTML = "";
+
+            if (filteredList.length === 0) {
+                wrapper.innerHTML = `
+                    <div class="col-span-1 md:col-span-2 text-center py-12 text-slate-500 text-xs">
+                        일치하는 조건의 시민 여론 데이터가 존재하지 않습니다. 다른 검색어를 입력해 보세요.
+                    </div>
+                `;
+                return;
+            }
+
+            filteredList.forEach(c => {
+                let badgeColor = "bg-slate-800 text-slate-400";
+                if (c.category === "숙박·물가") badgeColor = "bg-amber-500/10 text-amber-400 border border-amber-500/20";
+                else if (c.category === "교통문제") badgeColor = "bg-blue-500/10 text-blue-400 border border-blue-500/20";
+                else if (c.category === "지역자부심") badgeColor = "bg-indigo-500/10 text-indigo-400 border border-indigo-500/20";
+                else if (c.category === "경제효과") badgeColor = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
+                else if (c.category === "관광객쏠림") badgeColor = "bg-pink-500/10 text-pink-400 border border-pink-500/20";
+                else if (c.category === "외국인인식") badgeColor = "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20";
+                else if (c.category === "정책제안") badgeColor = "bg-purple-500/10 text-purple-400 border border-purple-500/20";
+
+                const cardHtml = `
+                    <div class="bg-slate-800/40 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between space-y-3 hover:border-slate-700/60 transition-all">
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-xs text-slate-200">${c.author}</span>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold ${badgeColor}">${c.category}</span>
+                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed">${c.content}</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-2 border-t border-slate-800/50">
+                            <span class="text-[10px] text-slate-500">실시간 여론 데이터</span>
+                            <div class="flex items-center text-rose-400 space-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 10.133a1.5 1.5 0 00-.8.2z" /></svg>
+                                <span class="text-xs font-black">${c.likes}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                wrapper.innerHTML += cardHtml;
+            });
+        }
+
+        // 3. Tab Switcher
+        function switchTab(category) {
+            currentActiveTab = category;
+            
+            // Toggle active styles
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.className = "tab-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-400 hover:bg-slate-700/50 hover:text-white transition-all";
+            });
+
+            const activeBtn = document.getElementById(`tab-${category}`);
+            if (activeBtn) {
+                activeBtn.className = "tab-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-cyan-600 text-white transition-all shadow-md";
+            }
+
+            // Filter
+            const searchVal = document.getElementById('commentSearch').value.toLowerCase();
+            let resultList = allComments;
+
+            if (category !== "전체") {
+                resultList = resultList.filter(c => c.category === category);
+            }
+            if (searchVal) {
+                resultList = resultList.filter(c => c.content.toLowerCase().includes(searchVal) || c.author.toLowerCase().includes(searchVal));
+            }
+
+            renderComments(resultList);
+        }
+
+        // 4. Client-side Comment Search Function
+        function filterCommentsBySearch() {
+            const searchVal = document.getElementById('commentSearch').value.toLowerCase();
+            let resultList = allComments;
+
+            if (currentActiveTab !== "전체") {
+                resultList = resultList.filter(c => c.category === currentActiveTab);
+            }
+
+            if (searchVal) {
+                resultList = resultList.filter(c => c.content.toLowerCase().includes(searchVal) || c.author.toLowerCase().includes(searchVal));
+            }
+
+            renderComments(resultList);
+        }
+
+        // 5. Interactive Policy Simulation Handler
+        function triggerPolicy(policyKey) {
+            const resultBlock = document.getElementById('simulationResultBlock');
+            resultBlock.classList.remove('hidden');
+
+            const title = document.getElementById('simulatedTitle');
+            const budget = document.getElementById('simBudget');
+            const approval = document.getElementById('simApproval');
+            const potential = document.getElementById('simPotential');
+            const desc = document.getElementById('simDesc');
+
+            if (policyKey === 'pass') {
+                title.innerText = "교통/예매 개선안: 원스톱 글로벌 디지털 패스 고도화";
+                budget.innerText = "약 45억 원 (시 주도)";
+                approval.innerText = "92.3% (매우 높음)";
+                potential.innerText = "대만·일본 관광 유입 +35% 기대";
+                desc.innerText = "복잡했던 철도(도시철도, KTX), 전통시장 제휴 할인 바우처를 전용 앱에서 통합 지원합니다. 여권 간편 인증 및 비자/마스터카드 직접 결제 기술을 적용하여 외국인 접근성을 대폭 개선합니다.";
+            } else if (policyKey === 'out') {
+                title.innerText = "물가/신뢰안: 전통시장 '트리플 원아웃제' 의무화";
+                budget.innerText = "약 12억 원 (정부 매칭)";
+                approval.innerText = "88.7% (상인회 일부 반발)";
+                potential.innerText = "관광 재방문율 +42% 개선";
+                desc.innerText = "위생 위반 및 바가지 사행 행위 적발 상가에 즉각 과태료를 부과하고, 3회 적발 시 전통시장 입주 자격을 일시 박탈하는 무관용 정책입니다. 역설적으로 선량한 나머지 99%의 소상공인을 완벽하게 지키는 무기가 됩니다.";
+            } else if (policyKey === 'marketing') {
+                title.innerText = "관광지 불균형안: 동-서부산 분산형 공간 마케팅";
+                budget.innerText = "약 80억 원 (인프라 연계)";
+                approval.innerText = "79.1% (균형성 기대)";
+                potential.innerText = "해운대·서면 혼잡 완화 -20%";
+                desc.innerText = "서부산 낙동강 변이나 영도, 금정산의 템플스테이와 소규모 로컬 미식 체험을 패키지로 유도합니다. 동부권에만 쏠리던 인파를 물리적으로 다변화하여 교통 혼잡도 완화와 지역 균형 성장을 동시에 만족시킵니다.";
+            }
+            
+            // Smooth scroll to simulation result
+            resultBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function closeSimulation() {
+            document.getElementById('simulationResultBlock').classList.add('hidden');
+        }
+
+        // 이미지 로딩 실패 대응 핸들러
+        function handleImageError(imgElement) {
+            // 이미지 엘리먼트를 숨기며 대체 박스를 활성화합니다
+            imgElement.style.display = 'none';
+            const placeholder = document.getElementById('imagePlaceholder');
+            if (placeholder) {
+                placeholder.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
